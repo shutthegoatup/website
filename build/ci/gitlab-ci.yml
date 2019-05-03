@@ -1,0 +1,120 @@
+image: 
+  name: alpine/helm:latest
+  entrypoint: [""]
+
+variables:
+  DOCKER_HOST: tcp://127.0.0.1:2375/
+  DOCKER_DRIVER: overlay2
+  BASE_DOMAIN: secureweb.ltd
+  PROD_DOMAIN: secureweb.ltd
+  DOCKER_REGISTRY: registry.gitlab.com
+
+stages:
+  - build
+  - test
+  - review
+  - testing
+  - production
+  - cleanup
+
+before_script:
+  - export DOCKER_REPOSITORY=$DOCKER_REGISTRY/$CI_PROJECT_PATH
+  - export DOCKER_TAG=$CI_COMMIT_SHORT_SHA
+  - export DOCKER_HASH=$(cat docker_hash.txt)
+  - export DOCKER_HASH_TYPE=$(cat docker_hash_type.txt)
+  - export REVIEW_FQDN=${CI_ENVIRONMENT_URL:8}
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$DOCKER_TAG .
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
+    - docker push $DOCKER_REPOSITORY:$DOCKER_TAG
+    - docker inspect --format='{{index .RepoDigests 0}}' 
+      $DOCKER_REPOSITORY:$DOCKER_TAG | cut -d ":" -f2 > docker_hash.txt
+    -  docker inspect --format='{{index .RepoDigests 0}}' 
+      $DOCKER_REPOSITORY:$DOCKER_TAG | cut -d "@" -f2 | 
+      cut -d ":" -f1 > docker_hash_type.txt
+  artifacts:
+    paths:
+    - docker_hash.txt
+    - docker_hash_type.txt
+
+test:
+  stage: test
+  script: # TODO: write a test script
+    - exit 0
+
+review:
+  stage: review
+  image: 
+    name: alpine/helm:latest
+    entrypoint: [""]
+  script:
+    - helm upgrade --install --wait 
+      --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
+      --set image.tag=$DOCKER_HASH
+      --set ingress.hosts[0]=$REVIEW_FQDN
+      --set ingress.tls[0].hosts[0]=$REVIEW_FQDN
+      $CI_ENVIRONMENT_SLUG deployment/helm
+      --namespace=$CI_ENVIRONMENT_SLUG
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG 
+    url: https://$CI_ENVIRONMENT_SLUG.$BASE_DOMAIN 
+    on_stop: stop_review
+  only:
+    refs:
+      - branches
+      - tags
+  except:
+    refs:
+      - master
+  dependencies:
+    - build
+
+stop_review:
+  stage: cleanup
+  variables:
+    GIT_STRATEGY: none
+  image: 
+    name: alpine/helm:latest
+    entrypoint: [""]
+  script: 
+    - helm delete --purge $CI_ENVIRONMENT_SLUG
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG 
+    action: stop
+  when: manual
+  allow_failure: true
+  only:
+    refs:
+      - branches
+      - tags
+  except:
+    refs:
+      - master
+
+testing:
+  stage: testing
+  script: # TODO: write a test script
+    - exit 0
+
+production:
+  stage: production
+  script:
+    - helm upgrade --install --wait 
+      --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
+      --set image.tag=$DOCKER_HASH
+      --set ingress.hosts[0]=$PROD_DOMAIN
+      --set ingress.tls[0].hosts[0]=$PROD_DOAMIN
+      website deployment/helm
+      --namespace=web
+  environment:
+    name: production
+    url: https://$PROD_DOMAIN
+  only:
+    refs:
+      - master

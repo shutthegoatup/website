@@ -1,0 +1,22 @@
+{{- $serviceName := include "website.fullname"  . }}
+{{- $servicePort := .Values.service.externalPort }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "website.fullname" . }}
+spec:
+  rules:
+  {{- range .Values.ingress.hosts }}
+      {{- $url := splitList "/" . }}
+    - host: {{ first $url }}
+      http:
+        paths:
+          - path: /{{ rest $url | join "/" }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+  {{- end }}
+{{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+{{- end }}
