@@ -12,8 +12,8 @@ stages:
   - build
   - test
   - review
-  - testing
   - production
+  - testing
   - cleanup
 
 before_script:
@@ -110,8 +110,8 @@ production:
       --set image.tag=$DOCKER_HASH
       --set ingress.hosts[0]=$ENVIRONMENT_FQDN
       --set ingress.tls[0].hosts[0]=$ENVIRONMENT_FQDN
-      website deployment/helm
-      --namespace=web
+      $CI_ENVIRONMENT_SLUG-$CI_PROJECT_PATH_SLUG deployment/helm
+      --namespace=$CI_ENVIRONMENT_SLUG-$CI_PROJECT_PATH_SLUG
   environment:
     name: production
     url: https://$BASE_DOMAIN
