@@ -96,15 +96,9 @@ stop_review:
     refs:
       - master
 
-testing:
-  stage: testing
-  script: # TODO: write a test script
-    - exit 0
-
 production:
   stage: production
   script:
-    - env
     - helm upgrade --install --wait 
       --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
       --set image.tag=$DOCKER_HASH
@@ -118,3 +112,8 @@ production:
   only:
     refs:
       - master
+
+testing:
+  stage: testing
+  script: # TODO: write a test script
+    - exit 0
