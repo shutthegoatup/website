@@ -6,7 +6,6 @@ variables:
   DOCKER_HOST: tcp://127.0.0.1:2375/
   DOCKER_DRIVER: overlay2
   BASE_DOMAIN: secureweb.ltd
-  PROD_DOMAIN: secureweb.ltd
   DOCKER_REGISTRY: registry.gitlab.com
 
 stages:
@@ -22,7 +21,7 @@ before_script:
   - export DOCKER_TAG=$CI_COMMIT_SHORT_SHA
   - export DOCKER_HASH=$(cat docker_hash.txt)
   - export DOCKER_HASH_TYPE=$(cat docker_hash_type.txt)
-  - export REVIEW_FQDN=${CI_ENVIRONMENT_URL:8}
+  - export ENVIRONMENT_FQDN=${CI_ENVIRONMENT_URL:8}
 
 build:
   stage: build
@@ -57,8 +56,8 @@ review:
     - helm upgrade --install --wait 
       --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
       --set image.tag=$DOCKER_HASH
-      --set ingress.hosts[0]=$REVIEW_FQDN
-      --set ingress.tls[0].hosts[0]=$REVIEW_FQDN
+      --set ingress.hosts[0]=$ENVIRONMENT_FQDN
+      --set ingress.tls[0].hosts[0]=$ENVIRONMENT_FQDN
       $CI_ENVIRONMENT_SLUG deployment/helm
       --namespace=$CI_ENVIRONMENT_SLUG
   environment:
@@ -105,16 +104,17 @@ testing:
 production:
   stage: production
   script:
+    - env
     - helm upgrade --install --wait 
       --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
       --set image.tag=$DOCKER_HASH
-      --set ingress.hosts[0]=$PROD_DOMAIN
-      --set ingress.tls[0].hosts[0]=$PROD_DOAMIN
+      --set ingress.hosts[0]=$ENVIRONMENT_FQDN
+      --set ingress.tls[0].hosts[0]=$ENVIRONMENT_FQDN
       website deployment/helm
       --namespace=web
   environment:
     name: production
-    url: https://$PROD_DOMAIN
+    url: https://$BASE_DOMAIN
   only:
     refs:
       - master
