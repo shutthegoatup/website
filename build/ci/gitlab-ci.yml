@@ -48,7 +48,8 @@ trivy:
   before_script:
     - echo "Running before_script"
   script:
-    - trivy --quiet -f json -o gl-container-scanning-report.json --input container.tar 
+    - echo "disabled step"
+   # - trivy --quiet -f json -o gl-container-scanning-report.json --input container.tar 
   artifacts:
     reports:
       container_scanning: gl-container-scanning-report.json
