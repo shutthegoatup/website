@@ -29,7 +29,7 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$DOCKER_TAG .
+    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$DOCKER_TAG src
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
     - docker push $DOCKER_REPOSITORY:$DOCKER_TAG
     - docker inspect --format='{{index .RepoDigests 0}}' 
