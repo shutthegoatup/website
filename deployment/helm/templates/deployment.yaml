@@ -3,19 +3,21 @@ kind: Deployment
 metadata:
   name: {{ template "website.fullname" . }}
   labels:
-    app: {{ template "website.name" . }}
+    app: {{ template "website.fullname" . }}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: {{ template "website.name" . }}
+      app: {{ template "website.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ template "website.name" . }}
+        app: {{ template "website.fullname" . }}
     spec:
       containers:
       - name: app
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+
+
