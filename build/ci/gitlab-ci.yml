@@ -167,6 +167,9 @@ production:
   only:
     refs:
       - master
+  artifacts:
+    paths:
+    - environment_url.txt
 
 zap:
   stage: testing
@@ -200,6 +203,10 @@ performance:
   artifacts:
     reports:
       performance: performance.json    
+  dependencies:
+    - review
+    - production
+
 
 .setup_env: &setup_env |
   set +x
