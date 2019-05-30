@@ -4,6 +4,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ template "website.fullname" . }}
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers 
+        'X-Content-Type-Options: nosniff'
+        'X-Frame-Options: DENY'
+        'X-Xss-Protection: 1'
+        'Cache-Control: max-age=31536000, private, no-cache, no-store, must-revalidate';
 spec:
   rules:
   {{- range .Values.ingress.hosts }}
