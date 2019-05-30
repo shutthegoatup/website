@@ -2,11 +2,12 @@ variables:
   DOCKER_HOST: tcp://127.0.0.1:2375/
   DOCKER_DRIVER: overlay2
   DOCKER_REGISTRY: registry.gitlab.com
+  DOCKER_REPOSITORY: $DOCKER_REGISTRY/$CI_PROJECT_PATH
 
   KUBECONFIG: ''
   # These are set by kubernetes integration.
   #KUBE_INGRESS_BASE_DOMAIN: secureweb.ltd
-  #KUBE_NAMESPACE: 
+  #KUBE_NAMESPACE:  
 
 image: 
   name: alpine/helm:2.13.1
@@ -15,18 +16,11 @@ image:
 stages:
   - build
   - test
+  - push
   - review
   - production
   - testing
   - cleanup
-
-before_script:
-  - export DOCKER_REPOSITORY=$DOCKER_REGISTRY/$CI_PROJECT_PATH
-  - export DOCKER_TAG=$CI_COMMIT_SHORT_SHA
-  - export DOCKER_HASH=$(cat docker_hash.txt)
-  - export DOCKER_HASH_TYPE=$(cat docker_hash_type.txt)
-  - export ENVIRONMENT_URL=$(cat environment_url.txt)
-  - export ENVIRONMENT_FQDN=${CI_ENVIRONMENT_URL:8}
 
 build:
   stage: build
@@ -34,23 +28,78 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$DOCKER_TAG src
+    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA src
+  after_script:
+    - docker save $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA > container.tar
+  artifacts:
+    expire_in: 4 hour
+    paths:
+    - container.tar
+      
+
+helm:
+  stage: test
+  script:
+    - helm lint deployment/helm/website
+
+trivy:
+  stage: test
+  image: knqyf263/trivy
+  before_script:
+    - echo "Running before_script"
+  script:
+    - trivy --quiet -f json -o gl-container-scanning-report.json --input container.tar 
+  artifacts:
+    reports:
+      container_scanning: gl-container-scanning-report.json
+  dependencies:
+    - build
+
+gitleaks:
+  stage: test
+  image: zricethezav/gitleaks
+  before_script:
+    - echo "Running before_script"
+  script:
+    - gitleaks --report=gitleak.json --repo-path=.
+  artifacts:
+    reports:
+      sast: gitleak.json
+
+trufflehog:
+  stage: test
+  image: cloudkats/trufflehog
+  before_script:
+    - echo "running before"
+  script:
+    - trufflehog file://$PWD 
+    - trufflehog --json file://$PWD | tee trufflehog.json
+  artifacts:
+    reports:
+      sast: trufflehog.json
+
+push:
+  stage: push
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker load < container.tar
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
-    - docker push $DOCKER_REPOSITORY:$DOCKER_TAG
+  script:
+    - docker push $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA
+  after_script:
     - docker inspect --format='{{index .RepoDigests 0}}' 
-      $DOCKER_REPOSITORY:$DOCKER_TAG | cut -d ":" -f2 > docker_hash.txt
-    -  docker inspect --format='{{index .RepoDigests 0}}' 
-      $DOCKER_REPOSITORY:$DOCKER_TAG | cut -d "@" -f2 | 
+      $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA | cut -d ":" -f2 > docker_hash.txt
+    - docker inspect --format='{{index .RepoDigests 0}}' 
+      $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA | cut -d "@" -f2 | 
       cut -d ":" -f1 > docker_hash_type.txt
   artifacts:
     paths:
     - docker_hash.txt
     - docker_hash_type.txt
-
-test:
-  stage: test
-  script: # TODO: write a test script
-    - exit 0
+  dependencies:
+    - build
 
 review:
   stage: review
@@ -60,8 +109,9 @@ review:
       --set image.tag=$DOCKER_HASH
       --set ingress.hosts[0]=$ENVIRONMENT_FQDN
       --set ingress.tls[0].hosts[0]=$ENVIRONMENT_FQDN
-      $CI_ENVIRONMENT_SLUG deployment/helm
+      $CI_ENVIRONMENT_SLUG deployment/helm/website
       --namespace=$KUBE_NAMESPACE
+  after_script:
     - echo $CI_ENVIRONMENT_URL > environment_url.txt
   environment:
     name: review/$CI_COMMIT_REF_SLUG 
@@ -78,7 +128,7 @@ review:
     paths:
     - environment_url.txt
   dependencies:
-    - build
+    - push
 
 stop_review:
   stage: cleanup
@@ -107,8 +157,9 @@ production:
       --set image.tag=$DOCKER_HASH
       --set ingress.hosts[0]=$ENVIRONMENT_FQDN
       --set ingress.tls[0].hosts[0]=$ENVIRONMENT_FQDN
-      $CI_ENVIRONMENT_SLUG-$CI_PROJECT_PATH_SLUG deployment/helm
+      $CI_ENVIRONMENT_SLUG-$CI_PROJECT_PATH_SLUG deployment/helm/website
       --namespace=$KUBE_NAMESPACE
+  after_script:
     - echo $CI_ENVIRONMENT_URL > environment_url.txt
   environment:
     name: production
@@ -117,7 +168,45 @@ production:
     refs:
       - master
 
-testing:
+zap:
   stage: testing
-  script: # TODO: write a test script
-    - exit 0
+  image: owasp/zap2docker-weekly:latest
+  before_script:
+    - export ENVIRONMENT_URL=$(cat environment_url.txt)
+    - mkdir -p /zap/wrk
+  script:
+    - zap-baseline.py -t $ENVIRONMENT_URL -J gl-dast-report.json
+  after_script:
+    - mv /zap/wrk/gl-dast-report.json .
+  artifacts:
+    reports:
+      dast:
+        - gl-dast-report.json 
+  dependencies:
+    - review
+    - production
+
+performance:
+  stage: testing
+  image: sitespeedio/sitespeed.io:6.3.1
+  before_script:
+    - export ENVIRONMENT_URL=$(cat environment_url.txt)
+    - mkdir {sitespeed-results,gitlab-exporter}
+    - wget -O ./gitlab-exporter/index.js https://gitlab.com/gitlab-org/gl-performance/raw/master/index.js
+  script:
+    - /start.sh --plugins.add ./gitlab-exporter --outputFolder sitespeed-results $ENVIRONMENT_URL
+  after_script:
+    - mv sitespeed-results/data/performance.json performance.json
+  artifacts:
+    reports:
+      performance: performance.json    
+
+.setup_env: &setup_env |
+  set +x
+  echo "setup_env"
+  export DOCKER_HASH=$(cat docker_hash.txt)
+  export DOCKER_HASH_TYPE=$(cat docker_hash_type.txt)
+  export ENVIRONMENT_FQDN=${CI_ENVIRONMENT_URL:8}
+
+before_script:
+  - *setup_env
