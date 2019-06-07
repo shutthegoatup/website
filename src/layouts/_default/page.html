@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html>
     {{- partial "head.html" . -}}
-    <body style="width: 100% !important; background: #191c20;" class="body-layout">
-        {{- partial "headersm.html" . -}}
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="width: 100% !important; background: #191c20;" class="body-layout">
-                        <tr>
-                          <td align="center" valign="top">
-                            <!--[if mso]></td></tr></table><![endif]-->
-        {{- block "main" . }}{{- end }}
-        {{.Content}}
-                          <!--[if mso]><table><tr><td><![endif]-->
-    </td></tr></table>
-        {{- partial "footer.html" . -}}
-    </body>
+    <body>
+            {{- partial "header.html" . -}}
+            <section class="section">
+                {{ .Content }}
+            </section>
+            {{- partial "footer.html" . -}}
+        </body>
 </html>
