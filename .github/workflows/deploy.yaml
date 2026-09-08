@@ -36,7 +36,7 @@ jobs:
     name: "Build & Deploy: ${{ inputs.environment }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Node 24 also clears the >=22.22 engine requirement of
       # eslint-plugin-astro, which warns on the repo's current local Node.
