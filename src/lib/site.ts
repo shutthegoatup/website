@@ -3,17 +3,20 @@ export const site = {
   shortName: "STGU",
   domain: "shutthegoatup.com",
   url: "https://shutthegoatup.com",
-  email: "hello@shutthegoatup.com",
+  email: "fight@shutthegoatup.com",
   tagline: "Every category has a GOAT. We come for it.",
   description:
-    "Shut The Goat Up is a product engineering company from Edinburgh. We build software that takes on the incumbents — real-time 3D, payments, and the platforms underneath them.",
-  legalEntity: "Secureweb Ltd",
-  companyNumber: "SC452364",
-  jurisdiction: "Registered in Scotland",
-  address: "Hudson House, 8 Albany Street, Edinburgh, EH1 3QB",
+    "Shut The Goat Up is a product engineering company from London. We build software that takes on the incumbents — real-time 3D, payments, and the platforms underneath them.",
+  /** Where we are. The registered office is elsewhere — see `address`. */
+  city: "London",
+  founded: "2013",
+  legalEntity: "Shut The Goat Up Ltd",
+  companyNumber: "14408578",
+  jurisdiction: "Registered in England and Wales",
+  address: "The Old Surgery, Doctors Road, Blofield, Norwich, NR13 4LF",
   social: {
-    linkedin: "https://www.linkedin.com/company/secureweb",
-    gitlab: "https://gitlab.com/secureweb",
+    linkedin: "https://www.linkedin.com/company/shutthegoatup",
+    github: "https://github.com/shutthegoatup",
   },
 } as const;
 
@@ -32,28 +35,28 @@ export const products: readonly Product[] = [
   {
     name: "RenderApp",
     status: "live",
-    category: "Real-time 3D",
+    category: "Review app & configurator",
     blurb:
-      "Photoreal, interactive 3D streamed to any browser — no plugin, no workstation, no download. Configurators and visualisation that used to need a render farm and a fortnight.",
-    takes: "Render farms and desktop-only visualisation suites",
+      "Photoreal, interactive 3D streamed to any browser — no plugin, no workstation, no download. Send a link, take comments straight on the model, and let people configure the thing themselves.",
+    takes: "Frame.io and Sketchfab",
     href: "https://renderapp.io",
   },
   {
-    name: "Positron",
+    name: "Tender",
     status: "building",
-    category: "Payments",
+    category: "Point of sale",
     blurb:
       "A multi-tenant point-of-sale platform: merchant API, dashboard and terminal app. Built for operators who resent paying a percentage of their business for a card reader.",
-    takes: "The incumbent POS duopoly",
+    takes: "Square and Toast",
     href: null,
   },
   {
     name: "Gruff",
     status: "classified",
-    category: "Undisclosed",
+    category: "Security",
     blurb:
       "Not announced. Not a landing page with a waitlist. It ships when it is good enough to embarrass something expensive.",
-    takes: "Something that has had it too easy for too long",
+    takes: "Long-lived credentials",
     href: null,
   },
 ] as const;
@@ -68,7 +71,7 @@ export const capabilities: readonly Capability[] = [
   {
     index: "01",
     title: "Product engineering",
-    body: "Senior people writing the actual software. Small teams, short cycles, and a working build in front of you every week.",
+    body: "Senior people writing the actual software. Small teams, short cycles, and something running every week rather than a roadmap slide.",
   },
   {
     index: "02",
@@ -83,7 +86,7 @@ export const capabilities: readonly Capability[] = [
   {
     index: "04",
     title: "Security",
-    body: "Threat modelling, supply chain, secrets, and the audit trail your regulator asks for — designed in, not bolted on afterwards.",
+    body: "Threat modelling, supply chain, secrets, and an audit trail that survives contact with a regulator — designed in, not bolted on afterwards.",
   },
 ];
 
@@ -102,12 +105,12 @@ export const principles: readonly Principle[] = [
   {
     index: "02",
     heading: "Small beats slow",
-    body: "We do not staff engagements with a pyramid. You get the people who write the code, and there are not many of them. A team of four that ships fortnightly will outrun forty people in a governance forum every single time.",
+    body: "We do not build with a pyramid. The people who design the product write the code, and there are not many of them. A team of four shipping fortnightly will outrun forty people in a governance forum every single time.",
   },
   {
     index: "03",
-    heading: "You keep the keys",
-    body: "Open standards, your cloud account, your repositories, your data. Everything we build can be taken over by your own engineers, because the day you no longer need us is the day we did the job properly.",
+    heading: "No lock-in",
+    body: "Open standards, open formats, and software you can run yourself. Your data exports and your deployment is yours to keep. We would rather earn the renewal than rely on how painful it would be to leave.",
   },
 ];
 
@@ -128,7 +131,7 @@ export const team: readonly Person[] = [
   {
     name: "Allan Degnan",
     role: "Principal Engineer",
-    bio: "Fifteen-odd years across government, finance, hosting, e-commerce and startups. Has built the platform, been on the pager for it, and passed the audit on it — usually in that order.",
+    bio: "Twenty years across government, defence, finance, media and startups. CTO when it needed one, and still the one writing the code. Has built the platform, been on the pager for it, and passed the audit on it — usually in that order.",
     image: "/images/allan.png",
   },
 ];

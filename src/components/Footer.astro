@@ -11,13 +11,12 @@ const year = new Date().getFullYear();
       <div>
         <GoatMark class="h-14 w-14 text-bone" eye="var(--color-ink)" />
         <p class="display mt-5 max-w-md text-2xl sm:text-3xl">
-          Every category has a <span class="font-prestige normal-case italic"
-            >Goat</span
-          >. We come for it.
+          Every category has a <span class="text-signal">Goat</span>. We come
+          for it.
         </p>
         <a
           href={`mailto:${site.email}`}
-          class="link-underline stamp mt-6 inline-block text-signal"
+          class="link-underline stamp mt-6 inline-block py-2 text-signal"
         >
           {site.email}
         </a>
@@ -29,7 +28,7 @@ const year = new Date().getFullYear();
           <li>{site.address}</li>
           <li>{site.jurisdiction} no. {site.companyNumber}</li>
           <li class="text-ash">
-            {site.name} is a trading name of {site.legalEntity}.
+            Registered office. We work out of {site.city}.
           </li>
         </ul>
       </div>
@@ -38,20 +37,38 @@ const year = new Date().getFullYear();
         <h2 class="stamp text-ash">Elsewhere</h2>
         <ul class="mt-4 space-y-2 text-sm">
           <li>
-            <a class="link-underline" href={site.social.linkedin}>LinkedIn</a>
+            <a
+              class="link-underline inline-block py-2"
+              href={site.social.linkedin}
+            >
+              LinkedIn
+            </a>
           </li>
           <li>
-            <a class="link-underline" href={site.social.gitlab}>GitLab</a>
+            <a
+              class="link-underline inline-block py-2"
+              href={site.social.github}
+            >
+              GitHub
+            </a>
           </li>
-          <li><a class="link-underline" href="/brand">Brand assets</a></li>
-          <li><a class="link-underline" href="/privacy">Privacy</a></li>
+          <li>
+            <a class="link-underline inline-block py-2" href="/brand">
+              Brand assets
+            </a>
+          </li>
+          <li>
+            <a class="link-underline inline-block py-2" href="/privacy"
+              >Privacy</a
+            >
+          </li>
         </ul>
       </div>
     </div>
 
     <p class="stamp mt-14 border-t border-ash/30 pt-6 text-ash">
       © {year}
-      {site.legalEntity} — Edinburgh
+      {site.legalEntity} — {site.city}
     </p>
   </div>
 </footer>

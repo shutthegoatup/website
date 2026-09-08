@@ -19,14 +19,8 @@ const typefaces = [
   {
     name: "Bricolage Grotesque",
     role: "Display",
-    note: "Headlines, wordmark, buttons. Weight 800, tracking −0.035em, uppercase.",
+    note: "Headlines, wordmark, buttons. Weight 800, tracking −0.035em, uppercase. “Goat” is set in the same face and marked by colour alone.",
     css: "font-display",
-  },
-  {
-    name: "Bodoni Moda Italic",
-    role: "Prestige",
-    note: "The word “Goat” only. It is the incumbent’s voice, and it always gets redacted.",
-    css: "font-prestige",
   },
   {
     name: "Instrument Sans",
@@ -62,7 +56,7 @@ const downloads = [
     <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
       <p class="stamp text-ash">Identity — v1</p>
       <h1 class="display mt-6 text-[clamp(2.8rem,9vw,8rem)]">
-        The <span class="font-prestige normal-case italic">Goat</span>, silenced
+        The <span class="text-signal">Goat</span>, silenced
       </h1>
       <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink/75">
         One idea runs through everything: a censor bar over the loudest voice in
@@ -76,17 +70,17 @@ const downloads = [
     <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
       <h2 class="stamp text-ash">§ 01 — The mark</h2>
       <div class="mt-10 grid gap-px border-2 border-ink bg-ink lg:grid-cols-3">
-        <div class="flex items-center justify-center bg-bone p-16">
+        <div class="flex items-center justify-center bg-bone p-8 sm:p-16">
           <GoatMark class="w-44 text-ink" title="Mark on bone" />
         </div>
-        <div class="flex items-center justify-center bg-ink p-16">
+        <div class="flex items-center justify-center bg-ink p-8 sm:p-16">
           <GoatMark
             class="w-44 text-bone"
             eye="var(--color-ink)"
             title="Mark on ink"
           />
         </div>
-        <div class="flex items-center justify-center bg-signal p-16">
+        <div class="flex items-center justify-center bg-signal p-8 sm:p-16">
           <GoatMark
             class="w-44 text-bone"
             eye="var(--color-signal)"
@@ -138,9 +132,11 @@ const downloads = [
           typefaces.map((face) => (
             <li class="grid gap-4 bg-bone py-8 lg:grid-cols-[1fr_1.4fr] lg:items-baseline lg:gap-12">
               <p class={`${face.css} text-4xl lg:text-6xl`}>
-                {face.name === "Bodoni Moda Italic"
-                  ? "Goat"
-                  : "Shut the Goat up"}
+                Shut the{" "}
+                <span class={face.css === "font-display" ? "text-signal" : ""}>
+                  Goat
+                </span>{" "}
+                up
               </p>
               <div>
                 <p class="stamp text-signal">{face.role}</p>

@@ -2,7 +2,6 @@
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/instrument-sans";
 import "@fontsource-variable/martian-mono";
-import "@fontsource-variable/bodoni-moda";
 import "~/styles/app.css";
 import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
@@ -30,12 +29,12 @@ const jsonLd = {
   logo: `${site.url}/icon-512.png`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Hudson House, 8 Albany Street",
-    addressLocality: "Edinburgh",
-    postalCode: "EH1 3QB",
+    streetAddress: "The Old Surgery, Doctors Road, Blofield",
+    addressLocality: "Norwich",
+    postalCode: "NR13 4LF",
     addressCountry: "GB",
   },
-  sameAs: [site.social.linkedin, site.social.gitlab],
+  sameAs: [site.social.linkedin, site.social.github],
 };
 ---
 
@@ -88,6 +87,20 @@ const jsonLd = {
     <Footer />
 
     <script>
+      // Once the sweep finishes, swap animation for transition so the bar can
+      // retract on hover and the redacted word stays recoverable.
+      for (const bar of document.querySelectorAll<HTMLElement>(
+        ".redact__bar",
+      )) {
+        bar.addEventListener(
+          "animationend",
+          () => bar.classList.add("is-set"),
+          {
+            once: true,
+          },
+        );
+      }
+
       const targets = document.querySelectorAll<HTMLElement>(".reveal");
 
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

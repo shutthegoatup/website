@@ -5,7 +5,10 @@ import { platitudes } from "~/lib/site";
 const run = [...platitudes, ...platitudes];
 ---
 
-<section class="border-b-2 border-ink bg-ink py-4" aria-hidden="true">
+<section
+  class="overflow-hidden border-b-2 border-ink bg-ink py-4"
+  aria-hidden="true"
+>
   <div class="marquee">
     {
       run.map((phrase) => (
