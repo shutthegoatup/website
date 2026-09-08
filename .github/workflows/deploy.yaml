@@ -40,7 +40,7 @@ jobs:
 
       # Node 24 also clears the >=22.22 engine requirement of
       # eslint-plugin-astro, which warns on the repo's current local Node.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: "npm"
