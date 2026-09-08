@@ -1,5 +1,8 @@
 name: Preview | PR
 
+# Deploys to the stgu-website-notprod account. Its deploy role trusts the
+# pull_request event only, so this cannot publish to production.
+
 on:
   pull_request:
     branches:
@@ -11,13 +14,10 @@ permissions:
 
 jobs:
   deploy:
-    # Skips until the AWS workload accounts exist and these repo variables
-    # are set, so the workflow can land before the infrastructure does
-    # without failing every run in the meantime.
-    if: vars.AWS_DEPLOY_ROLE_UNSTABLE != '' && vars.CLOUDFRONT_DISTRIBUTION_ID_UNSTABLE != ''
     uses: ./.github/workflows/deploy.yaml
     with:
-      s3_bucket: "unstable.shutthegoatup.com"
-      cloudfront_distribution_id: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_UNSTABLE }}
-      aws_role: ${{ vars.AWS_DEPLOY_ROLE_UNSTABLE }}
+      # Bucket name is built by the website module, not the domain itself.
+      s3_bucket: "unstable-shutthegoatup-com-site-784620264214-eu-west-2-an"
+      site_domain: "unstable.shutthegoatup.com"
+      aws_role: "arn:aws:iam::784620264214:role/gha-website-deployer"
       environment: "Preview"
