@@ -55,7 +55,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ inputs.aws_role }}
           aws-region: ${{ env.AWS_REGION }}
