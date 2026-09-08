@@ -1,0 +1,187 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import GoatMark from "~/components/GoatMark.astro";
+import { site } from "~/lib/site";
+
+const palette = [
+  { name: "Bone", hex: "#F2EFE6", role: "Primary ground", onDark: false },
+  { name: "Ink", hex: "#0F0E0C", role: "Type and rules", onDark: true },
+  {
+    name: "Signal",
+    hex: "#FF3B12",
+    role: "Accent — redaction, one per view",
+    onDark: true,
+  },
+  { name: "Ash", hex: "#8C8577", role: "Secondary labels only", onDark: true },
+] as const;
+
+const typefaces = [
+  {
+    name: "Bricolage Grotesque",
+    role: "Display",
+    note: "Headlines, wordmark, buttons. Weight 800, tracking −0.035em, uppercase. “Goat” is set in the same face and marked by colour alone.",
+    css: "font-display",
+  },
+  {
+    name: "Instrument Sans",
+    role: "Body",
+    note: "Every paragraph and caption.",
+    css: "font-sans",
+  },
+  {
+    name: "Martian Mono",
+    role: "Stamp",
+    note: "Eyebrows, labels, status chips. Uppercase, tracking 0.18em.",
+    css: "font-mono",
+  },
+] as const;
+
+const downloads = [
+  { file: "/brand/lockup-ink.png", label: "Lockup — PNG (transparent)" },
+  { file: "/brand/mark.svg", label: "Mark — SVG (ink)" },
+  { file: "/brand/mark-bone.svg", label: "Mark — SVG (bone, for dark)" },
+  { file: "/brand/badge.svg", label: "Badge — SVG" },
+  { file: "/brand/avatar-1000.png", label: "Avatar 1000px — GitHub, LinkedIn" },
+  { file: "/brand/avatar-400.png", label: "Avatar 400px" },
+  { file: "/favicon.ico", label: "favicon.ico" },
+  { file: "/og.png", label: "Social card 1200×630" },
+] as const;
+---
+
+<BaseLayout
+  title="Brand"
+  description="The Shut The Goat Up identity: the mark, the redaction device, colour, type, and downloadable assets."
+>
+  <section class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <p class="stamp text-ash">Identity — v1</p>
+      <h1 class="display mt-6 text-[clamp(2.8rem,9vw,8rem)]">
+        The <span class="text-signal">Goat</span>, silenced
+      </h1>
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink/75">
+        One idea runs through everything: a censor bar over the loudest voice in
+        the room. It is the mark, it is the headline treatment, and it is the
+        reason there is exactly one accent colour.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+      <h2 class="stamp text-ash">§ 01 — The mark</h2>
+      <div class="mt-10 grid gap-px border-2 border-ink bg-ink lg:grid-cols-3">
+        <div class="flex items-center justify-center bg-bone p-8 sm:p-16">
+          <GoatMark class="w-44 text-ink" title="Mark on bone" />
+        </div>
+        <div class="flex items-center justify-center bg-ink p-8 sm:p-16">
+          <GoatMark
+            class="w-44 text-bone"
+            eye="var(--color-ink)"
+            title="Mark on ink"
+          />
+        </div>
+        <div class="flex items-center justify-center bg-signal p-8 sm:p-16">
+          <GoatMark
+            class="w-44 text-bone"
+            eye="var(--color-signal)"
+            bar="var(--color-ink)"
+            title="Mark on signal"
+          />
+        </div>
+      </div>
+      <p class="mt-6 max-w-3xl text-base text-ink/70">
+        Horns and dropped ears carry the animal; the horizontal pupils are a
+        real goat trait and rhyme with the bar. Below 48px use the badge — the
+        solid ground holds the silhouette together where the open mark falls
+        apart.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+      <h2 class="stamp text-ash">§ 02 — Colour</h2>
+      <ul
+        class="mt-10 grid gap-px border-2 border-ink bg-ink sm:grid-cols-2 lg:grid-cols-4"
+      >
+        {
+          palette.map((swatch) => (
+            <li class="bg-bone">
+              <div class="h-40" style={`background:${swatch.hex}`} />
+              <div class="border-t-2 border-ink p-6">
+                <p class="display text-2xl">{swatch.name}</p>
+                <p class="stamp mt-2 text-ash">{swatch.hex}</p>
+                <p class="mt-3 text-sm text-ink/70">{swatch.role}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 max-w-3xl text-base text-ink/70">
+        Signal is a scalpel, not a wash. One orange element per view — the
+        redaction, a status chip, or a single call to action. Never all three.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+      <h2 class="stamp text-ash">§ 03 — Type</h2>
+      <ul class="mt-10 space-y-px bg-ink">
+        {
+          typefaces.map((face) => (
+            <li class="grid gap-4 bg-bone py-8 lg:grid-cols-[1fr_1.4fr] lg:items-baseline lg:gap-12">
+              <p class={`${face.css} text-4xl lg:text-6xl`}>
+                Shut the{" "}
+                <span class={face.css === "font-display" ? "text-signal" : ""}>
+                  Goat
+                </span>{" "}
+                up
+              </p>
+              <div>
+                <p class="stamp text-signal">{face.role}</p>
+                <p class="mt-2 text-base">{face.name}</p>
+                <p class="mt-1 text-sm text-ink/70">{face.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-ink text-bone">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+      <h2 class="stamp text-ash">§ 04 — Assets</h2>
+      <p class="mt-4 max-w-2xl text-base text-bone-dim">
+        Everything here is generated from the vector masters by
+        <code class="text-signal">npm run brand:icons</code>. Edit
+        <code class="text-signal">brand/*.svg</code>, never the exports.
+      </p>
+      <ul class="mt-10 grid gap-px bg-ash/25 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          downloads.map((item) => (
+            <li class="bg-ink">
+              <a
+                href={item.file}
+                download
+                class="flex h-full flex-col justify-between gap-6 p-6 transition-colors hover:bg-signal"
+              >
+                <span class="text-base">{item.label}</span>
+                <span class="stamp text-ash">Download ↓</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="stamp mt-12 text-ash">
+        Questions — <a
+          class="link-underline text-signal"
+          href={`mailto:${site.email}`}
+        >
+          {site.email}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

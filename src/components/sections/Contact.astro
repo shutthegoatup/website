@@ -1,0 +1,23 @@
+---
+import { site } from "~/lib/site";
+---
+
+<section class="bg-signal text-bone">
+  <div class="mx-auto max-w-[110rem] px-4 py-24 sm:px-6 lg:px-10 lg:py-36">
+    <p class="reveal stamp text-bone/70">§ 05 — Start something</p>
+    <h2 class="reveal display mt-6 text-[clamp(2.8rem,10vw,9rem)] text-balance">
+      Point us at<br />your
+      <span class="text-ink">Goat</span>.
+    </h2>
+    <p class="reveal mt-10 max-w-2xl text-xl leading-snug sm:text-2xl">
+      Tell us which incumbent is taxing you, ask for early access, or come and
+      build one of these with us. We answer our own email.
+    </p>
+    <a
+      href={`mailto:${site.email}`}
+      class="reveal display mt-12 inline-block border-2 border-bone px-5 py-4 text-[clamp(0.8rem,4.6vw,1.125rem)] transition-colors hover:bg-bone hover:text-signal sm:px-8 sm:py-6 sm:text-4xl lg:text-5xl"
+    >
+      {site.email}
+    </a>
+  </div>
+</section>

@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #f2efe6;
+  --color-bone-dim: #e4e0d4;
+  --color-ink: #0f0e0c;
+  --color-ink-soft: #1c1a17;
+  --color-signal: #ff3b12;
+  --color-ash: #8c8577;
+
+  --font-display:
+    "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Martian Mono Variable", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Section eyebrow: dossier stamp. */
+  .stamp {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  /* Bricolage draws its full stop 1.15:1 (wider than tall) and the distortion
+     grows with weight, so the display period is drawn rather than typed. */
+  .display-dot {
+    display: inline-block;
+    width: 0.18em;
+    height: 0.18em;
+    margin-left: 0.05em;
+    border-radius: 50%;
+    background: var(--color-signal);
+    vertical-align: baseline;
+  }
+
+  .rule {
+    border-top: 2px solid var(--color-ink);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(var(--color-signal), var(--color-signal));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 2px;
+  }
+}
+
+/* ---- Redaction: the brand device ---------------------------------------- */
+
+.redact {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.redact__bar {
+  position: absolute;
+  inset: -0.02em -0.04em 0.07em -0.04em;
+  z-index: 1;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  /* Held until 1.95s: the word must be readable in pink before it is struck. */
+  animation: redact-sweep 0.38s cubic-bezier(0.7, 0, 0.2, 1) 1.95s forwards;
+}
+
+@keyframes redact-sweep {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Once the sweep has landed, `animationend` swaps to a transition so the bar can
+   retract on hover. Without this the redaction is permanent for anyone who
+   arrives after the animation, and the name is never legible. */
+.redact__bar.is-set {
+  animation: none;
+  transform: scaleX(1);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.redact:hover .redact__bar.is-set,
+.redact:focus-within .redact__bar.is-set {
+  transform: scaleX(0);
+}
+
+/* ---- Product names: classified until you look ---------------------------- */
+
+.product-bar {
+  position: absolute;
+  inset: 0.06em -0.06em 0.1em -0.04em;
+  z-index: 1;
+  background: var(--color-ink);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .group:hover .product-bar,
+  .group:focus-within .product-bar {
+    transform: scaleX(0);
+  }
+}
+
+/* Touch has no hover, so declassify shortly after the card scrolls in —
+   otherwise every product name is permanently unreadable on mobile. */
+@media (hover: none) {
+  .is-in .product-bar {
+    transform: scaleX(0);
+    transition-delay: 0.5s;
+  }
+}
+
+/* No JS means no `.is-in`, so never leave the names covered. */
+html:not(.js) .product-bar {
+  transform: scaleX(0);
+}
+
+/* ---- Entrance choreography ---------------------------------------------- */
+
+.rise {
+  opacity: 0;
+  transform: translateY(1.1rem);
+  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Below the fold: revealed by IntersectionObserver in BaseLayout. Only hidden
+   once the inline script has confirmed JS, so a failed bundle never blanks the
+   page. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Marquee ------------------------------------------------------------ */
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Texture ------------------------------------------------------------ */
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--color-ink) 12%, transparent) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee {
+    animation: none;
+  }
+
+  .rise,
+  .redact__bar {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+
+  .js .reveal {
+    transition-duration: 0.01ms;
+  }
+}

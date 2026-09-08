@@ -1,0 +1,47 @@
+---
+import GoatMark from "~/components/GoatMark.astro";
+import { site } from "~/lib/site";
+
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#how", label: "How" },
+  { href: "/#who", label: "Who" },
+  { href: "/brand", label: "Brand" },
+] as const;
+---
+
+<header
+  class="sticky top-0 z-50 border-b-2 border-ink bg-bone/92 backdrop-blur-sm"
+>
+  <div class="mx-auto flex max-w-[110rem] items-stretch">
+    <a
+      href="/"
+      class="flex items-center gap-3 border-r-2 border-ink px-4 py-3 sm:px-6"
+      aria-label={`${site.name} — home`}
+    >
+      <GoatMark class="h-7 w-7 shrink-0 text-ink" />
+      <span class="display text-[0.95rem] leading-none sm:text-[1.05rem]">
+        Shut The <span class="text-signal">Goat</span> Up
+      </span>
+    </a>
+
+    <nav class="ml-auto flex items-stretch" aria-label="Primary">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="stamp hidden items-center border-l-2 border-ink px-5 transition-colors hover:bg-ink hover:text-bone sm:flex"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={`mailto:${site.email}`}
+        class="stamp flex items-center border-l-2 border-ink bg-signal px-4 text-bone transition-colors hover:bg-ink sm:px-6"
+      >
+        Pick a fight
+      </a>
+    </nav>
+  </div>
+</header>

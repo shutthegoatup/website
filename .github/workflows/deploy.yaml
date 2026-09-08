@@ -1,0 +1,71 @@
+name: Build and Deploy
+
+# Reusable: callers pass the target bucket and distribution. Mirrors the
+# renderapp.io website pipeline (build -> OIDC -> s3 sync -> invalidate).
+
+on:
+  workflow_call:
+    inputs:
+      s3_bucket:
+        description: "S3 origin bucket to publish to"
+        required: true
+        type: string
+      cloudfront_distribution_id:
+        description: "CloudFront distribution to invalidate"
+        required: true
+        type: string
+      aws_role:
+        description: "ARN of the OIDC role to assume. Prod and preview live in separate accounts, so each caller supplies its own."
+        required: true
+        type: string
+      environment:
+        description: "Environment name for display"
+        required: false
+        type: string
+        default: "Preview"
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  AWS_REGION: eu-west-2
+
+jobs:
+  build-and-deploy:
+    name: "Build & Deploy: ${{ inputs.environment }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Node 24 also clears the >=22.22 engine requirement of
+      # eslint-plugin-astro, which warns on the repo's current local Node.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - run: npm ci
+
+      # Gate the deploy: astro check + eslint + prettier must pass before
+      # anything reaches a bucket.
+      - name: Validate
+        run: npm run validate
+
+      - name: Build
+        run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.aws_role }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: aws s3 sync ./dist "s3://${{ inputs.s3_bucket }}" --delete
+
+      - name: Invalidate CloudFront
+        if: success()
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ inputs.cloudfront_distribution_id }}" \
+            --paths "/*"

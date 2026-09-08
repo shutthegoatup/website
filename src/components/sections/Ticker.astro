@@ -1,0 +1,28 @@
+---
+import { platitudes } from "~/lib/site";
+
+// Duplicated so the -50% marquee translate loops seamlessly.
+const run = [...platitudes, ...platitudes];
+---
+
+<section
+  class="overflow-hidden border-b-2 border-ink bg-ink py-4"
+  aria-hidden="true"
+>
+  <div class="marquee">
+    {
+      run.map((phrase) => (
+        <span class="stamp flex items-center gap-6 px-6 whitespace-nowrap text-bone-dim">
+          <span class="line-through decoration-signal decoration-[3px]">
+            {phrase}
+          </span>
+          <span class="text-signal">✕</span>
+        </span>
+      ))
+    }
+  </div>
+</section>
+
+<p class="sr-only">
+  A scrolling list of incumbent marketing phrases, each struck through.
+</p>

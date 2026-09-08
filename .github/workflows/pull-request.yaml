@@ -1,0 +1,23 @@
+name: Preview | PR
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    # Skips until the AWS workload accounts exist and these repo variables
+    # are set, so the workflow can land before the infrastructure does
+    # without failing every run in the meantime.
+    if: vars.AWS_DEPLOY_ROLE_UNSTABLE != '' && vars.CLOUDFRONT_DISTRIBUTION_ID_UNSTABLE != ''
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      s3_bucket: "unstable.shutthegoatup.com"
+      cloudfront_distribution_id: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_UNSTABLE }}
+      aws_role: ${{ vars.AWS_DEPLOY_ROLE_UNSTABLE }}
+      environment: "Preview"
