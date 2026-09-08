@@ -1,21 +1,21 @@
 name: Build and Deploy
 
-# Reusable: callers pass the target bucket and distribution. Mirrors the
-# renderapp.io website pipeline (build -> OIDC -> s3 sync -> invalidate).
+# Reusable: callers pass the target bucket, domain and role. Mirrors the
+# renderappio/website pipeline (build -> OIDC -> s3 sync -> invalidate).
 
 on:
   workflow_call:
     inputs:
       s3_bucket:
-        description: "S3 origin bucket to publish to"
+        description: "S3 origin bucket to publish to. Built by the website module as <domain-with-dashes>-site-<account>-<region>-an, so it is not the domain name."
         required: true
         type: string
-      cloudfront_distribution_id:
-        description: "CloudFront distribution to invalidate"
+      site_domain:
+        description: "Hostname this environment serves. Used to find the CloudFront distribution by its alias, so no distribution id has to be pasted in after every apply."
         required: true
         type: string
       aws_role:
-        description: "ARN of the OIDC role to assume. Prod and preview live in separate accounts, so each caller supplies its own."
+        description: "ARN of the OIDC role to assume. Production and preview live in separate accounts, so each caller supplies its own."
         required: true
         type: string
       environment:
@@ -38,8 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # Node 24 also clears the >=22.22 engine requirement of
-      # eslint-plugin-astro, which warns on the repo's current local Node.
+      # Node 24 clears eslint-plugin-astro's engines >=22.22 requirement.
       - uses: actions/setup-node@v7
         with:
           node-version: "24"
@@ -60,12 +59,32 @@ jobs:
           role-to-assume: ${{ inputs.aws_role }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # Resolved rather than hardcoded: the id is only known after the
+      # workload root applies, and it changes if the distribution is ever
+      # replaced. The deploy role grants cloudfront:ListDistributions for this.
+      - name: Resolve CloudFront distribution
+        id: cf
+        env:
+          SITE_DOMAIN: ${{ inputs.site_domain }}
+        run: |
+          set -euo pipefail
+          id=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?contains(Aliases.Items, '${SITE_DOMAIN}')].Id | [0]" \
+            --output text)
+          if [ -z "$id" ] || [ "$id" = "None" ]; then
+            echo "::error::No CloudFront distribution has ${SITE_DOMAIN} as an alias. Has the workload root been applied?"
+            exit 1
+          fi
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Resolved ${SITE_DOMAIN} -> $id"
+
       - name: Deploy to S3
-        run: aws s3 sync ./dist "s3://${{ inputs.s3_bucket }}" --delete
+        env:
+          BUCKET: ${{ inputs.s3_bucket }}
+        run: aws s3 sync ./dist "s3://${BUCKET}" --delete
 
       - name: Invalidate CloudFront
         if: success()
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "${{ inputs.cloudfront_distribution_id }}" \
-            --paths "/*"
+        env:
+          DIST_ID: ${{ steps.cf.outputs.id }}
+        run: aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
