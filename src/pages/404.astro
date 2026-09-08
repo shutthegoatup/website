@@ -1,0 +1,24 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Not found" description="That page does not exist.">
+  <section class="flex min-h-[70vh] items-center border-b-2 border-ink">
+    <div class="mx-auto w-full max-w-[110rem] px-4 py-24 sm:px-6 lg:px-10">
+      <p class="stamp text-ash">Error 404</p>
+      <h1 class="display mt-6 text-[clamp(3rem,12vw,11rem)]">
+        Nothing<br />to see
+        <span class="redact">
+          <span class="font-prestige normal-case italic">here</span>
+          <span class="redact__bar" aria-hidden="true"></span>
+        </span>
+      </h1>
+      <a
+        href="/"
+        class="stamp mt-12 inline-block border-2 border-ink px-7 py-4 transition-colors hover:bg-ink hover:text-bone"
+      >
+        ← Back to the fight
+      </a>
+    </div>
+  </section>
+</BaseLayout>

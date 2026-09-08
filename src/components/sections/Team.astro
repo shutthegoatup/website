@@ -1,0 +1,40 @@
+---
+import { team } from "~/lib/site";
+---
+
+<section id="who" class="border-b-2 border-ink">
+  <div class="mx-auto max-w-[110rem] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+    <p class="reveal stamp text-ash">§ 04 — The underdogs</p>
+    <h2 class="reveal display mt-4 text-[clamp(2.5rem,7vw,6rem)]">
+      Who is <span class="font-prestige normal-case italic">this</span> exactly
+    </h2>
+
+    <div class="mt-16 grid gap-px border-2 border-ink bg-ink md:grid-cols-2">
+      {
+        team.map((person, i) => (
+          <article
+            class="reveal flex flex-col gap-6 bg-bone p-8 sm:flex-row lg:p-12"
+            style={`transition-delay:${i * 110}ms`}
+          >
+            <img
+              src={person.image}
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+              class="h-28 w-28 shrink-0 border-2 border-ink object-cover grayscale"
+            />
+            <div>
+              <h3 class="display text-3xl">{person.name}</h3>
+              <p class="stamp mt-2 text-signal">{person.role}</p>
+              <p class="mt-4 text-base leading-relaxed text-ink/75">
+                {person.bio}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

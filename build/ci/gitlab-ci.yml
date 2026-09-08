@@ -4,12 +4,12 @@ variables:
   DOCKER_REGISTRY: registry.gitlab.com
   DOCKER_REPOSITORY: $DOCKER_REGISTRY/$CI_PROJECT_PATH
 
-  KUBECONFIG: ''
+  KUBECONFIG: ""
   # These are set by kubernetes integration.
   #KUBE_INGRESS_BASE_DOMAIN: secureweb.ltd
-  #KUBE_NAMESPACE:  
+  #KUBE_NAMESPACE:
 
-image: 
+image:
   name: alpine/helm:2.13.1
   entrypoint: [""]
 
@@ -28,14 +28,13 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA src
+    - docker build -f build/package/Dockerfile -t $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA .
   after_script:
     - docker save $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA > container.tar
   artifacts:
     expire_in: 4 hour
     paths:
-    - container.tar
-      
+      - container.tar
 
 helm:
   stage: test
@@ -49,7 +48,7 @@ trivy:
     - echo "Running before_script"
   script:
     - echo "disabled step"
-   # - trivy --quiet -f json -o gl-container-scanning-report.json --input container.tar 
+    # - trivy --quiet -f json -o gl-container-scanning-report.json --input container.tar
   artifacts:
     reports:
       container_scanning: gl-container-scanning-report.json
@@ -73,7 +72,7 @@ trufflehog:
   before_script:
     - echo "running before"
   script:
-    - trufflehog file://$PWD 
+    - trufflehog file://$PWD
     - trufflehog --json file://$PWD | tee trufflehog.json
   artifacts:
     reports:
@@ -90,22 +89,22 @@ push:
   script:
     - docker push $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA
   after_script:
-    - docker inspect --format='{{index .RepoDigests 0}}' 
+    - docker inspect --format='{{index .RepoDigests 0}}'
       $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA | cut -d ":" -f2 > docker_hash.txt
-    - docker inspect --format='{{index .RepoDigests 0}}' 
-      $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA | cut -d "@" -f2 | 
+    - docker inspect --format='{{index .RepoDigests 0}}'
+      $DOCKER_REPOSITORY:$CI_COMMIT_SHORT_SHA | cut -d "@" -f2 |
       cut -d ":" -f1 > docker_hash_type.txt
   artifacts:
     paths:
-    - docker_hash.txt
-    - docker_hash_type.txt
+      - docker_hash.txt
+      - docker_hash_type.txt
   dependencies:
     - build
 
 review:
   stage: review
   script:
-    - helm upgrade --install --wait 
+    - helm upgrade --install --wait
       --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
       --set image.tag=$DOCKER_HASH
       --set ingress.hosts[0]=$ENVIRONMENT_FQDN
@@ -115,8 +114,8 @@ review:
   after_script:
     - echo $CI_ENVIRONMENT_URL > environment_url.txt
   environment:
-    name: review/$CI_COMMIT_REF_SLUG 
-    url: https://$CI_ENVIRONMENT_SLUG.$KUBE_INGRESS_BASE_DOMAIN 
+    name: review/$CI_COMMIT_REF_SLUG
+    url: https://$CI_ENVIRONMENT_SLUG.$KUBE_INGRESS_BASE_DOMAIN
     on_stop: stop_review
   only:
     refs:
@@ -127,7 +126,7 @@ review:
       - master
   artifacts:
     paths:
-    - environment_url.txt
+      - environment_url.txt
   dependencies:
     - push
 
@@ -135,10 +134,10 @@ stop_review:
   stage: cleanup
   variables:
     GIT_STRATEGY: none
-  script: 
+  script:
     - helm delete --purge $CI_ENVIRONMENT_SLUG
   environment:
-    name: review/$CI_COMMIT_REF_SLUG 
+    name: review/$CI_COMMIT_REF_SLUG
     action: stop
   when: manual
   allow_failure: true
@@ -153,7 +152,7 @@ stop_review:
 production:
   stage: production
   script:
-    - helm upgrade --install --wait 
+    - helm upgrade --install --wait
       --set image.repository=$DOCKER_REPOSITORY@$DOCKER_HASH_TYPE
       --set image.tag=$DOCKER_HASH
       --set ingress.hosts[0]=$ENVIRONMENT_FQDN
@@ -170,7 +169,7 @@ production:
       - master
   artifacts:
     paths:
-    - environment_url.txt
+      - environment_url.txt
 
 zap:
   stage: testing
@@ -185,7 +184,7 @@ zap:
   artifacts:
     reports:
       dast:
-        - gl-dast-report.json 
+        - gl-dast-report.json
   dependencies:
     - review
     - production
@@ -203,11 +202,10 @@ performance:
     - mv sitespeed-results/data/performance.json performance.json
   artifacts:
     reports:
-      performance: performance.json    
+      performance: performance.json
   dependencies:
     - review
     - production
-
 
 .setup_env: &setup_env |
   set +x

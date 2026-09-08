@@ -1,0 +1,33 @@
+---
+import { principles } from "~/lib/site";
+---
+
+<section id="how" class="border-b-2 border-ink bg-ink text-bone">
+  <div class="mx-auto max-w-[110rem] px-4 py-20 sm:px-6 lg:px-10 lg:py-32">
+    <p class="reveal stamp text-ash">§ 02 — Position</p>
+    <h2 class="reveal display mt-4 max-w-5xl text-[clamp(2.5rem,7.5vw,7rem)]">
+      Why the <span class="font-prestige normal-case italic text-signal"
+        >Goat</span
+      >
+      is beatable
+    </h2>
+
+    <dl class="mt-20 space-y-px bg-ash/25">
+      {
+        principles.map((principle) => (
+          <div class="reveal grid gap-6 bg-ink py-12 lg:grid-cols-[7rem_1fr_1.2fr] lg:gap-12">
+            <dt class="stamp text-signal lg:contents">
+              <span class="block lg:col-start-1">{principle.index}</span>
+              <span class="display block text-3xl text-balance text-bone lg:col-start-2 lg:text-4xl">
+                {principle.heading}
+              </span>
+            </dt>
+            <dd class="text-lg leading-relaxed text-bone-dim lg:col-start-3">
+              {principle.body}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

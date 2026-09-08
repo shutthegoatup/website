@@ -1,0 +1,57 @@
+---
+import GoatMark from "~/components/GoatMark.astro";
+import { site } from "~/lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-2 border-ink bg-ink text-bone">
+  <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <GoatMark class="h-14 w-14 text-bone" eye="var(--color-ink)" />
+        <p class="display mt-5 max-w-md text-2xl sm:text-3xl">
+          Every category has a <span class="font-prestige normal-case italic"
+            >Goat</span
+          >. We come for it.
+        </p>
+        <a
+          href={`mailto:${site.email}`}
+          class="link-underline stamp mt-6 inline-block text-signal"
+        >
+          {site.email}
+        </a>
+      </div>
+
+      <div>
+        <h2 class="stamp text-ash">Company</h2>
+        <ul class="mt-4 space-y-2 text-sm text-bone-dim">
+          <li>{site.address}</li>
+          <li>{site.jurisdiction} no. {site.companyNumber}</li>
+          <li class="text-ash">
+            {site.name} is a trading name of {site.legalEntity}.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="stamp text-ash">Elsewhere</h2>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a class="link-underline" href={site.social.linkedin}>LinkedIn</a>
+          </li>
+          <li>
+            <a class="link-underline" href={site.social.gitlab}>GitLab</a>
+          </li>
+          <li><a class="link-underline" href="/brand">Brand assets</a></li>
+          <li><a class="link-underline" href="/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="stamp mt-14 border-t border-ash/30 pt-6 text-ash">
+      © {year}
+      {site.legalEntity} — Edinburgh
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { site } from "~/lib/site";
+---
+
+<BaseLayout
+  title="Privacy"
+  description="What this site does and does not collect. It is a short list."
+>
+  <section class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <p class="stamp text-ash">Privacy, cookies and terms</p>
+      <h1 class="display mt-6 text-[clamp(2.8rem,9vw,7rem)]">
+        A short<br />list
+      </h1>
+
+      <div class="mt-14 grid gap-px border-2 border-ink bg-ink lg:grid-cols-2">
+        <div class="bg-bone p-8 lg:p-12">
+          <h2 class="display text-3xl">We do not</h2>
+          <ul class="mt-6 space-y-3 text-base text-ink/80">
+            <li>Set tracking cookies, or any cookie you did not need.</li>
+            <li>
+              Store anything on your device beyond what the page needs to
+              render.
+            </li>
+            <li>
+              Identify you, profile you, or build an advertising audience.
+            </li>
+            <li>Sell or share your data.</li>
+            <li>Load fonts, scripts or trackers from third-party CDNs.</li>
+          </ul>
+        </div>
+        <div class="bg-bone p-8 lg:p-12">
+          <h2 class="display text-3xl">We do</h2>
+          <ul class="mt-6 space-y-3 text-base text-ink/80">
+            <li>Serve this site as static files. Fonts are self-hosted.</li>
+            <li>
+              Keep whatever server logs our host produces, for security and
+              troubleshooting only.
+            </li>
+            <li>
+              Read the email you send us, and reply to it. That is the only
+              personal data we hold about you.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="mt-12 max-w-2xl text-base text-ink/75">
+        If you think we hold data about you and you would like it removed, email
+        <a class="link-underline font-medium" href={`mailto:${site.email}`}>
+          {site.email}
+        </a> and we will deal with it.
+      </p>
+
+      <p class="stamp mt-10 text-ash">
+        {site.name} is a trading name of {site.legalEntity} — {
+          site.jurisdiction
+        }
+        no. {site.companyNumber} — {site.address}
+      </p>
+    </div>
+  </section>
+</BaseLayout>

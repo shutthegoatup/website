@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="_shared.css" />
+    <style>
+      body {
+        background: var(--bone);
+        display: block;
+        position: relative;
+        overflow: hidden;
+      }
+      .hatch {
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          45deg,
+          rgb(15 14 12 / 0.1) 0 1px,
+          transparent 1px 8px
+        );
+      }
+      .frame {
+        position: relative;
+        height: 100%;
+        padding: 64px 72px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .top img {
+        width: 96px;
+        height: 96px;
+      }
+      .stamp {
+        font-size: 15px;
+        color: #8c8577;
+      }
+      .wordmark {
+        font-size: 124px;
+        color: var(--ink);
+      }
+      .redact {
+        position: relative;
+        display: inline-block;
+      }
+      .redact .bar {
+        position: absolute;
+        left: -10px;
+        right: -10px;
+        top: -6px;
+        bottom: 10px;
+        background: var(--signal);
+      }
+      .foot {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .foot p {
+        font-family: "Bricolage", sans-serif;
+        font-size: 26px;
+        max-width: 620px;
+        color: rgb(15 14 12 / 0.75);
+        line-height: 1.25;
+      }
+      .rule {
+        height: 8px;
+        background: var(--signal);
+        width: 240px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hatch"></div>
+    <div class="frame">
+      <div class="top">
+        <img src="../mark.svg" alt="" />
+        <span class="stamp">Edinburgh · Scotland</span>
+      </div>
+
+      <div class="wordmark">
+        Shut the
+        <span class="redact"
+          ><span class="prestige">Goat</span><span class="bar"></span
+        ></span>
+        Up<span style="color: var(--signal)">.</span>
+      </div>
+
+      <div class="foot">
+        <p>
+          Product engineering that comes for the incumbents. Real-time 3D,
+          payments, and the platforms underneath them.
+        </p>
+        <div class="rule"></div>
+      </div>
+    </div>
+  </body>
+</html>

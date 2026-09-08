@@ -1,0 +1,71 @@
+/* Fonts are loaded straight from node_modules so headless Chromium renders the
+   real faces rather than a fallback. */
+@font-face {
+  font-family: "Bricolage";
+  src: url("../../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-standard-normal.woff2")
+    format("woff2");
+  font-weight: 200 800;
+}
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../../node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-standard-italic.woff2")
+    format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Martian";
+  src: url("../../node_modules/@fontsource-variable/martian-mono/files/martian-mono-latin-standard-normal.woff2")
+    format("woff2");
+  font-weight: 100 800;
+}
+
+:root {
+  --bone: #f2efe6;
+  --ink: #0f0e0c;
+  --signal: #ff3b12;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.wordmark {
+  font-family: "Bricolage", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+}
+
+.prestige {
+  font-family: "Bodoni", serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.stamp {
+  font-family: "Martian", monospace;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}

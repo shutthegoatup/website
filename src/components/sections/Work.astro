@@ -1,0 +1,83 @@
+---
+import { products, type ProductStatus } from "~/lib/site";
+
+const statusLabel: Record<ProductStatus, string> = {
+  live: "Live",
+  building: "In build",
+  classified: "Classified",
+};
+---
+
+<section id="work" class="border-b-2 border-ink">
+  <div class="mx-auto max-w-[110rem] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+    <header class="reveal flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="stamp text-ash">§ 01 — The work</p>
+        <h2 class="display mt-4 text-[clamp(2.5rem,7vw,6rem)]">
+          Three products.<br />Three incumbents.
+        </h2>
+      </div>
+      <p class="max-w-sm text-base text-ink/70">
+        We build our own software and we back it with our own money. The
+        engagements we take on for other people are held to the same bar.
+      </p>
+    </header>
+
+    <ul class="mt-16 grid gap-px border-2 border-ink bg-ink md:grid-cols-3">
+      {
+        products.map((product, i) => (
+          <li
+            class="reveal group relative flex flex-col bg-bone p-8 lg:p-10"
+            style={`transition-delay:${i * 110}ms`}
+          >
+            <div class="flex items-center justify-between gap-4">
+              <span class="stamp text-ash">{product.category}</span>
+              <span
+                class:list={[
+                  "stamp px-2.5 py-1.5 leading-none",
+                  product.status === "live" && "bg-signal text-bone",
+                  product.status === "building" && "border-2 border-ink",
+                  product.status === "classified" && "bg-ink text-bone",
+                ]}
+              >
+                {statusLabel[product.status]}
+              </span>
+            </div>
+
+            <h3 class="display mt-10 text-5xl lg:text-6xl">
+              {product.status === "classified" ? (
+                <span class="redact">
+                  <span>{product.name}</span>
+                  <span
+                    class="absolute inset-x-[-0.06em] inset-y-[0.08em] bg-ink transition-transform duration-500 ease-out group-hover:scale-x-0 origin-left"
+                    aria-hidden="true"
+                  />
+                </span>
+              ) : (
+                product.name
+              )}
+            </h3>
+
+            <p class="mt-5 grow text-base leading-relaxed text-ink/75">
+              {product.blurb}
+            </p>
+
+            <div class="mt-8 border-t-2 border-ink pt-5">
+              <p class="stamp text-ash">Coming for</p>
+              <p class="mt-2 text-sm">{product.takes}</p>
+              {product.href && (
+                <a
+                  href={product.href}
+                  class="stamp link-underline mt-5 inline-block"
+                  rel="noopener"
+                >
+                  {product.href.replace("https://", "")} →
+                </a>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

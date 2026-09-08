@@ -1,0 +1,70 @@
+---
+import GoatMark from "~/components/GoatMark.astro";
+import { site } from "~/lib/site";
+---
+
+<section class="relative overflow-hidden border-b-2 border-ink">
+  <div
+    class="hatch pointer-events-none absolute inset-0 opacity-60"
+    aria-hidden="true"
+  >
+  </div>
+
+  <GoatMark
+    class="pointer-events-none absolute -right-16 -bottom-24 hidden w-[38rem] text-ink/[0.05] lg:block"
+    bar="currentColor"
+    eye="transparent"
+  />
+
+  <div
+    class="relative mx-auto max-w-[110rem] px-4 pt-16 pb-20 sm:px-6 lg:px-10 lg:pt-24"
+  >
+    <p class="stamp rise text-ash" style="animation-delay:0.05s">
+      Edinburgh · Scotland · Est. {site.companyNumber}
+    </p>
+
+    <h1 class="display mt-8 text-[clamp(3.2rem,13.2vw,13rem)]">
+      <span class="rise block" style="animation-delay:0.15s">Shut</span>
+      <span class="rise block" style="animation-delay:0.3s">
+        the <span class="redact">
+          <span class="font-prestige normal-case italic tracking-[-0.02em]"
+            >Goat</span
+          >
+          <span class="redact__bar" aria-hidden="true"></span>
+        </span>
+      </span>
+      <span class="rise block" style="animation-delay:0.45s">
+        Up<span class="text-signal">.</span>
+      </span>
+    </h1>
+
+    <div class="mt-14 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+      <p
+        class="rise max-w-2xl text-lg leading-snug text-balance sm:text-2xl"
+        style="animation-delay:0.6s"
+      >
+        Every category has a greatest of all time. Ours got comfortable,
+        expensive and slow. We are the product company from Edinburgh that
+        builds the software to take the crown off.
+      </p>
+
+      <div
+        class="rise flex flex-wrap items-center gap-3"
+        style="animation-delay:0.72s"
+      >
+        <a
+          href="#work"
+          class="stamp border-2 border-ink bg-ink px-7 py-4 text-bone transition-colors hover:bg-signal hover:border-signal"
+        >
+          See the work →
+        </a>
+        <a
+          href={`mailto:${site.email}`}
+          class="stamp border-2 border-ink px-7 py-4 transition-colors hover:bg-ink hover:text-bone"
+        >
+          Pick a fight
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
