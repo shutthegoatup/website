@@ -3,22 +3,40 @@ import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import { render } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import { site, team } from "~/lib/site";
-import { articleDate, hostedWriting, type Article } from "~/lib/writing";
+import { site, team, writingKinds, type WritingKind } from "~/lib/site";
+import {
+  allWriting,
+  articleDate,
+  articleUrl,
+  hasBody,
+  readingTime,
+  type Article,
+} from "~/lib/writing";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await hostedWriting();
+  const articles = await allWriting();
   return articles.map((article) => ({
     params: { slug: article.id },
-    props: { article },
+    props: { article, articles },
   }));
 };
 
-const { article } = Astro.props as { article: Article };
-const { Content } = await render(article);
+const { article, articles } = Astro.props as {
+  article: Article;
+  articles: Article[];
+};
+
+// A piece still living on LinkedIn has no body to render, so the page carries
+// the metadata and hands the reader on rather than pretending to be empty.
+const elsewhere = !hasBody(article);
+const { Content } = elsewhere ? { Content: null } : await render(article);
 
 const author = team.find((person) => person.name === "Allan Degnan") ?? team[0];
-const url = new URL(`/writing/${article.id}/`, site.url).href;
+const minutes = readingTime(article.body ?? "");
+const url = new URL(articleUrl(article), site.url).href;
+const kind = article.data.kind as WritingKind | undefined;
+
+const more = articles.filter((other) => other.id !== article.id).slice(0, 4);
 
 const schema = [
   {
@@ -30,10 +48,11 @@ const schema = [
     ...(article.data.updated && {
       dateModified: article.data.updated.toISOString(),
     }),
-    inLanguage: "en-GB",
     ...(article.data.tags.length > 0 && {
       keywords: article.data.tags.join(", "),
     }),
+    ...(kind && { genre: kind }),
+    inLanguage: "en-GB",
     mainEntityOfPage: url,
     url,
     author: { "@type": "Person", name: author?.name, jobTitle: author?.role },
@@ -48,33 +67,67 @@ const schema = [
   ogType="article"
   ogImage={article.data.cover?.src}
   ogImageAlt={article.data.coverAlt}
-  noindex={article.data.draft}
   schema={schema}
 >
   <article class="border-b-2 border-ink">
-    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+    <div class="mx-auto max-w-[110rem] px-4 py-12 sm:px-6 lg:px-10 lg:py-20">
       <p class="stamp text-ash-deep">
         <a class="link-underline" href="/writing/">← Writing</a>
       </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        {
+          kind && (
+            <span class="stamp border-2 border-ink px-2.5 py-1.5 leading-none">
+              {kind}
+            </span>
+          )
+        }
+        {
+          article.data.tags.map((tag) => (
+            <span class="stamp text-ash-deep">{tag}</span>
+          ))
+        }
+      </div>
 
       <h1 class="display mt-6 max-w-5xl text-[clamp(2.4rem,7vw,6rem)]">
         {article.data.title}
       </h1>
 
-      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <p class="stamp text-ash-deep">
-          {articleDate(article.data.published)}
-          {
-            article.data.updated &&
-              ` — updated ${articleDate(article.data.updated)}`
-          }
-        </p>
-        <p class="stamp text-ash-deep">{author?.name}, {author?.role}</p>
+      <p class="mt-8 max-w-3xl text-xl leading-snug text-ink/75 sm:text-2xl">
+        {article.data.description}
+      </p>
+
+      {
+        kind && (
+          <p class="stamp mt-6 max-w-2xl leading-relaxed text-ash-deep">
+            {writingKinds[kind]}
+          </p>
+        )
+      }
+
+      <div
+        class="mt-10 flex flex-wrap items-center gap-4 border-t-2 border-ink pt-6"
+      >
         {
-          article.data.tags.map((tag) => (
-            <p class="stamp border-2 border-ink px-2 py-1">{tag}</p>
-          ))
+          author && (
+            <img
+              src={author.image}
+              alt=""
+              width="48"
+              height="48"
+              class="h-12 w-12 border-2 border-ink object-cover grayscale"
+            />
+          )
         }
+        <div>
+          <p class="stamp">{author?.name}</p>
+          <p class="stamp mt-1 text-ash-deep">{author?.role}</p>
+        </div>
+        <p class="stamp ml-auto text-ash-deep">
+          {articleDate(article.data.published)}
+          {!elsewhere && ` — ${String(minutes)} min read`}
+        </p>
       </div>
 
       {
@@ -89,21 +142,70 @@ const schema = [
         )
       }
 
-      <div class="prose mt-14">
-        <Content />
-      </div>
+      {
+        Content ? (
+          <div class="prose mt-14">
+            <Content />
+          </div>
+        ) : (
+          <div class="mt-14 max-w-2xl border-2 border-ink bg-ink p-8 text-bone lg:p-12">
+            <p class="stamp text-ash">Not here yet</p>
+            <p class="mt-4 text-lg leading-relaxed text-bone-dim">
+              This one still lives on LinkedIn. It is coming across — until
+              then, read it where it is.
+            </p>
+            {article.data.origin ? (
+              <a
+                class="stamp link-underline mt-6 inline-block text-signal"
+                href={article.data.origin.href}
+                rel="noopener"
+              >
+                Read it on {article.data.origin.label} ↗
+              </a>
+            ) : (
+              <p class="stamp mt-6 text-ash">Link to follow.</p>
+            )}
+          </div>
+        )
+      }
 
       {
-        article.data.origin && (
+        !elsewhere && article.data.origin && (
           <p class="stamp mt-16 border-t-2 border-ink pt-6 text-ash-deep">
             First published on{" "}
             <a
               class="link-underline text-signal"
               href={article.data.origin.href}
+              rel="noopener"
             >
               {article.data.origin.label}
             </a>
           </p>
+        )
+      }
+
+      {
+        more.length > 0 && (
+          <div class="mt-20 border-t-2 border-ink pt-10">
+            <h2 class="stamp text-ash-deep">More of it</h2>
+            <ul class="mt-8 grid gap-px border-2 border-ink bg-ink sm:grid-cols-2">
+              {more.map((other) => (
+                <li class="bg-bone">
+                  <a
+                    href={articleUrl(other)}
+                    class="flex h-full flex-col gap-3 p-6 transition-colors hover:bg-ink hover:text-bone lg:p-8"
+                  >
+                    <span class="stamp text-ash-deep">
+                      {articleDate(other.data.published)}
+                    </span>
+                    <span class="display text-xl lg:text-2xl">
+                      {other.data.title}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         )
       }
     </div>

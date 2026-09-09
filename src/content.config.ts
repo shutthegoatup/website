@@ -1,7 +1,7 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "zod";
-import { writingTags } from "~/lib/site";
+import { writingKinds, writingTags } from "~/lib/site";
 
 const writing = defineCollection({
   loader: glob({ base: "./src/content/writing", pattern: "**/*.md" }),
@@ -11,8 +11,10 @@ const writing = defineCollection({
       description: z.string(),
       published: z.coerce.date(),
       updated: z.coerce.date().optional(),
-      draft: z.boolean().default(false),
       tags: z.array(z.enum(writingTags)).default([]),
+      kind: z
+        .enum(Object.keys(writingKinds) as [string, ...string[]])
+        .optional(),
       /** Co-located image, optimised at build. Also the social card for the piece. */
       cover: image().optional(),
       coverAlt: z.string().optional(),

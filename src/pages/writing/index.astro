@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import { writingPage } from "~/lib/site";
-import { allWriting, articleDate, articleHref } from "~/lib/writing";
+import { allWriting, articleDate, articleUrl } from "~/lib/writing";
 
 const articles = await allWriting();
 // The thumbnail gutter only earns its width if something is in it.
@@ -10,7 +10,6 @@ const showThumbs = articles.some((article) => article.data.cover);
 const columns = showThumbs
   ? "md:grid-cols-[9rem_12rem_1fr]"
   : "md:grid-cols-[9rem_1fr]";
-const row = `group -mx-4 grid gap-x-8 gap-y-4 px-4 py-8 sm:-mx-6 sm:px-6 md:items-baseline lg:-mx-10 lg:px-10 lg:py-10 ${columns}`;
 ---
 
 <BaseLayout
@@ -34,73 +33,62 @@ const row = `group -mx-4 grid gap-x-8 gap-y-4 px-4 py-8 sm:-mx-6 sm:px-6 md:item
           <p class="stamp mt-16 text-ash-deep">{writingPage.empty}</p>
         ) : (
           <ul class="mt-16 border-t-2 border-ink">
-            {articles.map((article) => {
-              const href = articleHref(article);
-              const elsewhere = article.data.draft;
-              const Row = href ? "a" : "div";
+            {articles.map((article) => (
+              <li class="border-b-2 border-ink">
+                <a
+                  href={articleUrl(article)}
+                  class={`group -mx-4 grid gap-x-8 gap-y-4 px-4 py-8 transition-colors hover:bg-ink hover:text-bone sm:-mx-6 sm:px-6 md:items-baseline lg:-mx-10 lg:px-10 lg:py-10 ${columns}`}
+                >
+                  <div>
+                    <p class="stamp text-ash-deep group-hover:text-ash">
+                      {articleDate(article.data.published)}
+                    </p>
+                    {article.data.tags.length > 0 && (
+                      <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-1 md:flex-col md:gap-x-0">
+                        {article.data.tags.map((tag) => (
+                          <li class="stamp text-ash-deep group-hover:text-ash">
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
 
-              return (
-                <li class="border-b-2 border-ink">
-                  <Row
-                    href={href}
-                    rel={href && elsewhere ? "noopener" : undefined}
-                    class={
-                      href
-                        ? `${row} transition-colors hover:bg-ink hover:text-bone`
-                        : row
-                    }
-                  >
+                  {showThumbs && (
                     <div>
-                      <p class="stamp text-ash-deep group-hover:text-ash">
-                        {articleDate(article.data.published)}
-                      </p>
-                      {article.data.tags.length > 0 && (
-                        <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-1 md:flex-col md:gap-x-0">
-                          {article.data.tags.map((tag) => (
-                            <li class="stamp text-ash-deep group-hover:text-ash">
-                              {tag}
-                            </li>
-                          ))}
-                        </ul>
+                      {article.data.cover && (
+                        <Image
+                          src={article.data.cover}
+                          alt=""
+                          widths={[240, 480]}
+                          sizes="12rem"
+                          class="aspect-[16/9] w-full border-2 border-ink object-cover"
+                        />
                       )}
                     </div>
+                  )}
 
-                    {showThumbs && (
-                      <div>
-                        {article.data.cover && (
-                          <Image
-                            src={article.data.cover}
-                            alt=""
-                            widths={[240, 480]}
-                            sizes="12rem"
-                            class="aspect-[16/9] w-full border-2 border-ink object-cover"
-                          />
-                        )}
-                      </div>
-                    )}
-
-                    <div>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-3">
                       <h2 class="display text-2xl lg:text-3xl">
                         {article.data.title}
                       </h2>
-                      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink/75 group-hover:text-bone-dim">
-                        {article.data.description}
-                      </p>
-                      <span
-                        class:list={[
-                          "stamp mt-4 inline-block",
-                          href ? "text-signal" : "text-ash-deep",
-                        ]}
-                      >
-                        {!href && "Link to follow"}
-                        {href && elsewhere && "On LinkedIn ↗"}
-                        {href && !elsewhere && "Read it →"}
-                      </span>
+                      {article.data.kind && (
+                        <span class="stamp border-2 border-current px-2 py-1 leading-none">
+                          {article.data.kind}
+                        </span>
+                      )}
                     </div>
-                  </Row>
-                </li>
-              );
-            })}
+                    <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink/75 group-hover:text-bone-dim">
+                      {article.data.description}
+                    </p>
+                    <span class="stamp mt-4 inline-block text-signal">
+                      Read it →
+                    </span>
+                  </div>
+                </a>
+              </li>
+            ))}
           </ul>
         )
       }

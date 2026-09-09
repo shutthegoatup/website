@@ -10,6 +10,7 @@ import bodyFont from "@fontsource-variable/instrument-sans/files/instrument-sans
 import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
 import { site, team, capabilities } from "~/lib/site";
+import { isProduction } from "~/lib/env";
 
 interface Props {
   readonly title?: string;
@@ -97,7 +98,14 @@ const jsonLd = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    {
+      (noindex || !isProduction) && (
+        <meta
+          name="robots"
+          content={isProduction ? "noindex, follow" : "noindex, nofollow"}
+        />
+      )
+    }
 
     <link
       rel="preload"

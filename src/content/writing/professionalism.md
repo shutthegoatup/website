@@ -2,7 +2,7 @@
 title: "Professionalism"
 description: "On dismissive communication in technical discussion, and how power dynamics quietly replace merit in an engineering culture."
 published: 2024-06-07
-draft: true
+kind: "Argument"
 tags: ["Culture", "Leadership"]
 origin:
   label: "LinkedIn, June 2024"
@@ -10,9 +10,9 @@ origin:
 ---
 
 <!--
-SCAFFOLD — no body yet. While `draft: true` this piece is listed on
-/writing and linked to the original; it gets a page here once the text
-lands.
+SCAFFOLD — no body yet. The page exists and is crawlable; it shows the
+metadata and sends the reader to the original. Paste the text below
+this comment and the page renders it instead. Nothing to flip.
 
 Read the opening line before deciding on this one. It is a harder edge
    than the profanity in the others, and it is the first thing a reader —

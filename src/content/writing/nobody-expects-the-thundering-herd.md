@@ -2,7 +2,7 @@
 title: "Nobody expects the thundering herd"
 description: "A retry storm took out authentication for a sharded MSSQL estate. Blocking traffic stopped the bleeding; only an architectural change fixed it."
 published: 2022-11-19
-draft: true
+kind: "War story"
 tags: ["Reliability", "Platform engineering"]
 origin:
   label: "LinkedIn, November 2022"
@@ -10,9 +10,9 @@ origin:
 ---
 
 <!--
-SCAFFOLD — no body yet. While `draft: true` this piece is listed on
-/writing and linked to the original; it gets a page here once the text
-lands.
+SCAFFOLD — no body yet. The page exists and is crawlable; it shows the
+metadata and sends the reader to the original. Paste the text below
+this comment and the page renders it instead. Nothing to flip.
 
 Beats: eight-way sharded MSSQL behind centralised auth; `getSyncData()`
    backing up; Redis failure cascading into system-wide auth collapse;

@@ -155,6 +155,21 @@ export const writingTags = [
 
 export type WritingTag = (typeof writingTags)[number];
 
+/**
+ * What kind of piece it is, and a plain gloss shown on the page. Sarcasm does
+ * not survive being read cold by someone who does not know us, and half of
+ * these argue the opposite of what they say.
+ */
+export const writingKinds = {
+  "War story": "First hand, from inside the incident. All of it happened.",
+  Satire: "Played for the joke — it argues the opposite of what it means.",
+  Argument: "A position, straight. No wink, no irony.",
+  Analysis: "A breakdown of someone else's failure and what it teaches.",
+  Playbook: "How we actually do it, rather than how it looks in a deck.",
+} as const;
+
+export type WritingKind = keyof typeof writingKinds;
+
 /** Writing index. Articles themselves live in `src/content/writing`. */
 export const writingPage = {
   eyebrow: "Writing — the long version",

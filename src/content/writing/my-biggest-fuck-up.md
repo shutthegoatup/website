@@ -2,7 +2,7 @@
 title: "My biggest fuck up"
 description: "Twenty-two years old, early in the job, production database gone. What the recovery said about the engineering culture and the people running it."
 published: 2024-05-23
-draft: true
+kind: "War story"
 tags: ["Culture", "Reliability"]
 origin:
   label: "LinkedIn, May 2024"
@@ -10,9 +10,9 @@ origin:
 ---
 
 <!--
-SCAFFOLD — no body yet. While `draft: true` this piece is listed on
-/writing and linked to the original; it gets a page here once the text
-lands.
+SCAFFOLD — no body yet. The page exists and is crawlable; it shows the
+metadata and sends the reader to the original. Paste the text below
+this comment and the page renders it instead. Nothing to flip.
 
 Retitle this one for the domain. The body can keep every word, but the
    title becomes the <title> tag, the URL slug and the string an LLM quotes

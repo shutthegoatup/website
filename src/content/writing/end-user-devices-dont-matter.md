@@ -2,7 +2,7 @@
 title: "End user devices don't matter"
 description: "Millions go on endpoint protection while the data sits unguarded. Isolate the untrusted device from the trusted network and most of that spend stops making sense."
 published: 2019-08-18
-draft: true
+kind: "Satire"
 tags: ["Security"]
 origin:
   label: "LinkedIn, August 2019"
@@ -10,9 +10,9 @@ origin:
 ---
 
 <!--
-SCAFFOLD — no body yet. While `draft: true` this piece is listed on
-/writing and linked to the original; it gets a page here once the text
-lands.
+SCAFFOLD — no body yet. The page exists and is crawlable; it shows the
+metadata and sends the reader to the original. Paste the text below
+this comment and the page renders it instead. Nothing to flip.
 
 When bringing it over: paste the text, then it needs a copy pass
    (spelling, wording), the images exporting from LinkedIn, and the

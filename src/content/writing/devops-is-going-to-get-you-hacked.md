@@ -2,7 +2,7 @@
 title: "DevOps is going to get you hacked"
 description: "Transformation programmes buy consultants instead of engineers, then wonder why the pipeline is the attack surface. What security reviews miss in a developer's workflow."
 published: 2019-08-03
-draft: true
+kind: "Argument"
 tags: ["Security", "Platform engineering"]
 origin:
   label: "LinkedIn, August 2019"
@@ -10,9 +10,9 @@ origin:
 ---
 
 <!--
-SCAFFOLD — no body yet. While `draft: true` this piece is listed on
-/writing and linked to the original; it gets a page here once the text
-lands.
+SCAFFOLD — no body yet. The page exists and is crawlable; it shows the
+metadata and sends the reader to the original. Paste the text below
+this comment and the page renders it instead. Nothing to flip.
 
 Beats: consultants over engineers; a team standing up Bitbucket, Jenkins
    and AWS that passes review on paper; autocompleted usernames granting

@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { capabilities, principles, products, site, team } from "~/lib/site";
-import { allWriting, articleDate, articleHref } from "~/lib/writing";
+import { allWriting, articleDate, articleUrl } from "~/lib/writing";
 
 const statusNote: Record<(typeof products)[number]["status"], string> = {
   live: "live",
@@ -46,16 +46,12 @@ const body = (writing: Awaited<ReturnType<typeof allWriting>>) =>
           "## Writing",
           "",
           ...writing.map((article) => {
-            const href = articleHref(article);
-            const where = href?.startsWith("/") ? `${site.url}${href}` : href;
-            const link = where
-              ? `[${article.data.title}](${where})`
-              : article.data.title;
-            const tags =
-              article.data.tags.length > 0
-                ? ` [${article.data.tags.join(", ")}]`
-                : "";
-            return `- ${link} — ${articleDate(article.data.published)}.${tags} ${article.data.description}`;
+            const facets = [
+              articleDate(article.data.published),
+              ...(article.data.kind ? [article.data.kind] : []),
+              ...article.data.tags,
+            ].join(", ");
+            return `- [${article.data.title}](${site.url}${articleUrl(article)}) — ${facets}. ${article.data.description}`;
           }),
           "",
         ]
