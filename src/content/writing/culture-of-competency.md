@@ -166,7 +166,7 @@ keeps the lights on. Too slow, and you will succumb to politics.
 
 ### Fin.
 
-![](./images/culture-of-competency/01.png)
+![A man in a beanie leaning in, captioned “got any more of that competency advice?”](./images/culture-of-competency/01.png)
 
 _First ones for free_
 

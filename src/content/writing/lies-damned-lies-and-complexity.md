@@ -11,7 +11,7 @@ coverAlt: "Lies, damned lies, and complexity"
 
 I was extremely lucky in my early career to fall into interesting work.
 
-![](./images/lies-damned-lies-and-complexity/01.png)
+![Ron Burgundy from Anchorman, captioned “I don't know how to put this but... I'm kind of a big deal”](./images/lies-damned-lies-and-complexity/01.png)
 
 _Gotta build you brand, yo_
 
@@ -59,7 +59,7 @@ There were people who came before me.
   After a spirited disagreement he punched a wall, made his exit, and never
   returned.
 
-![](./images/lies-damned-lies-and-complexity/02.png)
+![The socially awkward penguin meme, captioned “lead dev punches wall, I'm lead dev now”](./images/lies-damned-lies-and-complexity/02.png)
 
 _we did it!_
 
@@ -74,7 +74,7 @@ And so we did.
 
 Without a doubt the best job I've ever had.
 
-![](./images/lies-damned-lies-and-complexity/03.png)
+![A young man at a desk in a server room, raising both middle fingers](./images/lies-damned-lies-and-complexity/03.png)
 
 _Buh Bye, VI_
 
@@ -133,7 +133,7 @@ Super different, eh?
 Alright, alright, I get it. People are talking about the kubernetes
 architecture being complex...
 
-![](./images/lies-damned-lies-and-complexity/04.png)
+![Two architecture diagrams side by side, one labelled Kubernetes and one labelled cloud provider, each showing an API, storage controller, scheduler, network controller, nodes and a data store](./images/lies-damned-lies-and-complexity/04.png)
 
 _Spot the difference_
 

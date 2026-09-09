@@ -238,6 +238,8 @@ const schema = [
             alt={article.data.coverAlt ?? ""}
             widths={[720, 1280, 1920]}
             sizes="(min-width: 74rem) 68rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
             class="mb-16 w-full border-2 border-ink object-cover"
           />
         )

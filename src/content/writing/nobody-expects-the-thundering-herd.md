@@ -6,7 +6,7 @@ updated: 2026-09-09
 kind: "War story"
 tags: ["Reliability", "Platform engineering"]
 cover: "./images/nobody-expects-the-thundering-herd/cover.png"
-coverAlt: "Nobody expects the thundering herd"
+coverAlt: "The “this is fine” cartoon dog sitting in a burning room"
 ---
 
 > Now this is a story all about how, <br />
@@ -14,7 +14,7 @@ coverAlt: "Nobody expects the thundering herd"
 > And I'd like to take a minute, just sit right there,<br />
 > I'll tell you how I got pwned by the thundering herd.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/01.png)
+![Will Smith striking Chris Rock on stage at the Oscars](./images/nobody-expects-the-thundering-herd/01.png)
 
 Okay, I deserved that. But god dammit Will, why you gotta ruin our childhoods?
 
@@ -28,7 +28,7 @@ because of this.
 After a quick scan of the room to like, you know, figure out who's in charge
 and is going to deal with this and stuff, I realise it's like... me.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/02.png)
+![Senator Clay Davis from The Wire, captioned with his drawn-out catchphrase](./images/nobody-expects-the-thundering-herd/02.png)
 
 Might have to start writing like an adult now... Nah, fuck that.
 
@@ -47,7 +47,7 @@ So here I am furiously writing my resignation when it hits me. "Block MSSQL" I
 say. "What?" the retort. "Remove the fucking security group from the fucking
 server" I follow with.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/03.png)
+![Jackie Chan with both hands raised, captioned “what?!?!?! are you crazy?????”](./images/nobody-expects-the-thundering-herd/03.png)
 
 They comply. I mean what else they gonna do, apparently I'm the senior and
 nobody has any other suggestions, so why the hell not? Within minutes load on
@@ -58,7 +58,7 @@ returns to normal, and we've saved the day.
 
 Until tomorrow.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/04.png)
+![Jim Carrey as The Mask in a straw boater, captioned “but first...”](./images/nobody-expects-the-thundering-herd/04.png)
 
 ## Some background
 
@@ -90,7 +90,7 @@ Now this may or may not work depending on your stack, but the underlying theory
 is the clients went away for a bit, and when they came back the server was
 better able to handle them. Now we have to productionise this.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/05.png)
+![A winking puppy, captioned “lemme do you an explain”](./images/nobody-expects-the-thundering-herd/05.png)
 
 ## Ways to skin this cat
 
@@ -124,7 +124,7 @@ your fucking customers are fucking fucked, grow up) you can't really recover
 without some heroic intervention from that one guy who has access to the MSSQL
 server.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/06.png)
+![The sceptical child meme, captioned “so you mean to tell me techdebt is bad”](./images/nobody-expects-the-thundering-herd/06.png)
 
 ## Learn to speak product
 
@@ -145,7 +145,7 @@ paths, but we've learned to ignore the random hyphen separated values API (very
 interesting when we exceeded the MAX_INT on one of the shards and were forced
 into the negative integer space) and just look at the data on I/O.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/07.png)
+![The Scooby Doo unmasking scene, captioned “and I would have gotten away with it if it weren't for you meddling kids”](./images/nobody-expects-the-thundering-herd/07.png)
 
 We've updated our read paths to grab `getSyncData();` direct from kafka via
 ksql and it was beautiful.
@@ -165,6 +165,6 @@ problems) there, and a sprinkle. A. SPRINKLE. Of exponential back-off and
 jitter on the client, and everything was bright and beautiful. The P50 was down
 70%, the P95 down 80% and the P99 down 90%.
 
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/08.png)
+![Two rock guitarists mid-performance, captioned “that's latency improvements, Kyle”](./images/nobody-expects-the-thundering-herd/08.png)
 
 Fin.

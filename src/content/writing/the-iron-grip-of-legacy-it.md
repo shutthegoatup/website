@@ -19,7 +19,7 @@ nothing. Nothing but the stench of death. The salesmen have won.
 
 Legacy. Legacy IT never changes.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/01.png)
+![A black and white photograph of a vast open plan clerical office packed with desks](./images/the-iron-grip-of-legacy-it/01.png)
 
 It all started on a warm summer's morning. You were a bright eyed and bushy
 tailed AWS Engineer, full of optimism and hope. You are here to fix British
@@ -34,7 +34,7 @@ an AWS account. It doesn't come. You chase him. Weeks pass, still no account.
 You ask Captain Jenkins what the hold-up is; he mumbles something about
 Information Security.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/02.png)
+![An angry baby in an army helmet, captioned “no cloud account until you're production ready”](./images/the-iron-grip-of-legacy-it/02.png)
 
 After a chance introduction with Patty from InfoSec, you decide to ask about
 the account. You try to explain you need the account in order to build a
@@ -53,7 +53,7 @@ been waiting for months. You're just happy to have it.
 The game's afoot now. We're going to fix the company. You open up your IDE and
 write some terraform to deploy a VM and run it. Doesn't work. Fuck sake.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/03.png)
+![Gene Wilder as Willy Wonka leaning on one hand, captioned “oh, you thought you'd have privileges? how quaint”](./images/the-iron-grip-of-legacy-it/03.png)
 
 You plan to ask Captain Jenkins to follow up on why your account doesn't have
 privileges, but other than stand-ups he's never anywhere to be found. Finally,
@@ -79,7 +79,7 @@ Project Management, the Head of Enterprise Architecture, and Bill, the CISO,
 approve the change of adding a Linux machine into an AWS account with a Windows
 EDR running on Wine.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/04.png)
+![Keanu Reeves looking startled, captioned “do these people even know it?”](./images/the-iron-grip-of-legacy-it/04.png)
 
 Fuck it, we're putting the app on this franken-server. You write the terraform
 against your own personal AWS account. Dick watches in awe. You explain to him
@@ -92,7 +92,7 @@ Security hoops, been approved by the Change Advisory Board, and your team has
 been greenlit to connect back to Legacy. It's your time now. Captain Jenkins
 mentions that the connectivity needs to happen out of hours.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/05.png)
+![Bill Lumbergh from Office Space, captioned “ummm, yeah... I'm gonna need you to be available for the 4am change”](./images/the-iron-grip-of-legacy-it/05.png)
 
 Your alarm screams at you to wake up at 3:45 in the morning. Your heart pounds
 and you have a rising feeling of pain, or maybe just disgust, in your chest.
@@ -122,11 +122,11 @@ to remember why you're doing this.
 Cheer up. It's all downhill from here. Things are going well; the app has
 connectivity and you'll be able to enjoy the sweet nectar of achievement soon.
 You have a few things to finish off to make sure the launch goes smoothly. Your
-stomach rumbles. Lunchtime has gone and went, but the canteen is open, so you
+stomach rumbles. Lunchtime has been and gone, but the canteen is open, so you
 decide to grab a sandwich. Nobody is around, so you take it back to your desk.
 Might as well finish your tickets.
 
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/06.png)
+![The “this is fine” cartoon dog sitting calmly in a burning room](./images/the-iron-grip-of-legacy-it/06.png)
 
 You see an email thanking Dick for all _your_ hard work. Captain Jenkins
 returns eating a slice of pizza. He asks why you weren't at the launch party.

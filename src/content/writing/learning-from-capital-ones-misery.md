@@ -12,7 +12,7 @@ coverAlt: "Learning from Capital One's misery"
 Capital One is the most recent victim, or should I say culprit, of losing a
 treasure trove of your PII data.
 
-![Screenshot from the original article](./images/learning-from-capital-ones-misery/01.png)
+![Pikachu with a shocked expression](./images/learning-from-capital-ones-misery/01.png)
 
 Rather than joining the crowds calling for their heads or jumping to their
 defence, today might be a good day to get our own shit in order. Why does this
@@ -47,7 +47,7 @@ insecure or too complex to run stacks on, you need to re-evaluate your career.
 If you're trying to use this to peddle your product, go jump off a bridge.
 Misinformation like this is why we can't have nice things.
 
-![Screenshot from the original article](./images/learning-from-capital-ones-misery/02.png)
+![A woman raising a single finger](./images/learning-from-capital-ones-misery/02.png)
 
 Moving on, let's talk about our options to defend against such attacks.
 
@@ -90,7 +90,7 @@ led to the leaking of the `*-WAF-Role`. Was this insecure software? Was it an
 insecure server? Weak or leaked credentials? Why did it have so much access?
 What the fuck even is this? Maybe we'll know more later.
 
-![Screenshot from the original article](./images/learning-from-capital-ones-misery/03.png)
+![A toddler at a desk, palms up, shrugging](./images/learning-from-capital-ones-misery/03.png)
 
 I'll leave it to the reader to ponder, only adding that we shouldn't run
 insecure software and consider it secure because it's behind a firewall, we
@@ -104,7 +104,7 @@ Let's be honest though, it was probably some shitty security product. ;)
 There's pretty much no excuse to have unencrypted data in an S3 bucket. You can
 enforce encryption as part of the bucket policy and you should use KMS to do
 this. Even if the data isn't PII, it's just good hygiene. People that don't do
-it probably aren't washing their hands after the bathroom either.
+it probably aren't washing their hands after using the bathroom either.
 
 The real question is how do you ensure your engineers adhere to this? You might
 notice a pattern here.
@@ -121,7 +121,7 @@ notice a pattern here.
 
 That sounded boringly familiar. Why aren't you doing it?
 
-![Screenshot from the original article](./images/learning-from-capital-ones-misery/04.png)
+![Britney Spears slow-clapping](./images/learning-from-capital-ones-misery/04.png)
 
 ## Not being aware of the data leakage
 

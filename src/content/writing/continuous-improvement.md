@@ -65,7 +65,7 @@ doing it, you get the asshole label.
 
 What's the outcome?
 
-![](./images/continuous-improvement/01.png)
+![A sketch of the BS asymmetry principle, or Brandolini's law: the energy needed to refute nonsense is an order of magnitude greater than the energy needed to produce it](./images/continuous-improvement/01.png)
 
 ## Mediocrity
 
@@ -119,7 +119,7 @@ Within the first 90 days I'd had:
   it's due, Priya Raman and Tom Reilly did the real work, but I sent some
   really good emails.
 
-![](./images/continuous-improvement/02.png)
+![A cat in a Batman mask and cape, captioned “the asshole you need”](./images/continuous-improvement/02.png)
 
 _But not the one you deserve_
 
@@ -144,7 +144,7 @@ How the fuck did I do that then?
   decisions rather than just shitty ones, which is key for continuous
   improvement.
 
-![](./images/continuous-improvement/03.png)
+![A comic strip titled “this is why you shouldn't interrupt a programmer”](./images/continuous-improvement/03.png)
 
 _Please fuck off._
 

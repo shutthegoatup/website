@@ -6,7 +6,7 @@ updated: 2026-09-09
 kind: "Satire"
 tags: ["Security", "Platform engineering", "Culture"]
 cover: "./images/devops-is-going-to-get-you-hacked/cover.png"
-coverAlt: "DevOps is going to get you hacked"
+coverAlt: "A glossy blue loading screen reading “...loading...”"
 ---
 
 Yeah, you heard that right. As I say it, I hear the cheer of hundreds of
@@ -14,7 +14,7 @@ thousands of greybeards agree that it's a truth universally acknowledged. Hold
 on to your fucking change control old man, I can't actually imagine anything
 worse than the security theatre you've been a party to for the last 15 years.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/01.png)
+![Men in dinner jackets laughing together, captioned “and then we told them change authority boards were a security control”](./images/devops-is-going-to-get-you-hacked/01.png)
 
 To borrow a turn of phrase from a once great alcoholic: DevOps is the worst
 form of IT, except all the others.
@@ -30,14 +30,14 @@ Anyway, got distracted. Where was I? Oh yeah, so we're all about the digital
 transformations today. Kicking that off, you're going to need someone to run
 the thing. Sensible. So let's take a look at a Head of Digital's profile.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/02.png)
+![A parody profile for “Clippy McClipperson, IT Director, Head of Digital, Data and Technology”, with Clippy the paperclip as the photograph](./images/devops-is-going-to-get-you-hacked/02.png)
 
 Putting the right foot forward, obviously we're going to hire the same people
 who sold us outsourcing, bean counting, and gleefully led us down the path of
 our current malaise. After all, who better to help us imitate start-up culture
 than the employees of some of the more bloated enterprises on the planet.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/03.png)
+![A man looking baffled, surrounded by question marks](./images/devops-is-going-to-get-you-hacked/03.png)
 
 Okay, I hear what you're saying. It's about a culture of continual learning.
 That's way more important than the tech! Tech is easy! Right? Okay!
@@ -49,16 +49,15 @@ management consultants couldn't possibly fuck up bringing an engineering
 culture into your organisation. After all, what are management consultants if
 not experts in engineering culture?
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/04.png)
+![The roll safe meme, a man tapping his temple, captioned “nobody got fired for hiring Big Blue”](./images/devops-is-going-to-get-you-hacked/04.png)
 
 ## Let's talk about tech, baby
 
 So, you land your first DevOps team to do your Proof of Concept, or a POC to
-those of you who only learn about this stuff from PowerPoint slides. Their
-array of ex-testers, sysadmins who can't code, the guy from customer services
-that decided he wanted to be technical, and some developers, come on board with
-their combined 6 months experience in terraform and Jenkins, and they build the
-stack. It probably looks familiar.
+those of you who only learn about this stuff from PowerPoint slides. Ex-testers, sysadmins who can't code, the guy from customer services who
+decided he wanted to be technical, and some developers. Between them, six
+months of terraform and Jenkins. They build the stack. It probably looks
+familiar.
 
 - Bitbucket Cloud
 - Jenkins
@@ -72,7 +71,7 @@ partners that'll give them kickbacks for selling you additional products as
 part of this stack, but we'll only focus on these three right now because my
 fingers are hurting and I ain't got all day.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/05.png)
+![Kermit the Frog typing furiously at a typewriter](./images/devops-is-going-to-get-you-hacked/05.png)
 
 Digging deeper, our three DevOps musketeers, which we'll call Tom, Dick and
 Harry, are going to configure this shit. And hell, given enough time they might
@@ -114,7 +113,7 @@ technical background. He talks about things like APIs, Java, Oh-My-Zsh, and he
 even backs up his dotfiles to github. You can see on his profile. He's the real
 deal. You suspect he's doing most of the work.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/06.png)
+![The “automate all the things” cartoon, a figure with both arms flung up](./images/devops-is-going-to-get-you-hacked/06.png)
 
 Now before we can really do CI/CD using Jenkins, we need to put it somewhere.
 He gets an AWS account, creates an instance, puts Jenkins on it, and passes
@@ -156,7 +155,7 @@ clever re-appropriation of Intel's tick-tock model to describe a culture of
 continual improvement? Or did you realise it was because we're sitting on a
 fucking time bomb?
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/07.png)
+![Samuel L Jackson leaning out of a car, captioned “tik tok moterfucker”](./images/devops-is-going-to-get-you-hacked/07.png)
 
 Those of you with a discerning eye, or the displeasure of experience, will have
 surely noticed the fuck-ups. After all, it was all there, in the details. Or it
@@ -174,7 +173,7 @@ So where did we go wrong?
   You can't really blame the guy; it gets lonely in those hotels, alone at
   night, when you're off consulting… Yeah, it still has the OAuth token on it.
 
-![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/08.png)
+![Captain Picard with his face in his hand](./images/devops-is-going-to-get-you-hacked/08.png)
 
 I have personal experience with all of these things happening. Still confident
 that WAF will protect you when `bigdick69` can push code that'll allow him to

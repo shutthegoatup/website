@@ -6,7 +6,7 @@ updated: 2026-09-09
 kind: "War story"
 tags: ["Culture", "Reliability"]
 cover: "./images/my-biggest-fuck-up/cover.png"
-coverAlt: "My biggest fuck up"
+coverAlt: "A server room engulfed in flames"
 ---
 
 So I'm 22, doing interesting work, kicking ass, chewing bubblegum, and building
@@ -34,7 +34,7 @@ I, in my ultimate wisdom, picked from the top of the board, escalated 0
 tickets, and for that my reward was to pick up my shit and go to the other
 room. As a developer.
 
-![](./images/my-biggest-fuck-up/01.png)
+![A woman at a restaurant table cheering, captioned “yaaay! finally!!!”](./images/my-biggest-fuck-up/01.png)
 
 _mine mine mine mine mine_
 
@@ -50,7 +50,7 @@ And you know what else was interesting?
 
 They edited the files live on the server.
 
-![](./images/my-biggest-fuck-up/02.png)
+![A man in an audience looking horrified, captioned with the shell commands cp -a main.php main.php.bak, vim main.php, php -l main.php](./images/my-biggest-fuck-up/02.png)
 
 _Oh fuck no_
 
@@ -74,7 +74,7 @@ It was actually one of the more interesting tasks I've ever done:
   workloads on the fleet.
 - And I accidentally deleted the production database.
 
-![](./images/my-biggest-fuck-up/03.png)
+![John Travolta in Pulp Fiction looking around an empty room, bewildered](./images/my-biggest-fuck-up/03.png)
 
 _Did the site just go down for anyone else?_
 
@@ -114,9 +114,8 @@ possible eventualities and sweating the consequences.
 
 My performance sucked.
 
-It took a long time to come to terms with the fact that I was indeed fallible,
-and that people make mistakes, and this was not a determination of either
-talent or potential.
+It took a long time to come to terms with being fallible. People make
+mistakes. It is not a verdict on your talent or your potential.
 
 It took a while to become productive.
 

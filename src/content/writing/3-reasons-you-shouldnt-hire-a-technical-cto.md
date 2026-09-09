@@ -20,7 +20,7 @@ help people.
 This is why, in order to scale, you need to hire a visionary and strategic
 leader that builds teams and works on the org, not inside it.
 
-![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/01.png)
+![A portrait of Steve Jobs beside the line “A players hire A players, B players hire C players”](./images/3-reasons-you-shouldnt-hire-a-technical-cto/01.png)
 
 _A players hire A players_
 
@@ -57,7 +57,7 @@ Hang on. I feel like I'm missing something?
 Oh yeah, that's right, the developer. But developers are expensive, so we'll
 offshore that role. Probably should look something like this.
 
-![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/02.png)
+![A road crew standing around a hole watching one man dig, each onlooker labelled with a job title — VP of engineering, head of development, solutions architect, director of engineering, technical product manager, product manager, business analysis, CTO — and the man in the hole labelled “bloke from Poland”](./images/3-reasons-you-shouldnt-hire-a-technical-cto/02.png)
 
 _Org chart — best practice_
 
@@ -84,7 +84,7 @@ time for the customer call, best practice is:
   Teams work best in SCRUM, so changing the sprint for operational concerns is
   an anti-pattern.
 
-![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/03.png)
+![A dog sitting at a computer, captioned “I have no idea what I'm doing”](./images/3-reasons-you-shouldnt-hire-a-technical-cto/03.png)
 
 _Best practice_
 
@@ -95,8 +95,7 @@ most right now.
 ## Tech is easy; culture is hard
 
 This one is fairly easy to validate because it's what all the really strong
-technical people say. Plus it's obvious culture is discrete from talent, for
-example:
+technical people say. Plus it's obvious culture is distinct from talent, for example:
 
 - Nobody has ever argued that a talent or skill is not required nor useful for
   their role because they, themselves, do not possess such a skill.
@@ -122,7 +121,7 @@ But anyway, enough about culture, let's talk about tech, baby.
 
 I mean, developers are basically kids; we need adults in the room.
 
-![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/04.png)
+![A child in a hoodie lit only by a laptop screen](./images/3-reasons-you-shouldnt-hire-a-technical-cto/04.png)
 
 _Tech is easy; culture is hard._
 
