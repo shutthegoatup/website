@@ -92,10 +92,21 @@
 /* ---- Long-form: markdown from the writing collection --------------------- */
 
 .prose {
-  max-width: 68ch;
+  max-width: 74rem;
   font-size: 1.0625rem;
   line-height: 1.7;
   color: color-mix(in srgb, var(--color-ink) 82%, transparent);
+}
+
+/* Prose holds its measure, but exhibits below are free to run wider. */
+.prose > p,
+.prose > ul,
+.prose > ol,
+.prose > blockquote,
+.prose > h2,
+.prose > h3,
+.prose > pre {
+  max-width: 68ch;
 }
 
 .prose > * + * {
@@ -211,8 +222,31 @@
   border: 2px solid var(--color-ink);
 }
 
-/* Markdown gives no <figure>, so a lone italic line straight after an image
-   is treated as its caption. */
+/* Screenshots are evidence, so they are set as exhibits: ruled, numbered, and
+   allowed past the text measure, because a thread nobody can read is no use.
+   Markdown gives no <figure>, so the image paragraph and the italic line after
+   it are styled as one. */
+.prose > p:has(> img:only-child) {
+  counter-increment: exhibit;
+  width: max-content;
+  max-width: min(100%, 58rem);
+  margin-top: 3em;
+  border-top: 2px solid var(--color-ink);
+  padding-top: 0.9rem;
+}
+
+.prose > p:has(> img:only-child)::before {
+  content: "Exhibit " counter(exhibit, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
 .prose p:has(> img:only-child) + p em {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -308,7 +342,7 @@
 
 /* Section numbers hang in the margin, the same device as the § eyebrows. */
 .prose {
-  counter-reset: section;
+  counter-reset: section exhibit;
 }
 
 .prose h2 {
