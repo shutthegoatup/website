@@ -42,7 +42,7 @@ production ready stack, but the argument falls on deaf ears as Patty rants
 about how she'll never connect her network to those bratty Cloud kids.
 
 You wonder how she can have such a disposition when the entire reason you're
-here is because of "the Event" within the Legacy IT systems.
+here is because of ["the Event" within the Legacy IT systems](/writing/end-user-devices-dont-matter/).
 
 Finally, after what seemed like an eternity twiddling thumbs, THE CONSULTANCY
 dropships Tom, Dick and Harry to lead the charge. A suit called Bill from

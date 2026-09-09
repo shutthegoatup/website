@@ -105,7 +105,7 @@ agree with it.
 But diversity is a good thing, right? Unless, of course, it's diversity of
 opinion, knowledge, or experience.
 
-I touched on trivia in my previous article about competency.
+I touched on trivia in [my previous article about competency](/writing/culture-of-competency/).
 
 Best case scenario, with infinite subject matters, trivia questions are a
 lottery, or some sort of punishment for having the audacity of putting a

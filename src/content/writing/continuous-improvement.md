@@ -17,7 +17,7 @@ Assholes. We all have them. Some of us have many. No, not the exit, sometimes
 entrance, on the rear of your body. But your team mates. Colleagues. People you
 interact with in a professional capacity.
 
-In my previous article I poke fun at companies cargo culting Netflix's former
+In [my previous article](/writing/culture-of-competency/) I poke fun at companies cargo culting Netflix's former
 "no asshole" culture. The joke is, whilst Netflix did indeed put a stake in the
 ground that they'd suffer no assholes, they also paid top of the market,
 heavily qualified competency, and let go of low performers.

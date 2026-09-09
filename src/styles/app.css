@@ -97,10 +97,12 @@
   display: grid;
   grid-template-columns:
     [full-start] minmax(0, 1fr)
-    [text-start] min(68ch, 100%) [text-end]
+    [text-start] min(64ch, 100%) [text-end]
     minmax(0, 1fr) [full-end];
-  font-size: 1.0625rem;
-  line-height: 1.7;
+  /* Long-form is read, not scanned, so it runs larger than the rest of the
+     site. Measure tightens as the type grows to hold the line count. */
+  font-size: 1.1875rem;
+  line-height: 1.65;
   color: color-mix(in srgb, var(--color-ink) 82%, transparent);
 }
 

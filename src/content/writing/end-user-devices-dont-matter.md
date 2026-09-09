@@ -128,7 +128,7 @@ diagram of your estate. You have your proposals; you have your numbers.
 _Yes, I know these are normally much more professionally done in Visio. Fuck off Architect wankers._
 
 The months drag on. You're worried about how the digital transformation is
-going. Actually, you've heard some concerns. Someone even sent you this blog.
+going. Actually, you've heard some concerns. Someone even sent you [this blog](/writing/devops-is-going-to-get-you-hacked/).
 
 You call the Accounts Director; she asks if you've had lunch. A good lot, these
 people from THE CONSULTANCY. They're always at it. Working over lunch, in the
