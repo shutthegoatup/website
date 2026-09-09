@@ -265,6 +265,65 @@
   transform: scaleX(0);
 }
 
+/* ---- Withheld: the piece is catalogued but the text is not here yet -------
+   The redaction device is the identity, so a body we have not brought across
+   is struck out rather than explained away. Bars sweep in on the same curve
+   as the wordmark. Decorative — the real message sits in text beside them. */
+
+.withheld__line {
+  height: 1.05rem;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: redact-sweep 0.5s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+/* ---- Long-form flourishes ----------------------------------------------- */
+
+/* Sets the opening letter in the display face, three lines deep. */
+.prose > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.06em 0.08em 0 0;
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  font-weight: 800;
+  line-height: 0.76;
+  text-transform: uppercase;
+}
+
+/* Section numbers hang in the margin, the same device as the § eyebrows. */
+.prose {
+  counter-reset: section;
+}
+
+.prose h2 {
+  counter-increment: section;
+}
+
+.prose h2::before {
+  content: "§ " counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-ash-deep);
+}
+
+@media (min-width: 80rem) {
+  .prose h2::before {
+    position: absolute;
+    margin-left: -7rem;
+    margin-bottom: 0;
+    line-height: 2.4;
+  }
+
+  .prose h2 {
+    position: relative;
+  }
+}
+
 /* ---- Product names: classified until you look ---------------------------- */
 
 .product-bar {
@@ -377,7 +436,8 @@ html:not(.js) .product-bar {
   }
 
   .rise,
-  .redact__bar {
+  .redact__bar,
+  .withheld__line {
     animation-duration: 0.01ms;
     animation-delay: 0ms;
   }

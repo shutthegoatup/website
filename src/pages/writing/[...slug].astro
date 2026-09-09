@@ -26,10 +26,13 @@ const { article, articles } = Astro.props as {
   articles: Article[];
 };
 
-// A piece still living on LinkedIn has no body to render, so the page carries
-// the metadata and hands the reader on rather than pretending to be empty.
+// A piece we have not brought across has no body to render, so the page shows
+// it struck out rather than empty, and sends the reader on from our domain.
 const elsewhere = !hasBody(article);
 const { Content } = elsewhere ? { Content: null } : await render(article);
+
+// Percentage widths of the redacted lines; 0 breaks the paragraph.
+const withheld = [97, 84, 92, 68, 0, 91, 96, 79, 88, 54];
 
 const author = team.find((person) => person.name === "Allan Degnan") ?? team[0];
 const minutes = readingTime(article.body ?? "");
@@ -69,67 +72,111 @@ const schema = [
   ogImageAlt={article.data.coverAlt}
   schema={schema}
 >
-  <article class="border-b-2 border-ink">
-    <div class="mx-auto max-w-[110rem] px-4 py-12 sm:px-6 lg:px-10 lg:py-20">
-      <p class="stamp text-ash-deep">
-        <a class="link-underline" href="/writing/">← Writing</a>
-      </p>
-
-      <div class="mt-8 flex flex-wrap items-center gap-3">
-        {
-          kind && (
-            <span class="stamp border-2 border-ink px-2.5 py-1.5 leading-none">
-              {kind}
-            </span>
-          )
-        }
-        {
-          article.data.tags.map((tag) => (
-            <span class="stamp text-ash-deep">{tag}</span>
-          ))
-        }
+  <article>
+    <header class="relative overflow-hidden border-b-2 border-ink">
+      <div
+        class="hatch pointer-events-none absolute inset-0 opacity-50"
+        aria-hidden="true"
+      >
       </div>
-
-      <h1 class="display mt-6 max-w-5xl text-[clamp(2.4rem,7vw,6rem)]">
-        {article.data.title}
-      </h1>
-
-      <p class="mt-8 max-w-3xl text-xl leading-snug text-ink/75 sm:text-2xl">
-        {article.data.description}
-      </p>
-
-      {
-        kind && (
-          <p class="stamp mt-6 max-w-2xl leading-relaxed text-ash-deep">
-            {writingKinds[kind]}
-          </p>
-        )
-      }
 
       <div
-        class="mt-10 flex flex-wrap items-center gap-4 border-t-2 border-ink pt-6"
+        class="relative mx-auto max-w-[110rem] px-4 py-10 sm:px-6 lg:px-10 lg:py-16"
       >
-        {
-          author && (
-            <img
-              src={author.image}
-              alt=""
-              width="48"
-              height="48"
-              class="h-12 w-12 border-2 border-ink object-cover grayscale"
-            />
-          )
-        }
-        <div>
-          <p class="stamp">{author?.name}</p>
-          <p class="stamp mt-1 text-ash-deep">{author?.role}</p>
-        </div>
-        <p class="stamp ml-auto text-ash-deep">
-          {articleDate(article.data.published)}
-          {!elsewhere && ` — ${String(minutes)} min read`}
+        <p class="stamp text-ash-deep">
+          <a class="link-underline" href="/writing/">← Writing</a>
         </p>
-      </div>
 
+        <div
+          class="mt-10 grid gap-x-8 gap-y-8 lg:mt-14 lg:grid-cols-[11rem_1fr]"
+        >
+          <div class="flex flex-wrap items-start gap-x-6 gap-y-3 lg:block">
+            <p class="stamp rise text-ash-deep" style="animation-delay:0.05s">
+              {articleDate(article.data.published)}
+            </p>
+            {
+              kind && (
+                <p
+                  class="stamp rise border-2 border-ink px-2.5 py-1.5 leading-none lg:mt-5 lg:inline-block"
+                  style="animation-delay:0.12s"
+                >
+                  {kind}
+                </p>
+              )
+            }
+            {
+              article.data.tags.length > 0 && (
+                <ul
+                  class="rise flex flex-wrap gap-x-4 gap-y-1 lg:mt-5 lg:flex-col"
+                  style="animation-delay:0.18s"
+                >
+                  {article.data.tags.map((tag) => (
+                    <li class="stamp text-ash-deep">{tag}</li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
+
+          <div class="min-w-0">
+            <h1
+              class="display rise max-w-4xl text-[clamp(2.4rem,6.4vw,5.5rem)]"
+              style="animation-delay:0.1s"
+            >
+              {article.data.title}
+            </h1>
+
+            <p
+              class="rise mt-8 max-w-2xl text-xl leading-snug text-balance text-ink/75 sm:text-2xl"
+              style="animation-delay:0.24s"
+            >
+              {article.data.description}
+            </p>
+
+            {
+              kind && (
+                <p
+                  class="rise mt-6 max-w-xl border-l-2 border-ink pl-4 text-base leading-relaxed text-ink/70"
+                  style="animation-delay:0.32s"
+                >
+                  {writingKinds[kind]}
+                </p>
+              )
+            }
+
+            <div
+              class="rise mt-10 flex flex-wrap items-center gap-4 border-t-2 border-ink pt-6"
+              style="animation-delay:0.4s"
+            >
+              {
+                author && (
+                  <img
+                    src={author.image}
+                    alt=""
+                    width="48"
+                    height="48"
+                    class="h-12 w-12 border-2 border-ink object-cover grayscale"
+                  />
+                )
+              }
+              <div>
+                <p class="stamp">{author?.name}</p>
+                <p class="stamp mt-1 text-ash-deep">{author?.role}</p>
+              </div>
+              {
+                !elsewhere && (
+                  <p class="stamp ml-auto text-ash-deep">{minutes} min read</p>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="mx-auto max-w-[110rem] px-4 py-14 sm:px-6 lg:px-10 lg:py-20 xl:pl-[calc(2.5rem+7rem)]"
+    >
       {
         article.data.cover && (
           <Image
@@ -137,41 +184,56 @@ const schema = [
             alt={article.data.coverAlt ?? ""}
             widths={[720, 1280, 1920]}
             sizes="(min-width: 1024px) 70vw, 100vw"
-            class="mt-12 w-full border-2 border-ink object-cover"
+            class="mb-14 w-full border-2 border-ink object-cover"
           />
         )
       }
 
       {
         Content ? (
-          <div class="prose mt-14">
+          <div class="prose">
             <Content />
           </div>
         ) : (
-          <div class="mt-14 max-w-2xl border-2 border-ink bg-ink p-8 text-bone lg:p-12">
-            <p class="stamp text-ash">Not here yet</p>
-            <p class="mt-4 text-lg leading-relaxed text-bone-dim">
-              This one still lives on LinkedIn. It is coming across — until
-              then, read it where it is.
-            </p>
-            {article.data.origin ? (
-              <a
-                class="stamp link-underline mt-6 inline-block text-signal"
-                href={article.data.origin.href}
-                rel="noopener"
-              >
-                Read it on {article.data.origin.label} ↗
-              </a>
-            ) : (
-              <p class="stamp mt-6 text-ash">Link to follow.</p>
-            )}
+          <div class="max-w-2xl">
+            <div aria-hidden="true">
+              {withheld.map((width, i) =>
+                width === 0 ? (
+                  <div class="h-6" />
+                ) : (
+                  <div
+                    class="withheld__line mt-2 first:mt-0"
+                    style={`width:${String(width)}%;animation-delay:${String(0.5 + i * 0.06)}s`}
+                  />
+                ),
+              )}
+            </div>
+
+            <div class="mt-10 border-t-2 border-ink pt-8">
+              <p class="stamp text-signal">Withheld</p>
+              <p class="mt-4 text-lg leading-relaxed text-ink/75">
+                The text of this one has not been brought across yet. It is
+                coming — until then, read it where it was published.
+              </p>
+              {article.data.origin ? (
+                <a
+                  class="stamp mt-6 inline-block border-2 border-ink px-6 py-4 transition-colors hover:bg-ink hover:text-bone"
+                  href={article.data.origin.href}
+                  rel="noopener"
+                >
+                  {article.data.origin.label} ↗
+                </a>
+              ) : (
+                <p class="stamp mt-6 text-ash-deep">Link to follow.</p>
+              )}
+            </div>
           </div>
         )
       }
 
       {
         !elsewhere && article.data.origin && (
-          <p class="stamp mt-16 border-t-2 border-ink pt-6 text-ash-deep">
+          <p class="stamp mt-16 max-w-2xl border-t-2 border-ink pt-6 text-ash-deep">
             First published on{" "}
             <a
               class="link-underline text-signal"
@@ -183,31 +245,33 @@ const schema = [
           </p>
         )
       }
+    </div>
 
-      {
-        more.length > 0 && (
-          <div class="mt-20 border-t-2 border-ink pt-10">
-            <h2 class="stamp text-ash-deep">More of it</h2>
-            <ul class="mt-8 grid gap-px border-2 border-ink bg-ink sm:grid-cols-2">
+    {
+      more.length > 0 && (
+        <div class="border-t-2 border-ink bg-ink text-bone">
+          <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+            <h2 class="stamp text-ash">More of it</h2>
+            <ul class="mt-10 grid gap-px bg-ash/25 sm:grid-cols-2 lg:grid-cols-4">
               {more.map((other) => (
-                <li class="bg-bone">
+                <li class="bg-ink">
                   <a
                     href={articleUrl(other)}
-                    class="flex h-full flex-col gap-3 p-6 transition-colors hover:bg-ink hover:text-bone lg:p-8"
+                    class="flex h-full flex-col justify-between gap-8 p-6 transition-colors hover:bg-signal lg:p-8"
                   >
-                    <span class="stamp text-ash-deep">
-                      {articleDate(other.data.published)}
-                    </span>
                     <span class="display text-xl lg:text-2xl">
                       {other.data.title}
+                    </span>
+                    <span class="stamp text-ash">
+                      {articleDate(other.data.published)}
                     </span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-        )
-      }
-    </div>
+        </div>
+      )
+    }
   </article>
 </BaseLayout>
