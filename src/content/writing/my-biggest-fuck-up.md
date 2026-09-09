@@ -2,6 +2,7 @@
 title: "My biggest fuck up"
 description: "Twenty-two years old, first day as a developer, production database dropped. What happened next is the whole argument for what an engineering culture actually is."
 published: 2024-05-23
+updated: 2026-09-09
 kind: "War story"
 tags: ["Culture", "Reliability"]
 cover: "./images/my-biggest-fuck-up/cover.png"

@@ -2,6 +2,7 @@
 title: "End user devices don't matter"
 description: "A CISO, a consultancy and nine and a half million dollars of endpoint tooling. You cannot secure the end user device — so stop putting it inside the trusted network."
 published: 2019-08-18
+updated: 2026-09-09
 kind: "Satire"
 tags: ["Security", "Platform engineering"]
 cover: "./images/end-user-devices-dont-matter/cover.png"

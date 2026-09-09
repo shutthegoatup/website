@@ -2,6 +2,7 @@
 title: "Continuous Improvement"
 description: "The no-asshole rule works when you also pay top of market and qualify competency. Without those, it becomes the tool that removes the person saying the company is not very good at this."
 published: 2024-05-10
+updated: 2026-09-09
 kind: "War story"
 tags: ["Leadership", "Culture"]
 cover: "./images/continuous-improvement/cover.png"

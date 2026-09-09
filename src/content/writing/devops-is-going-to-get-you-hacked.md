@@ -2,6 +2,7 @@
 title: "DevOps is going to get you hacked"
 description: "Three consultants stand up Bitbucket, Jenkins and AWS, and it passes assurance. A mistyped username, credentials in a public repo and a token on a compromised laptop — none of which a pentest looks at."
 published: 2019-08-03
+updated: 2026-09-09
 kind: "Satire"
 tags: ["Security", "Platform engineering", "Culture"]
 cover: "./images/devops-is-going-to-get-you-hacked/cover.png"

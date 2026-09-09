@@ -8,8 +8,8 @@ import {
   allWriting,
   articleDate,
   articleUrl,
-  hasBody,
   readingTime,
+  wordCount,
   type Article,
 } from "~/lib/writing";
 
@@ -26,20 +26,27 @@ const { article, articles } = Astro.props as {
   articles: Article[];
 };
 
-// A piece we have not brought across has no body to render, so the page shows
-// it struck out rather than empty, and sends the reader on from our domain.
-const elsewhere = !hasBody(article);
-const { Content } = elsewhere ? { Content: null } : await render(article);
-
-// Percentage widths of the redacted lines; 0 breaks the paragraph.
-const withheld = [97, 84, 92, 68, 0, 91, 96, 79, 88, 54];
+const { Content, headings } = await render(article);
+const sections = headings.filter((h) => h.depth === 2);
 
 const author = team.find((person) => person.name === "Allan Degnan") ?? team[0];
 const minutes = readingTime(article.body ?? "");
+const words = wordCount(article.body ?? "");
 const url = new URL(articleUrl(article), site.url).href;
 const kind = article.data.kind as WritingKind | undefined;
 
-const more = articles.filter((other) => other.id !== article.id).slice(0, 4);
+// Related by shared tag before falling back to recency, so the foot of a
+// security piece offers the other security pieces.
+const others = articles.filter((other) => other.id !== article.id);
+const shares = (other: Article) =>
+  other.data.tags.filter((tag) => article.data.tags.includes(tag)).length;
+const more = [...others]
+  .sort(
+    (a, b) =>
+      shares(b) - shares(a) ||
+      b.data.published.getTime() - a.data.published.getTime(),
+  )
+  .slice(0, 4);
 
 const schema = [
   {
@@ -48,18 +55,47 @@ const schema = [
     headline: article.data.title,
     description: article.data.description,
     datePublished: article.data.published.toISOString(),
-    ...(article.data.updated && {
-      dateModified: article.data.updated.toISOString(),
-    }),
+    dateModified: (
+      article.data.updated ?? article.data.published
+    ).toISOString(),
     ...(article.data.tags.length > 0 && {
       keywords: article.data.tags.join(", "),
+      articleSection: article.data.tags[0],
     }),
     ...(kind && { genre: kind }),
+    ...(article.data.cover && {
+      image: new URL(article.data.cover.src, site.url).href,
+    }),
+    wordCount: words,
+    timeRequired: `PT${String(minutes)}M`,
     inLanguage: "en-GB",
+    isAccessibleForFree: true,
     mainEntityOfPage: url,
     url,
-    author: { "@type": "Person", name: author?.name, jobTitle: author?.role },
+    // First-hand accounts by a named practitioner, tied back to the profile
+    // that corroborates them.
+    author: {
+      "@type": "Person",
+      name: author?.name,
+      jobTitle: author?.role,
+      url: site.social.linkedin,
+      sameAs: [site.social.linkedin],
+      worksFor: { "@id": `${site.url}/#organisation` },
+    },
     publisher: { "@id": `${site.url}/#organisation` },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Writing",
+        item: `${site.url}/writing/`,
+      },
+      { "@type": "ListItem", position: 3, name: article.data.title, item: url },
+    ],
   },
 ];
 ---
@@ -72,6 +108,13 @@ const schema = [
   ogImageAlt={article.data.coverAlt}
   schema={schema}
 >
+  <div
+    id="progress"
+    class="fixed top-0 left-0 z-60 h-[3px] w-0 bg-ink"
+    aria-hidden="true"
+  >
+  </div>
+
   <article>
     <header class="relative overflow-hidden border-b-2 border-ink">
       <div
@@ -83,44 +126,33 @@ const schema = [
       <div
         class="relative mx-auto max-w-[110rem] px-4 py-10 sm:px-6 lg:px-10 lg:py-16"
       >
-        <p class="stamp text-ash-deep">
-          <a class="link-underline" href="/writing/">← Writing</a>
-        </p>
+        <nav class="stamp text-ash-deep" aria-label="Breadcrumb">
+          <a class="link-underline" href="/">Home</a>
+          <span aria-hidden="true"> / </span>
+          <a class="link-underline" href="/writing/">Writing</a>
+        </nav>
 
         <div
-          class="mt-10 grid gap-x-8 gap-y-8 lg:mt-14 lg:grid-cols-[11rem_1fr]"
+          class="mt-10 grid gap-x-10 gap-y-8 lg:mt-14 lg:grid-cols-[1fr_18rem]"
         >
-          <div class="flex flex-wrap items-start gap-x-6 gap-y-3 lg:block">
-            <p class="stamp rise text-ash-deep" style="animation-delay:0.05s">
-              {articleDate(article.data.published)}
-            </p>
-            {
-              kind && (
-                <p
-                  class="stamp rise border-2 border-ink px-2.5 py-1.5 leading-none lg:mt-5 lg:inline-block"
-                  style="animation-delay:0.12s"
-                >
-                  {kind}
-                </p>
-              )
-            }
-            {
-              article.data.tags.length > 0 && (
-                <ul
-                  class="rise flex flex-wrap gap-x-4 gap-y-1 lg:mt-5 lg:flex-col"
-                  style="animation-delay:0.18s"
-                >
-                  {article.data.tags.map((tag) => (
-                    <li class="stamp text-ash-deep">{tag}</li>
-                  ))}
-                </ul>
-              )
-            }
-          </div>
-
           <div class="min-w-0">
+            <div class="rise flex flex-wrap items-center gap-3">
+              {
+                kind && (
+                  <span class="stamp border-2 border-ink px-2.5 py-1.5 leading-none">
+                    {kind}
+                  </span>
+                )
+              }
+              {
+                article.data.tags.map((tag) => (
+                  <span class="stamp text-ash-deep">{tag}</span>
+                ))
+              }
+            </div>
+
             <h1
-              class="display rise max-w-4xl text-[clamp(2.4rem,6.4vw,5.5rem)]"
+              class="display rise mt-6 max-w-4xl text-[clamp(2.4rem,6.4vw,5.5rem)]"
               style="animation-delay:0.1s"
             >
               {article.data.title}
@@ -163,19 +195,41 @@ const schema = [
                 <p class="stamp">{author?.name}</p>
                 <p class="stamp mt-1 text-ash-deep">{author?.role}</p>
               </div>
-              {
-                !elsewhere && (
-                  <p class="stamp ml-auto text-ash-deep">{minutes} min read</p>
-                )
-              }
+              <p class="stamp ml-auto text-ash-deep">
+                {articleDate(article.data.published)} — {minutes} min
+              </p>
             </div>
           </div>
+
+          {
+            sections.length > 2 && (
+              <nav
+                class="rise self-end border-t-2 border-ink pt-6 lg:border-t-0 lg:border-l-2 lg:pt-0 lg:pl-8"
+                style="animation-delay:0.48s"
+                aria-label="Contents"
+              >
+                <p class="stamp text-ash-deep">Contents</p>
+                <ol class="mt-4 space-y-2">
+                  {sections.map((section, i) => (
+                    <li class="flex gap-3 text-sm leading-snug">
+                      <span class="stamp shrink-0 pt-1 text-ash-deep">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <a class="link-underline" href={`#${section.slug}`}>
+                        {section.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )
+          }
         </div>
       </div>
     </header>
 
     <div
-      class="mx-auto max-w-[110rem] px-4 py-14 sm:px-6 lg:px-10 lg:py-20 xl:pl-[calc(2.5rem+7rem)]"
+      class="mx-auto w-full max-w-[74rem] px-4 py-14 sm:px-6 lg:px-10 lg:py-20"
     >
       {
         article.data.cover && (
@@ -183,68 +237,23 @@ const schema = [
             src={article.data.cover}
             alt={article.data.coverAlt ?? ""}
             widths={[720, 1280, 1920]}
-            sizes="(min-width: 1024px) 70vw, 100vw"
-            class="mb-14 w-full border-2 border-ink object-cover"
+            sizes="(min-width: 74rem) 68rem, 100vw"
+            class="mb-16 w-full border-2 border-ink object-cover"
           />
         )
       }
 
-      {
-        Content ? (
-          <div class="prose">
-            <Content />
-          </div>
-        ) : (
-          <div class="max-w-2xl">
-            <div aria-hidden="true">
-              {withheld.map((width, i) =>
-                width === 0 ? (
-                  <div class="h-6" />
-                ) : (
-                  <div
-                    class="withheld__line mt-2 first:mt-0"
-                    style={`width:${String(width)}%;animation-delay:${String(0.5 + i * 0.06)}s`}
-                  />
-                ),
-              )}
-            </div>
+      <div class="prose">
+        <Content />
+      </div>
 
-            <div class="mt-10 border-t-2 border-ink pt-8">
-              <p class="stamp text-signal">Withheld</p>
-              <p class="mt-4 text-lg leading-relaxed text-ink/75">
-                The text of this one has not been brought across yet. It is
-                coming — until then, read it where it was published.
-              </p>
-              {article.data.origin ? (
-                <a
-                  class="stamp mt-6 inline-block border-2 border-ink px-6 py-4 transition-colors hover:bg-ink hover:text-bone"
-                  href={article.data.origin.href}
-                  rel="noopener"
-                >
-                  {article.data.origin.label} ↗
-                </a>
-              ) : (
-                <p class="stamp mt-6 text-ash-deep">Link to follow.</p>
-              )}
-            </div>
-          </div>
-        )
-      }
-
-      {
-        !elsewhere && article.data.origin && (
-          <p class="stamp mt-16 max-w-2xl border-t-2 border-ink pt-6 text-ash-deep">
-            First published on{" "}
-            <a
-              class="link-underline text-signal"
-              href={article.data.origin.href}
-              rel="noopener"
-            >
-              {article.data.origin.label}
-            </a>
-          </p>
-        )
-      }
+      <p
+        class="stamp mt-20 max-w-[68ch] border-t-2 border-ink pt-6 text-ash-deep"
+      >
+        {words.toLocaleString("en-GB")} words — {
+          articleDate(article.data.published)
+        }
+      </p>
     </div>
 
     {
@@ -275,3 +284,24 @@ const schema = [
     }
   </article>
 </BaseLayout>
+
+<script>
+  // Progress is measured against the article, not the page, so the footer and
+  // the related list do not count as unread.
+  const bar = document.getElementById("progress");
+  const body = document.querySelector<HTMLElement>(".prose");
+
+  if (bar && body) {
+    const update = () => {
+      const start = body.offsetTop;
+      const distance = body.offsetHeight - window.innerHeight * 0.5;
+      const seen = window.scrollY - start;
+      const pct = Math.min(100, Math.max(0, (seen / distance) * 100));
+      bar.style.width = `${String(pct)}%`;
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+  }
+</script>

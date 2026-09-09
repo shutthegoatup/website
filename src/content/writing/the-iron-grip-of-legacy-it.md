@@ -2,6 +2,7 @@
 title: "The Iron Grip of Legacy IT"
 description: "Six months into a transformation programme, told as a horror story: the AWS account that never arrives, the Windows EDR running under Wine, and the change board that approves it."
 published: 2019-08-20
+updated: 2026-09-09
 kind: "Satire"
 tags: ["Platform engineering", "Security", "Culture"]
 cover: "./images/the-iron-grip-of-legacy-it/cover.png"

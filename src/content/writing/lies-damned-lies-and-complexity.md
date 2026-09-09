@@ -2,6 +2,7 @@
 title: "Lies, damned lies, and complexity"
 description: "We built the first cloud in Europe and replaced the hypervisor in 30 days when Oracle pulled the licences. Most of what gets called complexity is just ignorance with a talking point attached."
 published: 2024-05-16
+updated: 2026-09-09
 kind: "Argument"
 tags: ["Platform engineering", "Culture"]
 cover: "./images/lies-damned-lies-and-complexity/cover.png"

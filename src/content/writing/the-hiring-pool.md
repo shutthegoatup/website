@@ -2,6 +2,7 @@
 title: "The Hiring Pool"
 description: "“Your standards are too high” and “your process is too long” are both right and both wrong. On turning down big tech, and building a hiring process that qualifies competency without taking three months."
 published: 2024-05-14
+updated: 2026-09-09
 kind: "Playbook"
 tags: ["Hiring", "Leadership", "Culture"]
 cover: "./images/the-hiring-pool/cover.png"

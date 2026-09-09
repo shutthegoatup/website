@@ -29,6 +29,15 @@ export const articleDate = (date: Date): string =>
     year: "numeric",
   });
 
+const words = (body: string): string[] =>
+  body
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+export const wordCount = (body: string): number => words(body).length;
+
 /** Rough, and rounded up. Matches what a reader expects from the count. */
 export const readingTime = (body: string): number =>
-  Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));
+  Math.max(1, Math.round(words(body).length / 200));

@@ -2,6 +2,7 @@
 title: "Culture of Competency"
 description: "“Technology is easy; culture is hard” is a sales pitch. In a business that sells software, the engineering org is the engine that delivers revenue, and its competency is the culture."
 published: 2024-05-02
+updated: 2026-09-09
 kind: "Argument"
 tags: ["Leadership", "Hiring", "Culture"]
 cover: "./images/culture-of-competency/cover.png"

@@ -2,6 +2,7 @@
 title: "Learning from Capital One's misery"
 description: "A misconfigured firewall, an over-privileged role, unencrypted PII and nobody watching the egress. Four failures, and the peer review, SAST, DAST and monitoring that catch each one."
 published: 2019-07-30
+updated: 2026-09-09
 kind: "Analysis"
 tags: ["Security", "Platform engineering"]
 cover: "./images/learning-from-capital-ones-misery/cover.png"

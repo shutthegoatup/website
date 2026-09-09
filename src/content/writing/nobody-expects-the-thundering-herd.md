@@ -2,6 +2,7 @@
 title: "Nobody expects the thundering herd"
 description: "Servers fell over every lunchtime. A blocking query backed up the syncs, the retries took out the cache, the cache took out auth, and 40,000 customers stopped trading. Pulling the security group bought a day at a time."
 published: 2022-11-19
+updated: 2026-09-09
 kind: "War story"
 tags: ["Reliability", "Platform engineering"]
 cover: "./images/nobody-expects-the-thundering-herd/cover.png"

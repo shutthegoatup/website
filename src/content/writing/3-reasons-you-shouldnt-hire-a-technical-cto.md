@@ -2,6 +2,7 @@
 title: "3 reasons you shouldn't hire a Technical CTO"
 description: "A straight-faced case for hiring a visionary who works on the org rather than in it, staffing eight layers of oversight above the developer, and then offshoring the developer."
 published: 2024-04-30
+updated: 2026-09-09
 kind: "Satire"
 tags: ["Leadership", "Hiring"]
 cover: "./images/3-reasons-you-shouldnt-hire-a-technical-cto/cover.png"
