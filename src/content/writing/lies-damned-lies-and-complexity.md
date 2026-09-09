@@ -12,7 +12,7 @@ I was extremely lucky in my early career to fall into interesting work.
 
 ## Gotta build your brand, yo
 
-After reading the 1000 A4 page Xen manual handed to me by Philipp Huber, I
+After reading the 1000 A4 page Xen manual handed to me by Anders Holm, I
 wrote the scheduler for the first cloud in Europe.
 
 ```php
@@ -33,24 +33,24 @@ And history was made.
 ## Story time
 
 Longer version of the story, and I'm not even sure how much of this is true. I
-joined XCalibre Communications Ltd. when I was 22, thanks to a wee bit of
-nepotism from my favourite brother-in-law Jordan Nisbet. I quickly found myself
-working on FlexiScale, the utility elastic computing platform, before the term
+joined Positron Systems Ltd when I was 22, thanks to a wee bit of
+nepotism from my favourite brother-in-law Callum Reid. I quickly found myself
+working on Flux, the utility elastic computing platform, before the term
 cloud was actually coined.
 
 There were people who came before me.
 
-- Rob Lazzurs, also a child at the time, was the architect of the system.
+- Ross Blackwood, also a child at the time, was the architect of the system.
   Impressive bastard. Absolutely dominated him at UT99 during the Christmas
   lull though. Noob.
-- Colin Petrie, who I think runs the internet now, only he ran our internet
+- Duncan Kerr, who I think runs the internet now, only he ran our internet
   back then. He was the one to fix the router after I accidentally PXE booted
   the office. Taught me how to write the networking code without actually
   writing any code.
-- Iain Watson. Walked me through how to PXE, how to rack, and how to manage
-  servers. Gave me cabling OCD. I think Iain was probably the glue holding the
+- Euan Mackay. Walked me through how to PXE, how to rack, and how to manage
+  servers. Gave me cabling OCD. I think Euan was probably the glue holding the
   team together.
-- James Lucas wrote most of the bespoke code that made the thing an actual
+- Gregor Sim wrote most of the bespoke code that made the thing an actual
   product.
 
 ![](./images/lies-damned-lies-and-complexity/01.png)
@@ -174,7 +174,7 @@ We call it complexity, but it's actually just ignorance.
 
 ## Final thoughts
 
-Building FlexiScale was a beautiful place in time and space.
+Building Flux was a beautiful place in time and space.
 
 When Oracle put a gun to our heads we didn't meme complexity, we didn't say it
 wasn't possible, we didn't go begging to another vendor.
@@ -217,3 +217,5 @@ And all I'm asking is for you to do the same.
      where they sat in the text. Move them into position or delete. -->
 
 ![Screenshot from the original article](./images/lies-damned-lies-and-complexity/04.png)
+
+_Names changed. The mistakes are still mine._

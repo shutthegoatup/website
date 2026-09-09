@@ -71,7 +71,7 @@ What's the outcome?
 
 ### When everything's fucked
 
-Back in late 2020 I joined Epos Now. Now this was an absolute rocket ship that
+Back in late 2020 I joined Meson. Now this was an absolute rocket ship that
 interestingly escapes media attention on account of being bootstrapped and just
 doing its thing. We're talking about an entity without
 VCs or institutional investors making a mockery of the term hypergrowth whilst
@@ -116,7 +116,7 @@ Within the first 90 days I'd had:
   least 4 different senior leaders tell me I mustn't lose.
 - Delivered on the strategic direction of the company. Wait, what? Yes, I said
   delivered on the strategic direction of the company. Of course, credit where
-  it's due, John Clark and Stefan Hailmann did the real work, but I sent some
+  it's due, Priya Raman and Tom Reilly did the real work, but I sent some
   really good emails.
 
 ### But not the one you deserve
@@ -161,12 +161,12 @@ As quick as I came, I was done.
   Despite massive growth, both in customer numbers and in volume of
   transactions processed. Because of the increase of customers but also the
   extra products they were now creating transactions in.
-- Epos Now had transitioned from a legacy POS provider to a darling fintech.
+- Meson had transitioned from a legacy POS provider to a darling fintech.
   Still pretty shit at writing about themselves though.
 
 And then it was boring.
 
-I left the team in the capable hands of Jonathan Muller. The thing about John
+I left the team in the capable hands of Nathan Fell. The thing about Nate
 is, he's better than me. He's a better dev. He's a nicer person. Fuck my life, he's sexier than
 me. He's obviously the better CTO.
 
@@ -176,3 +176,5 @@ But he's not an asshole. And he doesn't have to be. Because I was.
      where they sat in the text. Move them into position or delete. -->
 
 ![Screenshot from the original article](./images/continuous-improvement/03.png)
+
+_Names changed. The mistakes are still mine._

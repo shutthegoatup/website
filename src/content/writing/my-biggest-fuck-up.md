@@ -15,11 +15,11 @@ But I didn't start there.
 
 ## Levelling up
 
-On joining XCalibre Communications Ltd. I was hired to do 1st / 2nd level
+On joining Positron Systems Ltd I was hired to do 1st / 2nd level
 support. You know, answering the phones, emails, responding to tickets, and
 trying to fix people's issues.
 
-Now at XCalibre, there was a stark difference between me and the other support
+Now at Positron, there was a stark difference between me and the other support
 reps. My metrics were extremely weak. When examining the number of tickets
 processed, my numbers hovered around the 4 mark whilst my colleagues were
 hitting 20.
@@ -39,7 +39,7 @@ _mine mine mine mine mine_
 
 ## Interesting times
 
-XCalibre 2007 was actually a pretty interesting place. You know we're talking
+Positron 2007 was actually a pretty interesting place. You know we're talking
 about just a year after the initial release of AWS, years before the term cloud
 was actually coined, they're running this nascent cloud provider, which speaks
 to an abnormal level of ability contained in this random startup in this random
@@ -102,7 +102,7 @@ was out at lunch.
 
 My manager took me into a room.
 
-I felt nauseated. I can't imagine Philipp Huber enjoyed the prospect of ending
+I felt nauseated. I can't imagine Anders Holm enjoyed the prospect of ending
 a 22 year old's career, and he didn't. Calmer heads prevailed.
 
 > You get 3 of these. You've spent 1. Now go and finish your task.
@@ -121,7 +121,7 @@ It took a while to become productive.
 
 ## Reflecting back
 
-XCalibre had a lot of reasons to end my career.
+Positron had a lot of reasons to end my career.
 
 - My call metrics sucked.
 - I caused a global outage.
@@ -133,7 +133,7 @@ easily land a similar role where I could grow.
 
 But they didn't.
 
-XCalibre had an Engineering Culture.
+Positron had an Engineering Culture.
 
 For all their faults, the yelling, the punching of walls, the company was led
 by people who could empathise with what we were doing, who'd been there and
@@ -141,3 +141,5 @@ done that, who could see it was a reasonable mistake.
 
 They told me stories of their own fuckups so I could get over mine; I've told
 this story at least 10 times to help someone else get over theirs.
+
+_Names changed. The mistakes are still mine._
