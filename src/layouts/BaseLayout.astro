@@ -3,38 +3,90 @@ import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/instrument-sans";
 import "@fontsource-variable/martian-mono";
 import "~/styles/app.css";
+// Preloaded below: the CSS that references them is itself a late discovery,
+// so without this the headline and body text swap face after first paint.
+import displayFont from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
+import bodyFont from "@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url";
 import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
-import { site } from "~/lib/site";
+import { site, team, capabilities } from "~/lib/site";
+import { isProduction } from "~/lib/env";
 
 interface Props {
   readonly title?: string;
   readonly description?: string;
+  readonly noindex?: boolean;
+  readonly ogType?: "website" | "article";
+  readonly ogImage?: string;
+  readonly ogImageAlt?: string;
+  /** Extra schema.org nodes, merged into the site-wide graph. */
+  readonly schema?: readonly Record<string, unknown>[];
 }
 
-const { title, description = site.description } = Astro.props;
+const {
+  title,
+  description = site.description,
+  noindex,
+  ogType = "website",
+  ogImage,
+  ogImageAlt,
+  schema = [],
+} = Astro.props;
 const pageTitle = title
   ? `${title} — ${site.name}`
-  : `${site.name} — ${site.tagline}`;
+  : `${site.name} — ${site.proposition} from ${site.city}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 
+const org = `${site.url}/#organisation`;
+
+// Mirrors what the pages actually say — every field here is on the site.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  legalName: site.legalEntity,
-  url: site.url,
-  email: site.email,
-  description: site.description,
-  logo: `${site.url}/icon-512.png`,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "The Old Surgery, Doctors Road, Blofield",
-    addressLocality: "Norwich",
-    postalCode: "NR13 4LF",
-    addressCountry: "GB",
-  },
-  sameAs: [site.social.linkedin, site.social.github],
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": org,
+      name: site.name,
+      legalName: site.legalEntity,
+      url: site.url,
+      email: site.email,
+      description: site.description,
+      slogan: site.tagline,
+      foundingDate: site.founded,
+      logo: `${site.url}/icon-512.png`,
+      image: `${site.url}/og.png`,
+      identifier: {
+        "@type": "PropertyValue",
+        name: "UK company number",
+        value: site.companyNumber,
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "The Old Surgery, Doctors Road, Blofield",
+        addressLocality: "Norwich",
+        postalCode: "NR13 4LF",
+        addressCountry: "GB",
+      },
+      knowsAbout: capabilities.map((capability) => capability.title),
+      employee: team.map((person) => ({
+        "@type": "Person",
+        name: person.name,
+        jobTitle: person.role,
+        image: `${site.url}${person.image}`,
+      })),
+      sameAs: [site.social.linkedin, site.social.github],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      inLanguage: "en-GB",
+      publisher: { "@id": org },
+    },
+    ...schema,
+  ],
 };
 ---
 
@@ -46,21 +98,65 @@ const jsonLd = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      (noindex || !isProduction) && (
+        <meta
+          name="robots"
+          content={isProduction ? "noindex, follow" : "noindex, nofollow"}
+        />
+      )
+    }
+
+    <link
+      rel="preload"
+      href={displayFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={bodyFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} — Writing`}
+      href="/rss.xml"
+    />
     <meta name="theme-color" content="#0F0E0C" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site.url}/og.png`} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image"
+      content={new URL(ogImage ?? "/og.png", site.url).href}
+    />
+    {
+      !ogImage && (
+        <>
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+        </>
+      )
+    }
+    <meta
+      property="og:image:alt"
+      content={ogImageAlt ??
+        `${site.name} — the wordmark with “Goat” struck out by a redaction bar.`}
+    />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script is:inline>

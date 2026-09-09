@@ -1,13 +1,19 @@
 ---
 import GoatMark from "~/components/GoatMark.astro";
 import { site } from "~/lib/site";
+import { allWriting } from "~/lib/writing";
 
-const links = [
+// Only linked once something is actually published, so the section never
+// ships as a dead end.
+const hasWriting = (await allWriting()).length > 0;
+
+const links: readonly { href: string; label: string }[] = [
   { href: "/#work", label: "Work" },
   { href: "/#how", label: "How" },
   { href: "/#who", label: "Who" },
-  { href: "/brand", label: "Brand" },
-] as const;
+  ...(hasWriting ? [{ href: "/writing/", label: "Writing" }] : []),
+  { href: "/brand/", label: "Brand" },
+];
 ---
 
 <header

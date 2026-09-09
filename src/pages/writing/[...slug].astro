@@ -1,0 +1,309 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { site, team, writingKinds, type WritingKind } from "~/lib/site";
+import {
+  allWriting,
+  articleDate,
+  articleUrl,
+  readingTime,
+  wordCount,
+  type Article,
+} from "~/lib/writing";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await allWriting();
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article, articles },
+  }));
+};
+
+const { article, articles } = Astro.props as {
+  article: Article;
+  articles: Article[];
+};
+
+const { Content, headings } = await render(article);
+const sections = headings.filter((h) => h.depth === 2);
+
+const author = team.find((person) => person.name === "Allan Degnan") ?? team[0];
+const minutes = readingTime(article.body ?? "");
+const words = wordCount(article.body ?? "");
+const url = new URL(articleUrl(article), site.url).href;
+const kind = article.data.kind as WritingKind | undefined;
+
+// Related by shared tag before falling back to recency, so the foot of a
+// security piece offers the other security pieces.
+const others = articles.filter((other) => other.id !== article.id);
+const shares = (other: Article) =>
+  other.data.tags.filter((tag) => article.data.tags.includes(tag)).length;
+const more = [...others]
+  .sort(
+    (a, b) =>
+      shares(b) - shares(a) ||
+      b.data.published.getTime() - a.data.published.getTime(),
+  )
+  .slice(0, 4);
+
+const schema = [
+  {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: article.data.title,
+    description: article.data.description,
+    datePublished: article.data.published.toISOString(),
+    dateModified: (
+      article.data.updated ?? article.data.published
+    ).toISOString(),
+    ...(article.data.tags.length > 0 && {
+      keywords: article.data.tags.join(", "),
+      articleSection: article.data.tags[0],
+    }),
+    ...(kind && { genre: kind }),
+    ...(article.data.cover && {
+      image: new URL(article.data.cover.src, site.url).href,
+    }),
+    wordCount: words,
+    timeRequired: `PT${String(minutes)}M`,
+    inLanguage: "en-GB",
+    isAccessibleForFree: true,
+    mainEntityOfPage: url,
+    url,
+    // First-hand accounts by a named practitioner, tied back to the profile
+    // that corroborates them.
+    author: {
+      "@type": "Person",
+      name: author?.name,
+      jobTitle: author?.role,
+      url: site.social.linkedin,
+      sameAs: [site.social.linkedin],
+      worksFor: { "@id": `${site.url}/#organisation` },
+    },
+    publisher: { "@id": `${site.url}/#organisation` },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Writing",
+        item: `${site.url}/writing/`,
+      },
+      { "@type": "ListItem", position: 3, name: article.data.title, item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  ogImage={article.data.cover?.src}
+  ogImageAlt={article.data.coverAlt}
+  schema={schema}
+>
+  <div
+    id="progress"
+    class="fixed top-0 left-0 z-60 h-[3px] w-0 bg-ink"
+    aria-hidden="true"
+  >
+  </div>
+
+  <article>
+    <header class="relative overflow-hidden border-b-2 border-ink">
+      <div
+        class="hatch pointer-events-none absolute inset-0 opacity-50"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div
+        class="relative mx-auto max-w-[110rem] px-4 py-10 sm:px-6 lg:px-10 lg:py-16"
+      >
+        <nav class="stamp text-ash-deep" aria-label="Breadcrumb">
+          <a class="link-underline" href="/">Home</a>
+          <span aria-hidden="true"> / </span>
+          <a class="link-underline" href="/writing/">Writing</a>
+        </nav>
+
+        <div
+          class="mt-10 grid gap-x-10 gap-y-8 lg:mt-14 lg:grid-cols-[1fr_18rem]"
+        >
+          <div class="min-w-0">
+            <div class="rise flex flex-wrap items-center gap-3">
+              {
+                kind && (
+                  <span class="stamp border-2 border-ink px-2.5 py-1.5 leading-none">
+                    {kind}
+                  </span>
+                )
+              }
+              {
+                article.data.tags.map((tag) => (
+                  <span class="stamp text-ash-deep">{tag}</span>
+                ))
+              }
+            </div>
+
+            <h1
+              class="display rise mt-6 max-w-4xl text-[clamp(2.4rem,6.4vw,5.5rem)]"
+              style="animation-delay:0.1s"
+            >
+              {article.data.title}
+            </h1>
+
+            <p
+              class="rise mt-8 max-w-2xl text-xl leading-snug text-balance text-ink/75 sm:text-2xl"
+              style="animation-delay:0.24s"
+            >
+              {article.data.description}
+            </p>
+
+            {
+              kind && (
+                <p
+                  class="rise mt-6 max-w-xl border-l-2 border-ink pl-4 text-base leading-relaxed text-ink/70"
+                  style="animation-delay:0.32s"
+                >
+                  {writingKinds[kind]}
+                </p>
+              )
+            }
+
+            <div
+              class="rise mt-10 flex flex-wrap items-center gap-4 border-t-2 border-ink pt-6"
+              style="animation-delay:0.4s"
+            >
+              {
+                author && (
+                  <img
+                    src={author.image}
+                    alt=""
+                    width="48"
+                    height="48"
+                    class="h-12 w-12 border-2 border-ink object-cover grayscale"
+                  />
+                )
+              }
+              <div>
+                <p class="stamp">{author?.name}</p>
+                <p class="stamp mt-1 text-ash-deep">{author?.role}</p>
+              </div>
+              <p class="stamp ml-auto text-ash-deep">
+                {articleDate(article.data.published)} — {minutes} min
+              </p>
+            </div>
+          </div>
+
+          {
+            sections.length > 2 && (
+              <nav
+                class="rise self-end border-t-2 border-ink pt-6 lg:border-t-0 lg:border-l-2 lg:pt-0 lg:pl-8"
+                style="animation-delay:0.48s"
+                aria-label="Contents"
+              >
+                <p class="stamp text-ash-deep">Contents</p>
+                <ol class="mt-4 space-y-2">
+                  {sections.map((section, i) => (
+                    <li class="flex gap-3 text-sm leading-snug">
+                      <span class="stamp shrink-0 pt-1 text-ash-deep">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <a class="link-underline" href={`#${section.slug}`}>
+                        {section.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )
+          }
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="mx-auto w-full max-w-[74rem] px-4 py-14 sm:px-6 lg:px-10 lg:py-20"
+    >
+      {
+        article.data.cover && (
+          <Image
+            src={article.data.cover}
+            alt={article.data.coverAlt ?? ""}
+            widths={[720, 1280, 1920]}
+            sizes="(min-width: 74rem) 68rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+            class="mb-16 w-full border-2 border-ink object-cover"
+          />
+        )
+      }
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <p
+        class="stamp mt-20 max-w-[68ch] border-t-2 border-ink pt-6 text-ash-deep"
+      >
+        {words.toLocaleString("en-GB")} words — {
+          articleDate(article.data.published)
+        }
+      </p>
+    </div>
+
+    {
+      more.length > 0 && (
+        <div class="border-t-2 border-ink bg-ink text-bone">
+          <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
+            <h2 class="stamp text-ash">More of it</h2>
+            <ul class="mt-10 grid gap-px bg-ash/25 sm:grid-cols-2 lg:grid-cols-4">
+              {more.map((other) => (
+                <li class="bg-ink">
+                  <a
+                    href={articleUrl(other)}
+                    class="flex h-full flex-col justify-between gap-8 p-6 transition-colors hover:bg-signal lg:p-8"
+                  >
+                    <span class="display text-xl lg:text-2xl">
+                      {other.data.title}
+                    </span>
+                    <span class="stamp text-ash">
+                      {articleDate(other.data.published)}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<script>
+  // Progress is measured against the article, not the page, so the footer and
+  // the related list do not count as unread.
+  const bar = document.getElementById("progress");
+  const body = document.querySelector<HTMLElement>(".prose");
+
+  if (bar && body) {
+    const update = () => {
+      const start = body.offsetTop;
+      const distance = body.offsetHeight - window.innerHeight * 0.5;
+      const seen = window.scrollY - start;
+      const pct = Math.min(100, Math.max(0, (seen / distance) * 100));
+      bar.style.width = `${String(pct)}%`;
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+  }
+</script>

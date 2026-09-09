@@ -7,6 +7,8 @@
   --color-ink-soft: #1c1a17;
   --color-signal: #ff3b12;
   --color-ash: #8c8577;
+  /* Ash only clears 4.5:1 on ink. On bone it needs this one. */
+  --color-ash-deep: #706a5f;
 
   --font-display:
     "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
@@ -87,6 +89,197 @@
   }
 }
 
+/* ---- Long-form: markdown from the writing collection --------------------- */
+
+/* A breakout grid: prose sits in a centred measure, exhibits span the full
+   width so a screenshot is legible. */
+.prose {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [text-start] min(64ch, 100%) [text-end]
+    minmax(0, 1fr) [full-end];
+  /* Long-form is read, not scanned, so it runs larger than the rest of the
+     site. Measure tightens as the type grows to hold the line count. */
+  font-size: 1.1875rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
+}
+
+.prose > * {
+  grid-column: text;
+}
+
+.prose > * + * {
+  margin-top: 1.5em;
+}
+
+/* A quote is usually the moment the piece turns, so let it carry weight. */
+.prose > blockquote {
+  border-left: 4px solid var(--color-ink);
+  padding-left: 1.5em;
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.prose h2 {
+  margin-top: 2.4em;
+  font-size: 2rem;
+}
+
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.375rem;
+}
+
+/* The accent lives in the underline, so body links stay ink and readable. */
+.prose a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-signal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  background: var(--color-signal);
+  color: var(--color-bone);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose ul {
+  list-style: square;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}
+
+.prose li::marker {
+  color: var(--color-signal);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--color-bone-dim);
+  padding: 0.15em 0.35em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  border: 2px solid var(--color-ink);
+  padding: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Consumed by Shiki's css-variables theme. Bone on ink, with the accent kept
+   for keywords so a block reads as one more piece of the same system. */
+.prose {
+  --astro-code-background: var(--color-ink);
+  --astro-code-foreground: var(--color-bone);
+  --astro-code-token-comment: var(--color-ash);
+  --astro-code-token-keyword: var(--color-signal);
+  --astro-code-token-string: #c9d3b4;
+  --astro-code-token-string-expression: #c9d3b4;
+  --astro-code-token-constant: #e8c07a;
+  --astro-code-token-parameter: var(--color-bone);
+  --astro-code-token-function: var(--color-bone);
+  --astro-code-token-punctuation: var(--color-ash);
+  --astro-code-token-link: var(--color-signal);
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose img {
+  border: 2px solid var(--color-ink);
+}
+
+/* Screenshots are evidence, so they are set as exhibits: ruled, numbered, and
+   allowed past the text measure, because a thread nobody can read is no use.
+   Markdown gives no <figure>, so the image paragraph and the italic line after
+   it are styled as one. */
+.prose > p:has(> img:only-child) {
+  grid-column: full;
+  justify-self: center;
+  counter-increment: exhibit;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 3em;
+  border-top: 2px solid var(--color-ink);
+  padding-top: 0.9rem;
+}
+
+.prose > p:has(> img:only-child)::before {
+  content: "Exhibit " counter(exhibit, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
+.prose p:has(> img:only-child) + p em {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
+.prose p:has(> img:only-child) + p {
+  margin-top: 0.75em;
+}
+
+.prose figcaption {
+  margin-top: 0.75em;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 2px solid var(--color-ink);
+  margin-block: 2.5em;
+}
+
 /* ---- Redaction: the brand device ---------------------------------------- */
 
 .redact {
@@ -124,6 +317,75 @@
 .redact:hover .redact__bar.is-set,
 .redact:focus-within .redact__bar.is-set {
   transform: scaleX(0);
+}
+
+/* An employer we are not naming. A solid bar, not the hoverable redaction
+   device — there is nothing underneath, which is the point. */
+.redacted {
+  display: inline-block;
+  width: 6.5ch;
+  height: 0.95em;
+  background: var(--color-ink);
+  vertical-align: -0.08em;
+}
+
+/* ---- Withheld: the piece is catalogued but the text is not here yet -------
+   The redaction device is the identity, so a body we have not brought across
+   is struck out rather than explained away. Bars sweep in on the same curve
+   as the wordmark. Decorative — the real message sits in text beside them. */
+
+.withheld__line {
+  height: 1.05rem;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: redact-sweep 0.5s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+/* ---- Long-form flourishes ----------------------------------------------- */
+
+/* Sets the opening letter in the display face, three lines deep. */
+.prose > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.06em 0.08em 0 0;
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  font-weight: 800;
+  line-height: 0.76;
+  text-transform: uppercase;
+}
+
+/* Section numbers hang in the margin, the same device as the § eyebrows. */
+.prose {
+  counter-reset: section exhibit;
+}
+
+.prose h2 {
+  counter-increment: section;
+}
+
+.prose h2::before {
+  content: "§ " counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-ash-deep);
+}
+
+@media (min-width: 80rem) {
+  .prose h2::before {
+    position: absolute;
+    margin-left: -7rem;
+    margin-bottom: 0;
+    line-height: 2.4;
+  }
+
+  .prose h2 {
+    position: relative;
+  }
 }
 
 /* ---- Product names: classified until you look ---------------------------- */
@@ -238,7 +500,8 @@ html:not(.js) .product-bar {
   }
 
   .rise,
-  .redact__bar {
+  .redact__bar,
+  .withheld__line {
     animation-duration: 0.01ms;
     animation-delay: 0ms;
   }

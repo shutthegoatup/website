@@ -1,6 +1,9 @@
 ---
 import GoatMark from "~/components/GoatMark.astro";
 import { site } from "~/lib/site";
+import { allWriting } from "~/lib/writing";
+
+const hasWriting = (await allWriting()).length > 0;
 
 const year = new Date().getFullYear();
 ---
@@ -52,13 +55,22 @@ const year = new Date().getFullYear();
               GitHub
             </a>
           </li>
+          {
+            hasWriting && (
+              <li>
+                <a class="link-underline inline-block py-2" href="/writing/">
+                  Writing
+                </a>
+              </li>
+            )
+          }
           <li>
-            <a class="link-underline inline-block py-2" href="/brand">
+            <a class="link-underline inline-block py-2" href="/brand/">
               Brand assets
             </a>
           </li>
           <li>
-            <a class="link-underline inline-block py-2" href="/privacy"
+            <a class="link-underline inline-block py-2" href="/privacy/"
               >Privacy</a
             >
           </li>

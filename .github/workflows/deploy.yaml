@@ -51,7 +51,11 @@ jobs:
       - name: Validate
         run: npm run validate
 
+      # The site marks itself noindex unless this matches the production
+      # domain, so a preview environment can never be indexed by omission.
       - name: Build
+        env:
+          PUBLIC_SITE_DOMAIN: ${{ inputs.site_domain }}
         run: npm run build
 
       - uses: aws-actions/configure-aws-credentials@v6
