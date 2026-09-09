@@ -62,6 +62,20 @@ jobs:
       # Resolved rather than hardcoded: the id is only known after the
       # workload root applies, and it changes if the distribution is ever
       # replaced. The deploy role grants cloudfront:ListDistributions for this.
+      # Publishing the build is just an S3 sync and does not depend on
+      # CloudFront existing, so it runs first and is what decides success.
+      - name: Deploy to S3
+        env:
+          BUCKET: ${{ inputs.s3_bucket }}
+        run: aws s3 sync ./dist "s3://${BUCKET}" --delete
+
+      # Resolved rather than hardcoded: the id is only known after the workload
+      # root applies, and it changes if the distribution is ever replaced. The
+      # deploy role grants cloudfront:ListDistributions for this.
+      #
+      # Not fatal when nothing matches: until the ACM certificate validates
+      # there is no distribution at all, and the build is still worth
+      # publishing -- there is simply no cache to invalidate yet.
       - name: Resolve CloudFront distribution
         id: cf
         env:
@@ -70,21 +84,17 @@ jobs:
           set -euo pipefail
           id=$(aws cloudfront list-distributions \
             --query "DistributionList.Items[?contains(Aliases.Items, '${SITE_DOMAIN}')].Id | [0]" \
-            --output text)
+            --output text 2>/dev/null || echo "None")
           if [ -z "$id" ] || [ "$id" = "None" ]; then
-            echo "::error::No CloudFront distribution has ${SITE_DOMAIN} as an alias. Has the workload root been applied?"
-            exit 1
+            echo "::notice::No CloudFront distribution serves ${SITE_DOMAIN} yet - skipping invalidation. Content is published to S3."
+            echo "id=" >> "$GITHUB_OUTPUT"
+          else
+            echo "id=$id" >> "$GITHUB_OUTPUT"
+            echo "Resolved ${SITE_DOMAIN} -> $id"
           fi
-          echo "id=$id" >> "$GITHUB_OUTPUT"
-          echo "Resolved ${SITE_DOMAIN} -> $id"
-
-      - name: Deploy to S3
-        env:
-          BUCKET: ${{ inputs.s3_bucket }}
-        run: aws s3 sync ./dist "s3://${BUCKET}" --delete
 
       - name: Invalidate CloudFront
-        if: success()
+        if: steps.cf.outputs.id != ''
         env:
           DIST_ID: ${{ steps.cf.outputs.id }}
         run: aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
