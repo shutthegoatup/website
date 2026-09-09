@@ -9,9 +9,14 @@ cover: "./images/nobody-expects-the-thundering-herd/cover.png"
 coverAlt: "Nobody expects the thundering herd"
 ---
 
-<!-- OPENING — the original starts with a four-line riff on the Fresh Prince
-     theme. Paste your own lines back in here; I have left them out rather
-     than reproduce the lyric they are built on. -->
+<!-- PASTE THE OPENING HERE. Replace each PASTE LINE marker below with your
+     line. Keep the "> " at the start and the <br /> at the end of the first
+     three. Delete this comment when you are done. -->
+
+> PASTE LINE ONE<br />
+> PASTE LINE TWO<br />
+> PASTE LINE THREE<br />
+> PASTE LINE FOUR
 
 ![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/01.png)
 

@@ -110,8 +110,13 @@ critical in order to meet the deadline of destiny or whatever. You persist.
 Eventually you figure out that the Security Group Egress was misconfigured.
 It's 5:23 am. You collapse into slumber.
 
-<!-- QUOTE — the original quotes three lines of a song here. Paste it back in
-     if you want it; I have left it out rather than reproduce the lyric. -->
+<!-- PASTE THE THREE LINES HERE. Replace each PASTE LINE marker below with
+     your line. Keep the "> " at the start and the <br /> at the end of the
+     first two. Delete this comment when you are done. -->
+
+> PASTE LINE ONE<br />
+> PASTE LINE TWO<br />
+> PASTE LINE THREE
 
 You rock up at 10 am expecting a thanks for saving the day. Instead Captain
 Jenkins marches over to you and demands to know why you weren't at the 9:30
