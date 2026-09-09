@@ -53,10 +53,11 @@ There were people who came before me.
   the office. Taught me how to write the networking code without actually
   writing any code.
 - Iain Watson. Walked me through how to PXE, how to rack, and how to manage
-  servers. Gave me cabling OCD. I think Euan was probably the glue holding the
-  team together.
-- James Lucas wrote most of the bespoke code that made the thing an actual
-  product.
+  servers. Gave me cabling OCD. I think Iain was probably the glue holding the
+  team together. Also, his kid had a big poop and split his bum. Harrowing...
+- <span class="redacted" role="img" aria-label="name withheld"></span> wrote most of the bespoke code that made the thing an actual product.
+  After a spirited disagreement he punched a wall, made his exit, and never
+  returned.
 
 ![](./images/lies-damned-lies-and-complexity/02.png)
 

@@ -165,7 +165,8 @@ As quick as I came, I was done.
   transactions processed. Because of the increase of customers but also the
   extra products they were now creating transactions in.
 - <span class="redacted" role="img" aria-label="employer withheld"></span> had transitioned from a legacy POS provider to a darling fintech.
-  Still pretty shit at writing about themselves though.
+  Still pretty shit at writing about themselves though. Hey guys, this is my
+  CV, wtf you doing?
 
 And then it was boring.
 
