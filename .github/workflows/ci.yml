@@ -24,6 +24,13 @@ jobs:
 
       - run: npm ci
 
+      # Content collections generate .astro/types.d.ts, and the type-aware
+      # eslint rules need it to resolve astro:content. Without this, lint sees
+      # every collection entry as an error type and fails. The deploy pipeline
+      # avoids it by accident: `validate` runs typecheck, which syncs, first.
+      - name: Generate content types
+        run: npx astro sync
+
       - name: Run linter
         run: npm run lint
 
