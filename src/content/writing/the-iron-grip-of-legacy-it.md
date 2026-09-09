@@ -125,13 +125,13 @@ stomach rumbles. Lunchtime has gone and went, but the canteen is open, so you
 decide to grab a sandwich. Nobody is around, so you take it back to your desk.
 Might as well finish your tickets.
 
+![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/06.png)
+
 You see an email thanking Dick for all _your_ hard work. Captain Jenkins
 returns eating a slice of pizza. He asks why you weren't at the launch party.
 Nobody told you about it and you didn't get an invite. He tells you Enterprise
 Architecture have just announced they've asked Azure to tender for the
 Enterprise Wide Cloud Agreement.
-
-![Screenshot from the original article](./images/the-iron-grip-of-legacy-it/06.png)
 
 You think, well, it doesn't really matter what cloud you're using. They're all
 good, right? You ask for an Azure account. A few more weeks pass. No Azure

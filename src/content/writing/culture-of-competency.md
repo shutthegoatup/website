@@ -9,10 +9,6 @@ cover: "./images/culture-of-competency/cover.png"
 coverAlt: "Culture of Competency"
 ---
 
-![](./images/culture-of-competency/01.png)
-
-_The Hustler_
-
 A few years ago it was common to see "Technology is Easy; Culture is hard". In
 the midst of a digital transformation I was initially pretty accepting of the
 phrase.
@@ -169,5 +165,9 @@ Move too fast and you'll put undue burden on the institutional knowledge that
 keeps the lights on. Too slow, and you will succumb to politics.
 
 ### Fin.
+
+![](./images/culture-of-competency/01.png)
+
+_First ones for free_
 
 Yeah sure, gimme a shout. :)

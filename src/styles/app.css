@@ -319,6 +319,16 @@
   transform: scaleX(0);
 }
 
+/* An employer we are not naming. A solid bar, not the hoverable redaction
+   device — there is nothing underneath, which is the point. */
+.redacted {
+  display: inline-block;
+  width: 6.5ch;
+  height: 0.95em;
+  background: var(--color-ink);
+  vertical-align: -0.08em;
+}
+
 /* ---- Withheld: the piece is catalogued but the text is not here yet -------
    The redaction device is the identity, so a body we have not brought across
    is struck out rather than explained away. Bars sweep in on the same curve

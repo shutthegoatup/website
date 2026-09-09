@@ -13,6 +13,8 @@ coverAlt: "Nobody expects the thundering herd"
      theme. Paste your own lines back in here; I have left them out rather
      than reproduce the lyric they are built on. -->
 
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/01.png)
+
 Okay, I deserved that. But god dammit Will, why you gotta ruin our childhoods?
 
 So like, anyways, I start this new job and stuff and like, the servers
@@ -24,6 +26,8 @@ because of this.
 
 After a quick scan of the room to like, you know, figure out who's in charge
 and is going to deal with this and stuff, I realise it's like... me.
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/02.png)
 
 Might have to start writing like an adult now... Nah, fuck that.
 
@@ -42,6 +46,8 @@ So here I am furiously writing my resignation when it hits me. "Block MSSQL" I
 say. "What?" the retort. "Remove the fucking security group from the fucking
 server" I follow with.
 
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/03.png)
+
 They comply. I mean what else they gonna do, apparently I'm the senior and
 nobody has any other suggestions, so why the hell not? Within minutes load on
 the servers is back to... semi-normal. The security group reattached, or
@@ -50,6 +56,8 @@ work — the security group reattached, the call queues come down, service
 returns to normal, and we've saved the day.
 
 Until tomorrow.
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/04.png)
 
 ## Some background
 
@@ -80,6 +88,8 @@ there's a better explanation for the solution, but that's what I'm going with.
 Now this may or may not work depending on your stack, but the underlying theory
 is the clients went away for a bit, and when they came back the server was
 better able to handle them. Now we have to productionise this.
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/05.png)
 
 ## Ways to skin this cat
 
@@ -113,6 +123,8 @@ your fucking customers are fucking fucked, grow up) you can't really recover
 without some heroic intervention from that one guy who has access to the MSSQL
 server.
 
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/06.png)
+
 ## Learn to speak product
 
 This is where things get political. I'm sorry dear Product team, but
@@ -132,6 +144,8 @@ paths, but we've learned to ignore the random hyphen separated values API (very
 interesting when we exceeded the MAX_INT on one of the shards and were forced
 into the negative integer space) and just look at the data on I/O.
 
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/07.png)
+
 We've updated our read paths to grab `getSyncData();` direct from kafka via
 ksql and it was beautiful.
 
@@ -150,23 +164,6 @@ problems) there, and a sprinkle. A. SPRINKLE. Of exponential back-off and
 jitter on the client, and everything was bright and beautiful. The P50 was down
 70%, the P95 down 80% and the P99 down 90%.
 
-Fin.
-
-<!-- UNPLACED — these came from the original but I could not tell
-     where they sat in the text. Move them into position or delete. -->
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/01.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/02.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/03.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/04.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/05.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/06.png)
-
-![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/07.png)
-
 ![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/08.png)
+
+Fin.

@@ -103,7 +103,7 @@ was out at lunch.
 
 My manager took me into a room.
 
-I felt nauseated. I can't imagine Anders Holm enjoyed the prospect of ending
+I felt nauseated. I can't imagine Philipp Huber enjoyed the prospect of ending
 a 22 year old's career, and he didn't. Calmer heads prevailed.
 
 > You get 3 of these. You've spent 1. Now go and finish your task.
@@ -142,5 +142,3 @@ done that, who could see it was a reasonable mistake.
 
 They told me stories of their own fuckups so I could get over mine; I've told
 this story at least 10 times to help someone else get over theirs.
-
-_Names changed. The mistakes are still mine._

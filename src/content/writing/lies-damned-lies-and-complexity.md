@@ -11,9 +11,13 @@ coverAlt: "Lies, damned lies, and complexity"
 
 I was extremely lucky in my early career to fall into interesting work.
 
+![](./images/lies-damned-lies-and-complexity/01.png)
+
+_Gotta build you brand, yo_
+
 ## Gotta build your brand, yo
 
-After reading the 1000 A4 page Xen manual handed to me by Anders Holm, I
+After reading the 1000 A4 page Xen manual handed to me by Philipp Huber, I
 wrote the scheduler for the [first cloud in Europe](https://en.wikipedia.org/wiki/FlexiScale).
 
 ```php
@@ -35,26 +39,26 @@ And history was made.
 
 Longer version of the story, and I'm not even sure how much of this is true. I
 joined XCalibre Communications Ltd when I was 22, thanks to a wee bit of
-nepotism from my favourite brother-in-law Callum Reid. I quickly found myself
+nepotism from my favourite brother-in-law Jordan Nisbet. I quickly found myself
 working on FlexiScale, the utility elastic computing platform, before the term
 cloud was actually coined.
 
 There were people who came before me.
 
-- Ross Blackwood, also a child at the time, was the architect of the system.
+- Rob Lazzurs, also a child at the time, was the architect of the system.
   Impressive bastard. Absolutely dominated him at UT99 during the Christmas
   lull though. Noob.
-- Duncan Kerr, who I think runs the internet now, only he ran our internet
+- Colin Petrie, who I think runs the internet now, only he ran our internet
   back then. He was the one to fix the router after I accidentally PXE booted
   the office. Taught me how to write the networking code without actually
   writing any code.
-- Euan Mackay. Walked me through how to PXE, how to rack, and how to manage
+- Iain Watson. Walked me through how to PXE, how to rack, and how to manage
   servers. Gave me cabling OCD. I think Euan was probably the glue holding the
   team together.
-- Gregor Sim wrote most of the bespoke code that made the thing an actual
+- James Lucas wrote most of the bespoke code that made the thing an actual
   product.
 
-![](./images/lies-damned-lies-and-complexity/01.png)
+![](./images/lies-damned-lies-and-complexity/02.png)
 
 _we did it!_
 
@@ -64,12 +68,12 @@ sell you any more licences.
 
 Shit.
 
-Big boss says replace Virtual Iron in 30 days and I'll give you all a grand.
+Big Boss Tony Lucas says replace Virtual Iron in 30 days and I'll give you all a grand.
 And so we did.
 
 Without a doubt the best job I've ever had.
 
-![](./images/lies-damned-lies-and-complexity/02.png)
+![](./images/lies-damned-lies-and-complexity/03.png)
 
 _Buh Bye, VI_
 
@@ -128,9 +132,9 @@ Super different, eh?
 Alright, alright, I get it. People are talking about the kubernetes
 architecture being complex...
 
-![](./images/lies-damned-lies-and-complexity/03.png)
+![](./images/lies-damned-lies-and-complexity/04.png)
 
-_Wait what?_
+_Spot the difference_
 
 So I've glossed over some details. The syntax is different, and the important
 thing is you already know the cloud architecture. Learning new things is hard,
@@ -211,10 +215,3 @@ I want it back.
 I need it back so bad I'm willing to do better.
 
 And all I'm asking is for you to do the same.
-
-<!-- UNPLACED — these came from the original but I could not tell
-     where they sat in the text. Move them into position or delete. -->
-
-![Screenshot from the original article](./images/lies-damned-lies-and-complexity/04.png)
-
-_Names changed. The mistakes are still mine._

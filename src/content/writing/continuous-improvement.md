@@ -9,9 +9,7 @@ cover: "./images/continuous-improvement/cover.png"
 coverAlt: "Continuous Improvement"
 ---
 
-![](./images/continuous-improvement/01.png)
-
-_Maybe?_
+_The employer in this one is redacted, as are the names of the people in it. Everything else happened._
 
 Assholes. We all have them. Some of us have many. No, not the exit, sometimes
 entrance, on the rear of your body. But your team mates. Colleagues. People you
@@ -67,11 +65,13 @@ doing it, you get the asshole label.
 
 What's the outcome?
 
+![](./images/continuous-improvement/01.png)
+
 ## Mediocrity
 
 ### When everything's fucked
 
-Back in late 2020 I joined Meson. Now this was an absolute rocket ship that
+Back in late 2020 I joined <span class="redacted" role="img" aria-label="employer withheld"></span>. Now this was an absolute rocket ship that
 interestingly escapes media attention on account of being bootstrapped and just
 doing its thing. We're talking about an entity without
 VCs or institutional investors making a mockery of the term hypergrowth whilst
@@ -119,6 +119,10 @@ Within the first 90 days I'd had:
   it's due, Priya Raman and Tom Reilly did the real work, but I sent some
   really good emails.
 
+![](./images/continuous-improvement/02.png)
+
+_But not the one you deserve_
+
 ### But not the one you deserve
 
 How the fuck did I do that then?
@@ -140,7 +144,7 @@ How the fuck did I do that then?
   decisions rather than just shitty ones, which is key for continuous
   improvement.
 
-![](./images/continuous-improvement/02.png)
+![](./images/continuous-improvement/03.png)
 
 _Please fuck off._
 
@@ -160,7 +164,7 @@ As quick as I came, I was done.
   Despite massive growth, both in customer numbers and in volume of
   transactions processed. Because of the increase of customers but also the
   extra products they were now creating transactions in.
-- Meson had transitioned from a legacy POS provider to a darling fintech.
+- <span class="redacted" role="img" aria-label="employer withheld"></span> had transitioned from a legacy POS provider to a darling fintech.
   Still pretty shit at writing about themselves though.
 
 And then it was boring.
@@ -170,10 +174,3 @@ is, he's better than me. He's a better dev. He's a nicer person. Fuck my life, h
 me. He's obviously the better CTO.
 
 But he's not an asshole. And he doesn't have to be. Because I was.
-
-<!-- UNPLACED — these came from the original but I could not tell
-     where they sat in the text. Move them into position or delete. -->
-
-![Screenshot from the original article](./images/continuous-improvement/03.png)
-
-_Names changed. The mistakes are still mine._
