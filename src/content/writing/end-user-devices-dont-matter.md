@@ -137,10 +137,11 @@ evenings, they're the first ones in, last ones out.
 You meet her at the pub near the office. You talk the entire time. She's got a
 BA in Fine Art and an MA in Fashion. She tells you about her Instagram
 modelling career. She's been with THE CONSULTANCY a few years now. It doesn't
-matter that she asked you what cloud computing was. You forget to even talk
-about the digital transformation, but it doesn't matter, these lot are the
-professionals. She even picked up the tab. Classy lady. The Christmas party's
-only around the corner.
+matter that she asked you what cloud computing was. She's single and my god is
+she beautiful. You forget to even talk about the digital transformation, but it
+doesn't matter, these lot are the professionals. She even picked up the tab.
+Classy lady. Fuck she's beautiful. The Christmas party's only around the
+corner, fuck it I'm leaving the wife.
 
 We're now at the 6 month mark. You have your MDM, EMM, EDR, EPP, AV, and you
 have your WAF, IDS and your firewall. The digital transformation is well
