@@ -33,7 +33,7 @@ The caricature is that the possession of tech skills renders you incapable of
 making logical business decisions, and the only real solution is to pay for
 hands-off fCTO services to be the adult in the room.
 
-[I poke fun at that here](/writing/3-reasons-you-shouldnt-hire-a-technical-cto/), because the idea that skills would render a candidate
+I poke fun at [hiring a CTO who can't do the job](/writing/3-reasons-you-shouldnt-hire-a-technical-cto/), because the idea that skills would render a candidate
 less capable is frankly ridiculous, to the point that buying into it suggests
 its own competency issues.
 

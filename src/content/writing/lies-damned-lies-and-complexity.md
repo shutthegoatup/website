@@ -75,7 +75,7 @@ _Buh Bye, VI_
 
 ## Trivia
 
-So here I am in the 2020s, basically the modern day Tim Berners-Lee, having an
+So here I am in the 2020s, basically the modern day [Tim Berners-Lee](https://www.w3.org/People/Berners-Lee/), having an
 interview for a fairly pedestrian platform engineering role — oh how the mighty
 have fallen — and they're asking me some of the typical questions you might get
 asked.
@@ -105,15 +105,14 @@ agree with it.
 But diversity is a good thing, right? Unless, of course, it's diversity of
 opinion, knowledge, or experience.
 
-I touched on trivia in [my previous article about competency](/writing/culture-of-competency/).
+I touched on trivia in [my previous article](/writing/the-hiring-pool/).
 
-Best case scenario, with infinite subject matters, trivia questions are a
-lottery, or some sort of punishment for having the audacity of putting a
-subject on your CV. Worst case, the ego of an ignorant interviewer rejects the
+At best, given infinite subject matter, trivia questions are a lottery — or a
+punishment for having the audacity to put a subject on your CV. Worst case, the ego of an ignorant interviewer rejects the
 better answer, or takes licence to pick at the scab of a miss, rather than try
 to figure out what you do know.
 
-Everyone thinks they do it really well. Few really do.
+Everyone thinks they do it well. Few do.
 
 ## Memes
 
@@ -163,8 +162,7 @@ There are two things going on here:
    right now. Everyone's memorised the talking points but nobody really knows
    anything about it. Therapy time. It's okay to not know everything. It's okay
    to defer to someone with experience. The loudest voices don't have all the
-   answers. If you just wait a second and listen, today you could be one of the
-   lucky 10,000.
+   answers. If you just wait a second and listen, today you could be one of the [lucky 10,000](https://xkcd.com/1053/).
 
 These arguments persist because we don't look at things how they really are.
 Somehow we view these systems as magical achievements which only the big bad

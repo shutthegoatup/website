@@ -30,9 +30,8 @@ there was no more budget that year and I had to wait until some vaguely defined
 period before I'd get my offer.
 
 Stuck in limbo, I took a CTO role where the interview consisted of talking to
-the owner primarily about video games for around 45 minutes. Unsurprisingly,
-given the hiring rigour was close to the aforementioned high street, the entire
-thing was a bit of a misadventure.
+the owner primarily about video games for around 45 minutes. Unsurprisingly, given the hiring rigour was somewhere near that high street,
+[the whole thing was a misadventure](/writing/continuous-improvement/).
 
 True to their word, big tech came back to me with an offer. It was a tough
 decision.
@@ -95,7 +94,7 @@ I declined and the world kept spinning.
 
 ### Be what you want
 
-So here I am in charge of a budding tech unicorn that's literally on fire and I
+So here I am in charge of a budding tech unicorn that's [literally on fire](/writing/nobody-expects-the-thundering-herd/) and I
 need to hire competent people. People a bit like me, so I put a stake in the
 ground.
 

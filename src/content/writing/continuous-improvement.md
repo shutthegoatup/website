@@ -17,10 +17,9 @@ Assholes. We all have them. Some of us have many. No, not the exit, sometimes
 entrance, on the rear of your body. But your team mates. Colleagues. People you
 interact with in a professional capacity.
 
-In [my previous article](/writing/culture-of-competency/) I poke fun at companies cargo culting Netflix's former
-"no asshole" culture. The joke is, whilst Netflix did indeed put a stake in the
-ground that they'd suffer no assholes, they also paid top of the market,
-heavily qualified competency, and let go of low performers.
+In [a culture of competency](/writing/culture-of-competency/) I poke fun at companies cargo culting Netflix's former
+"no asshole" culture. The joke is that Netflix did put a stake in the ground — no assholes — but they
+also paid top of market, tested competency hard, and let go of low performers.
 
 If you're not Netflix, maybe you need your assholes.
 
@@ -45,7 +44,7 @@ suck, but we won't talk about them today.
 
 ### Perspective
 
-What makes a person an asshole. The No Asshole Rule primarily defines assholes
+What makes a person an asshole. [The No Asshole Rule](https://en.wikipedia.org/wiki/The_No_Asshole_Rule) primarily defines assholes
 as people who punch down and make others feel worse about themselves. However,
 the book further suggests that 20-50% of nastiness is amongst co-workers of
 similar rank and thus significantly negates the rank argument.
@@ -78,9 +77,9 @@ doing its thing. We're talking about an entity without
 VCs or institutional investors making a mockery of the term hypergrowth whilst
 still in the mid 10s of millions ARR.
 
-And they were a disaster.
+And [they were a disaster](/writing/nobody-expects-the-thundering-herd/).
 
-- Daily outages with an availability of 60-80%.
+- Daily outages with an [availability of 60-80%](https://en.wikipedia.org/wiki/High_availability).
 - 70% churn within the engineering department the year I joined (100% in
   Product, north of 100% in customer service).
 - Customer churn (or new customers simply never trading) hollowing out that
@@ -131,8 +130,7 @@ How the fuck did I do that then?
   it. But I demanded competency, because competency is the first stage of
   continuous improvement.
 - I led by example. In the war room I was there googling problems and offering
-  suggestions. You know, like a person who isn't a real CTO because they're
-  hands-on trying to save their flailing unicorn. To the people who thought I
+  suggestions. You know, like a person who [isn't a real CTO because they're hands-on](/writing/3-reasons-you-shouldnt-hire-a-technical-cto/) trying to save their flailing unicorn. To the people who thought I
   should spend my days schmoozing, I was an asshole. But instead I used my
   experience, because experience is what you need to deliver on continuous
   improvement.
