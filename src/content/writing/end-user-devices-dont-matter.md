@@ -4,6 +4,8 @@ description: "A CISO, a consultancy and nine and a half million dollars of endpo
 published: 2019-08-18
 kind: "Satire"
 tags: ["Security", "Platform engineering"]
+cover: "./images/end-user-devices-dont-matter/cover.png"
+coverAlt: "End user devices don't matter"
 ---
 
 Picture this. You're Bill Parmer, a high-flying Head of Assurance for British
@@ -16,13 +18,13 @@ The Phoenix Project is a long book and I can't plagiarise all of it, so let's
 skip ahead. You meet Steve. Great guy. The company's been hacked. You're now
 acting CISO and you've actually been given a budget.
 
-<!-- IMAGE 1 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/01.png)
 
 So anyways, you're CISO and don't you fucking deserve it. After all, you run a
 tight ship, you have the pedigree, you worked at THE CONSULTANCY previously,
 you know all the words, and fuck it, don't you just look the part.
 
-<!-- IMAGE 2 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/02.png)
 
 You return to the Information Security Cupboard, partly because that's where
 you work, but mostly to let your new reports know that you're the Big Kahuna.
@@ -55,7 +57,7 @@ resources pronto."
 
 They look at you in awe. You think.
 
-<!-- IMAGE 3 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/03.png)
 
 ## THE CONSULTANCY
 
@@ -68,7 +70,7 @@ release.
 Oh yeah, new rule, we're not allowed to call it a breach any more. It's "the
 Event". Ah, they're here, and they've sent the big dog himself.
 
-<!-- IMAGE 4 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/04.png)
 
 Begbie is a legend in THE CONSULTANCY. His billings are through the roof. He's
 a record breaker. You're glad he's here. He immediately introduces himself.
@@ -104,7 +106,7 @@ some short-term solutions to the problems at hand. Now, this is a collaborative
 effort, so I'll need to borrow some of Patty and Wes' time during the process.
 Meanwhile, this is our Accounts Director and she will be available to you."
 
-<!-- IMAGE 5 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/05.png)
 
 ## Time stands still for no man
 
@@ -120,8 +122,9 @@ need them. You feel it in your bones. You need them.
 Weeks crawl in. Patty and Wes have happily supplied you with a makeshift
 diagram of your estate. You have your proposals; you have your numbers.
 
-<!-- IMAGE 6 — caption: "Yes, I know these are normally much more
-     professionally done in Visio. Fuck off Architect wankers." -->
+![](./images/end-user-devices-dont-matter/06.png)
+
+_Yes, I know these are normally much more professionally done in Visio. Fuck off Architect wankers._
 
 The months drag on. You're worried about how the digital transformation is
 going. Actually, you've heard some concerns. Someone even sent you this blog.
@@ -145,7 +148,7 @@ this is Laura Beck, from Human Resources. Steve would like to see you as soon
 as possible." You go to Steve's office strutting in like you're Don Draper and
 your name's on the fucking wall.
 
-<!-- IMAGE 7 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/07.png)
 
 ## There's no such thing as a free lunch
 
@@ -157,26 +160,26 @@ budget. Fuck.
 
 But that's not why you got fired. That'd be too easy. You got fired because...
 
-<!-- IMAGE 8 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/08.png)
 
 Nah, not the digital transformation, you fuckwit. Actually, that one is gonna
 take a few months before it burns British Capital Hotels® to the ground. You
 got fired because end user devices don't fucking matter. It's in the title, are
 you fucking surprised? Fuck me.
 
-<!-- IMAGE 9 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/09.png)
 
 So, what the sales brochures, the free lunches and the afternoons on the golf
 courses aren't telling you is that you can't actually secure end user devices.
 Don't believe me? That's fine. Why don't we ask the professionals?
 
-<!-- IMAGE 10 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/10.png)
 
 You wouldn't buy a condom that was 69% effective, would you?
 
-<!-- IMAGE 11 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/11.png)
 
-<!-- IMAGE 12 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/12.png)
 
 My little kitty friend is here to show you exactly what your multi-million
 dollar toolset is getting you. Actually, my money is on the kitty being more
@@ -191,7 +194,7 @@ would you do better? Well, isn't that just the million dollar question? My
 PayPal is... ha-ha, just kidding. I'm just going to tell you because I don't
 charge for common fucking sense.
 
-<!-- IMAGE 13 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/13.png)
 
 You get me? Why the fuck do you care about end user devices? Why are they in
 your big fuck off green trusted network? Like, have you literally forgotten
@@ -201,7 +204,7 @@ computing?
 
 Here, let me buy you a clue. Build this.
 
-<!-- IMAGE 14 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/14.png)
 
 Tada. Fixed. You see what I did there? I moved those end user devices outside
 of the big fucking green trusted network and saved you about $9.5 million
@@ -229,6 +232,6 @@ at Marriot One Airways."
 
 Bill: "Of course, boss."
 
-<!-- IMAGE 15 -->
+![Screenshot from the original article](./images/end-user-devices-dont-matter/15.png)
 
 Fin.

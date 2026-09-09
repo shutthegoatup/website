@@ -4,9 +4,9 @@ description: "“Your standards are too high” and “your process is too long�
 published: 2024-05-14
 kind: "Playbook"
 tags: ["Hiring", "Leadership", "Culture"]
+cover: "./images/the-hiring-pool/cover.png"
+coverAlt: "The Hiring Pool"
 ---
-
-<!-- IMAGE 1 — header image -->
 
 When you first embark on building a hiring journey, at least for those trying
 to build high performing teams, the two most common pieces of feedback you'll
@@ -65,8 +65,6 @@ decision.
 So this post isn't really about me. I mean it is, because I'm awesome, but it
 isn't really. It's about using your empathy, desires, skills and a little bit
 of wit to build your own hiring journey.
-
-<!-- IMAGE 2 — caption: "You're not big tech" -->
 
 You've not got the prestige, the money, nor the competency, so why would anyone
 undertake a three month process with you? And you won't ask them to, because

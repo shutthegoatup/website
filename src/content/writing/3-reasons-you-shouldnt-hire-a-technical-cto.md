@@ -4,9 +4,9 @@ description: "A straight-faced case for hiring a visionary who works on the org 
 published: 2024-04-30
 kind: "Satire"
 tags: ["Leadership", "Hiring"]
+cover: "./images/3-reasons-you-shouldnt-hire-a-technical-cto/cover.png"
+coverAlt: "3 reasons you shouldn't hire a Technical CTO"
 ---
-
-<!-- IMAGE 1 — header image -->
 
 ## Leaders scale teams
 
@@ -52,7 +52,9 @@ Hang on. I feel like I'm missing something?
 Oh yeah, that's right, the developer. But developers are expensive, so we'll
 offshore that role. Probably should look something like this.
 
-<!-- IMAGE 2 — caption: "Org Chart - Best Practice" -->
+![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/01.png)
+
+_Org Chart - Best Practice_
 
 ## Customer relations
 
@@ -77,7 +79,9 @@ time for the customer call, best practice is:
   Teams work best in SCRUM, so changing the sprint for operational concerns is
   an anti-pattern.
 
-<!-- IMAGE 3 — caption: "Best Practice" -->
+![](./images/3-reasons-you-shouldnt-hire-a-technical-cto/02.png)
+
+_Best Practice_
 
 And when the big day comes, the executive will masterfully navigate the
 customer complaint by making them feel heard, because that's what they need
@@ -114,3 +118,10 @@ But anyway, enough about culture, let's talk about tech, baby.
 I mean, developers are basically kids; we need adults in the room.
 
 Tech is easy; culture is hard.
+
+<!-- UNPLACED — these came from the original but I could not tell
+     where they sat in the text. Move them into position or delete. -->
+
+![Screenshot from the original article](./images/3-reasons-you-shouldnt-hire-a-technical-cto/03.png)
+
+![Screenshot from the original article](./images/3-reasons-you-shouldnt-hire-a-technical-cto/04.png)

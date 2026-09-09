@@ -4,9 +4,13 @@ description: "The no-asshole rule works when you also pay top of market and qual
 published: 2024-05-10
 kind: "War story"
 tags: ["Leadership", "Culture"]
+cover: "./images/continuous-improvement/cover.png"
+coverAlt: "Continuous Improvement"
 ---
 
-<!-- IMAGE 1 — caption: "Maybe?" -->
+![](./images/continuous-improvement/01.png)
+
+_Maybe?_
 
 Assholes. We all have them. Some of us have many. No, not the exit, sometimes
 entrance, on the rear of your body. But your team mates. Colleagues. People you
@@ -137,7 +141,9 @@ How the fuck did I do that then?
   decisions rather than just shitty ones, which is key for continuous
   improvement.
 
-<!-- IMAGE 2 — caption: "Please fuck off." -->
+![](./images/continuous-improvement/02.png)
+
+_Please fuck off._
 
 Basically, I was asshole prime.
 
@@ -165,3 +171,8 @@ is, he's better than me. He's a better dev. He's a nicer person. Fuck my life, h
 me. He's obviously the better CTO.
 
 But he's not an asshole. And he doesn't have to be. Because I was.
+
+<!-- UNPLACED — these came from the original but I could not tell
+     where they sat in the text. Move them into position or delete. -->
+
+![Screenshot from the original article](./images/continuous-improvement/03.png)

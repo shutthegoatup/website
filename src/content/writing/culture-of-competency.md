@@ -4,9 +4,13 @@ description: "“Technology is easy; culture is hard” is a sales pitch. In a b
 published: 2024-05-02
 kind: "Argument"
 tags: ["Leadership", "Hiring", "Culture"]
+cover: "./images/culture-of-competency/cover.png"
+coverAlt: "Culture of Competency"
 ---
 
-<!-- IMAGE 1 — caption: "The Hustler" -->
+![](./images/culture-of-competency/01.png)
+
+_The Hustler_
 
 A few years ago it was common to see "Technology is Easy; Culture is hard". In
 the midst of a digital transformation I was initially pretty accepting of the
@@ -164,7 +168,5 @@ Move too fast and you'll put undue burden on the institutional knowledge that
 keeps the lights on. Too slow, and you will succumb to politics.
 
 ### Fin.
-
-<!-- IMAGE 2 — caption: "First ones for free" -->
 
 Yeah sure, gimme a shout. :)

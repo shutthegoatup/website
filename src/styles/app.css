@@ -211,6 +211,21 @@
   border: 2px solid var(--color-ink);
 }
 
+/* Markdown gives no <figure>, so a lone italic line straight after an image
+   is treated as its caption. */
+.prose p:has(> img:only-child) + p em {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
+.prose p:has(> img:only-child) + p {
+  margin-top: 0.75em;
+}
+
 .prose figcaption {
   margin-top: 0.75em;
   font-family: var(--font-mono);

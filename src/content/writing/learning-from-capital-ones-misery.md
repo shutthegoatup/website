@@ -4,12 +4,14 @@ description: "A misconfigured firewall, an over-privileged role, unencrypted PII
 published: 2019-07-30
 kind: "Analysis"
 tags: ["Security", "Platform engineering"]
+cover: "./images/learning-from-capital-ones-misery/cover.png"
+coverAlt: "Learning from Capital One's misery"
 ---
 
 Capital One is the most recent victim, or should I say culprit, of losing a
 treasure trove of your PII data.
 
-<!-- IMAGE 1 -->
+![Screenshot from the original article](./images/learning-from-capital-ones-misery/01.png)
 
 Rather than joining the crowds calling for their heads or jumping to their
 defence, today might be a good day to get our own shit in order. Why does this
@@ -44,7 +46,7 @@ insecure or too complex to run stacks on, you need to re-evaluate your career.
 If you're trying to use this to peddle your product, go jump off a bridge.
 Misinformation like this is why we can't have nice things.
 
-<!-- IMAGE 2 -->
+![Screenshot from the original article](./images/learning-from-capital-ones-misery/02.png)
 
 Moving on, let's talk about our options to defend against such attacks.
 
@@ -87,7 +89,7 @@ led to the leaking of the `*-WAF-Role`. Was this insecure software? Was it an
 insecure server? Weak or leaked credentials? Why did it have so much access?
 What the fuck even is this? Maybe we'll know more later.
 
-<!-- IMAGE 3 -->
+![Screenshot from the original article](./images/learning-from-capital-ones-misery/03.png)
 
 I'll leave it to the reader to ponder, only adding that we shouldn't run
 insecure software and consider it secure because it's behind a firewall, we
@@ -118,7 +120,7 @@ notice a pattern here.
 
 That sounded boringly familiar. Why aren't you doing it?
 
-<!-- IMAGE 4 -->
+![Screenshot from the original article](./images/learning-from-capital-ones-misery/04.png)
 
 ## Not being aware of the data leakage
 

@@ -4,6 +4,8 @@ description: "Three consultants stand up Bitbucket, Jenkins and AWS, and it pass
 published: 2019-08-03
 kind: "Satire"
 tags: ["Security", "Platform engineering", "Culture"]
+cover: "./images/devops-is-going-to-get-you-hacked/cover.png"
+coverAlt: "DevOps is going to get you hacked"
 ---
 
 Yeah, you heard that right. As I say it, I hear the cheer of hundreds of
@@ -11,7 +13,7 @@ thousands of greybeards agree that it's a truth universally acknowledged. Hold
 on to your fucking change control old man, I can't actually imagine anything
 worse than the security theatre you've been a party to for the last 15 years.
 
-<!-- IMAGE 1 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/01.png)
 
 To borrow a turn of phrase from a once great alcoholic: DevOps is the worst
 form of IT, except all the others.
@@ -27,14 +29,14 @@ Anyway, got distracted. Where was I? Oh yeah, so we're all about the digital
 transformations today. Kicking that off, you're going to need someone to run
 the thing. Sensible. So let's take a look at a Head of Digital's profile.
 
-<!-- IMAGE 2 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/02.png)
 
 Putting the right foot forward, obviously we're going to hire the same people
 who sold us outsourcing, bean counting, and gleefully led us down the path of
 our current malaise. After all, who better to help us imitate start-up culture
 than the employees of some of the more bloated enterprises on the planet.
 
-<!-- IMAGE 3 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/03.png)
 
 Okay, I hear what you're saying. It's about a culture of continual learning.
 That's way more important than the tech! Tech is easy! Right? Okay!
@@ -46,7 +48,7 @@ management consultants couldn't possibly fuck up bringing an engineering
 culture into your organisation. After all, what are management consultants if
 not experts in engineering culture?
 
-<!-- IMAGE 4 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/04.png)
 
 ## Let's talk about tech, baby
 
@@ -69,7 +71,7 @@ partners that'll give them kickbacks for selling you additional products as
 part of this stack, but we'll only focus on these three right now because my
 fingers are hurting and I ain't got all day.
 
-<!-- IMAGE 5 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/05.png)
 
 Digging deeper, our three DevOps musketeers, which we'll call Tom, Dick and
 Harry, are going to configure this shit. And hell, given enough time they might
@@ -111,7 +113,7 @@ technical background. He talks about things like APIs, Java, Oh-My-Zsh, and he
 even backs up his dotfiles to github. You can see on his profile. He's the real
 deal. You suspect he's doing most of the work.
 
-<!-- IMAGE 6 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/06.png)
 
 Now before we can really do CI/CD using Jenkins, we need to put it somewhere.
 He gets an AWS account, creates an instance, puts Jenkins on it, and passes
@@ -153,7 +155,7 @@ clever re-appropriation of Intel's tick-tock model to describe a culture of
 continual improvement? Or did you realise it was because we're sitting on a
 fucking time bomb?
 
-<!-- IMAGE 7 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/07.png)
 
 Those of you with a discerning eye, or the displeasure of experience, will have
 surely noticed the fuck-ups. After all, it was all there, in the details. Or it
@@ -171,7 +173,7 @@ So where did we go wrong?
   You can't really blame the guy; it gets lonely in those hotels, alone at
   night, when you're off consulting… Yeah, it still has the OAuth token on it.
 
-<!-- IMAGE 8 -->
+![Screenshot from the original article](./images/devops-is-going-to-get-you-hacked/08.png)
 
 I have personal experience with all of these things happening. Still confident
 that WAF will protect you when `bigdick69` can push code that'll allow him to

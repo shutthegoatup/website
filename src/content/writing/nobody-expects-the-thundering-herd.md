@@ -4,9 +4,9 @@ description: "Servers fell over every lunchtime. A blocking query backed up the 
 published: 2022-11-19
 kind: "War story"
 tags: ["Reliability", "Platform engineering"]
+cover: "./images/nobody-expects-the-thundering-herd/cover.png"
+coverAlt: "Nobody expects the thundering herd"
 ---
-
-<!-- IMAGE 1 — header image -->
 
 <!-- OPENING — the original starts with a four-line riff on the Fresh Prince
      theme. Paste your own lines back in here; I have left them out rather
@@ -150,3 +150,22 @@ jitter on the client, and everything was bright and beautiful. The P50 was down
 70%, the P95 down 80% and the P99 down 90%.
 
 Fin.
+
+<!-- UNPLACED — these came from the original but I could not tell
+     where they sat in the text. Move them into position or delete. -->
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/01.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/02.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/03.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/04.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/05.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/06.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/07.png)
+
+![Screenshot from the original article](./images/nobody-expects-the-thundering-herd/08.png)

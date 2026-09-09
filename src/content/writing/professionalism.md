@@ -4,13 +4,17 @@ description: "On dismissive communication in technical discussion, and how power
 published: 2024-06-07
 kind: "Argument"
 tags: ["Culture", "Leadership"]
+cover: "./images/professionalism/cover.png"
+coverAlt: "Professionalism"
 ---
 
 Hey there, it's me again. Did you guys know it's okay to call someone a cunt as long
 as you don't actually use the word cunt, and of course the attack is thinly
 veiled so you have a modicum of deniability?
 
-<!-- IMAGE 1 — caption: "It's culturally insensitive to judge me for my language" -->
+![](./images/professionalism/01.png)
+
+_It's culturally insensitive to judge me for my language_
 
 So last week I was in a tech community forum where someone asked for help on
 the organisational posture of shifting left. I'm pretty well versed in DevOps,
@@ -39,7 +43,7 @@ incompetent. But at this point, what's the difference?
 
 Literally today, I came across this discussion thread.
 
-<!-- IMAGE 2 — the discussion thread screenshot -->
+![Screenshot from the original article](./images/professionalism/02.png)
 
 Now, I don't necessarily disagree, and there's nothing particularly egregious
 here. John Gallagher was entirely cordial during this discussion. In the end he
@@ -50,22 +54,30 @@ that when people want to micro-optimise the SDLC to their preference, they tend
 not to consider the larger impact of the kind of assurances the SDLC can
 provide.
 
-<!-- IMAGE 3 — caption: "I dunno... probably sign the commits?" -->
+![](./images/professionalism/03.png)
+
+_I dunno... probably sign the commits?_
 
 We had a bit of back and forth where people didn't really get the point, but I
 remade it, pushed a few buttons, and this dropped out.
 
-<!-- IMAGE 4 — caption: "Because he says so, right?" -->
+![](./images/professionalism/04.png)
+
+_Because he says so, right?_
 
 Now bear in mind I'm cherry-picking particular posts from a wider discussion,
 but this gets pretty spicy.
 
-<!-- IMAGE 5 — caption: "Because he says so, right?" -->
+![](./images/professionalism/05.png)
+
+_Because he says so, right?_
 
 I was going to say this is not how you do technical discussion, but the sad
 thing is, this is how most of my technical discussions go.
 
-<!-- IMAGE 6 — caption: "Because he says so, right?" -->
+![](./images/professionalism/06.png)
+
+_Because he says so, right?_
 
 Now, it's totally uncool to straight up call Andrea L. out, eh? Maybe he had a
 bad day. Maybe he was hungry. Maybe he was just fed up of the bloody topic.

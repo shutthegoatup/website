@@ -4,9 +4,9 @@ description: "We built the first cloud in Europe and replaced the hypervisor in 
 published: 2024-05-16
 kind: "Argument"
 tags: ["Platform engineering", "Culture"]
+cover: "./images/lies-damned-lies-and-complexity/cover.png"
+coverAlt: "Lies, damned lies, and complexity"
 ---
-
-<!-- IMAGE 1 — header image -->
 
 I was extremely lucky in my early career to fall into interesting work.
 
@@ -53,7 +53,9 @@ There were people who came before me.
 - James Lucas wrote most of the bespoke code that made the thing an actual
   product.
 
-<!-- IMAGE 2 — caption: "we did it!" -->
+![](./images/lies-damned-lies-and-complexity/01.png)
+
+_we did it!_
 
 Everything was going well until the incident. No, not that one, I'll write
 about that later — the one where Oracle buys your scheduler and then refuses to
@@ -66,7 +68,9 @@ And so we did.
 
 Without a doubt the best job I've ever had.
 
-<!-- IMAGE 3 — caption: "Buh Bye, VI" -->
+![](./images/lies-damned-lies-and-complexity/02.png)
+
+_Buh Bye, VI_
 
 ## Trivia
 
@@ -124,7 +128,9 @@ Super different, eh?
 Alright, alright, I get it. People are talking about the kubernetes
 architecture being complex...
 
-<!-- IMAGE 4 — caption: "Wait what?" -->
+![](./images/lies-damned-lies-and-complexity/03.png)
+
+_Wait what?_
 
 So I've glossed over some details. The syntax is different, and the important
 thing is you already know the cloud architecture. Learning new things is hard,
@@ -206,3 +212,8 @@ I want it back.
 I need it back so bad I'm willing to do better.
 
 And all I'm asking is for you to do the same.
+
+<!-- UNPLACED — these came from the original but I could not tell
+     where they sat in the text. Move them into position or delete. -->
+
+![Screenshot from the original article](./images/lies-damned-lies-and-complexity/04.png)

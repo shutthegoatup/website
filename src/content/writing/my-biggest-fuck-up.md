@@ -4,9 +4,9 @@ description: "Twenty-two years old, first day as a developer, production databas
 published: 2024-05-23
 kind: "War story"
 tags: ["Culture", "Reliability"]
+cover: "./images/my-biggest-fuck-up/cover.png"
+coverAlt: "My biggest fuck up"
 ---
-
-<!-- IMAGE 1 — header image -->
 
 So I'm 22, doing interesting work, kicking ass, chewing bubblegum, and building
 a tower of depleted coke cans.
@@ -33,7 +33,9 @@ I, in my ultimate wisdom, picked from the top of the board, escalated 0
 tickets, and for that my reward was to pick up my shit and go to the other
 room. As a developer.
 
-<!-- IMAGE 2 — caption: "mine mine mine mine mine" -->
+![](./images/my-biggest-fuck-up/01.png)
+
+_mine mine mine mine mine_
 
 ## Interesting times
 
@@ -47,7 +49,9 @@ And you know what else was interesting?
 
 They edited the files live on the server.
 
-<!-- IMAGE 3 — caption: "Oh fuck no" -->
+![](./images/my-biggest-fuck-up/02.png)
+
+_Oh fuck no_
 
 ## Implementing process
 
@@ -69,7 +73,9 @@ It was actually one of the more interesting tasks I've ever done:
   workloads on the fleet.
 - And I accidentally deleted the production database.
 
-<!-- IMAGE 4 — caption: "Did the site just go down for anyone else?" -->
+![](./images/my-biggest-fuck-up/03.png)
+
+_Did the site just go down for anyone else?_
 
 Yep, that's right.
 
@@ -86,8 +92,6 @@ It was simple really.
 - Google problem.
 - Fix config.
 - Drop database.
-
-<!-- IMAGE 5 — caption: "Oh shit; Wrong one." -->
 
 ## Aftermath
 
