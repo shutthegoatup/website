@@ -12,7 +12,7 @@ const statusLabel: Record<ProductStatus, string> = {
   <div class="mx-auto max-w-[110rem] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
     <header class="reveal flex flex-wrap items-end justify-between gap-6">
       <div>
-        <p class="stamp text-ash">§ 01 — The work</p>
+        <p class="stamp text-ash-deep">§ 01 — The work</p>
         <h2 class="display mt-4 text-[clamp(2.5rem,7vw,6rem)]">
           Three products.<br />Three incumbents.
         </h2>
@@ -31,7 +31,7 @@ const statusLabel: Record<ProductStatus, string> = {
             style={`transition-delay:${i * 110}ms`}
           >
             <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-              <span class="stamp text-ash">{product.category}</span>
+              <span class="stamp text-ash-deep">{product.category}</span>
               <span
                 class:list={[
                   "stamp shrink-0 px-2.5 py-1.5 leading-none",
@@ -56,7 +56,7 @@ const statusLabel: Record<ProductStatus, string> = {
             </p>
 
             <div class="mt-8 border-t-2 border-ink pt-5">
-              <p class="stamp text-ash">Coming for</p>
+              <p class="stamp text-ash-deep">Coming for</p>
               <p class="mt-2 text-sm">{product.takes}</p>
               {product.href && (
                 <a

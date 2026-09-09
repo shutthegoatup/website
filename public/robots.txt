@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Answer engines and model crawlers are welcome. Named explicitly so the
+# intent survives anyone tightening the wildcard above.
+User-agent: Googlebot
+User-agent: Google-Extended
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://shutthegoatup.com/sitemap-index.xml

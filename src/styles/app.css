@@ -7,6 +7,8 @@
   --color-ink-soft: #1c1a17;
   --color-signal: #ff3b12;
   --color-ash: #8c8577;
+  /* Ash only clears 4.5:1 on ink. On bone it needs this one. */
+  --color-ash-deep: #706a5f;
 
   --font-display:
     "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
@@ -85,6 +87,143 @@
   .link-underline:focus-visible {
     background-size: 100% 2px;
   }
+}
+
+/* ---- Long-form: markdown from the writing collection --------------------- */
+
+.prose {
+  max-width: 68ch;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
+}
+
+.prose > * + * {
+  margin-top: 1.5em;
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.prose h2 {
+  margin-top: 2.4em;
+  font-size: 2rem;
+}
+
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.375rem;
+}
+
+/* The accent lives in the underline, so body links stay ink and readable. */
+.prose a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-signal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  background: var(--color-signal);
+  color: var(--color-bone);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose ul {
+  list-style: square;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}
+
+.prose li::marker {
+  color: var(--color-signal);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--color-ink);
+  padding-left: 1.4em;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--color-bone-dim);
+  padding: 0.15em 0.35em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  border: 2px solid var(--color-ink);
+  padding: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Consumed by Shiki's css-variables theme. Bone on ink, with the accent kept
+   for keywords so a block reads as one more piece of the same system. */
+.prose {
+  --astro-code-background: var(--color-ink);
+  --astro-code-foreground: var(--color-bone);
+  --astro-code-token-comment: var(--color-ash);
+  --astro-code-token-keyword: var(--color-signal);
+  --astro-code-token-string: #c9d3b4;
+  --astro-code-token-string-expression: #c9d3b4;
+  --astro-code-token-constant: #e8c07a;
+  --astro-code-token-parameter: var(--color-bone);
+  --astro-code-token-function: var(--color-bone);
+  --astro-code-token-punctuation: var(--color-ash);
+  --astro-code-token-link: var(--color-signal);
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose img {
+  border: 2px solid var(--color-ink);
+}
+
+.prose figcaption {
+  margin-top: 0.75em;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ash-deep);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 2px solid var(--color-ink);
+  margin-block: 2.5em;
 }
 
 /* ---- Redaction: the brand device ---------------------------------------- */

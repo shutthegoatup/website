@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { site, team } from "~/lib/site";
+import { articleDate, hostedWriting, type Article } from "~/lib/writing";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await hostedWriting();
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+};
+
+const { article } = Astro.props as { article: Article };
+const { Content } = await render(article);
+
+const author = team.find((person) => person.name === "Allan Degnan") ?? team[0];
+const url = new URL(`/writing/${article.id}/`, site.url).href;
+
+const schema = [
+  {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: article.data.title,
+    description: article.data.description,
+    datePublished: article.data.published.toISOString(),
+    ...(article.data.updated && {
+      dateModified: article.data.updated.toISOString(),
+    }),
+    inLanguage: "en-GB",
+    ...(article.data.tags.length > 0 && {
+      keywords: article.data.tags.join(", "),
+    }),
+    mainEntityOfPage: url,
+    url,
+    author: { "@type": "Person", name: author?.name, jobTitle: author?.role },
+    publisher: { "@id": `${site.url}/#organisation` },
+  },
+];
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  ogImage={article.data.cover?.src}
+  ogImageAlt={article.data.coverAlt}
+  noindex={article.data.draft}
+  schema={schema}
+>
+  <article class="border-b-2 border-ink">
+    <div class="mx-auto max-w-[110rem] px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+      <p class="stamp text-ash-deep">
+        <a class="link-underline" href="/writing/">← Writing</a>
+      </p>
+
+      <h1 class="display mt-6 max-w-5xl text-[clamp(2.4rem,7vw,6rem)]">
+        {article.data.title}
+      </h1>
+
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+        <p class="stamp text-ash-deep">
+          {articleDate(article.data.published)}
+          {
+            article.data.updated &&
+              ` — updated ${articleDate(article.data.updated)}`
+          }
+        </p>
+        <p class="stamp text-ash-deep">{author?.name}, {author?.role}</p>
+        {
+          article.data.tags.map((tag) => (
+            <p class="stamp border-2 border-ink px-2 py-1">{tag}</p>
+          ))
+        }
+      </div>
+
+      {
+        article.data.cover && (
+          <Image
+            src={article.data.cover}
+            alt={article.data.coverAlt ?? ""}
+            widths={[720, 1280, 1920]}
+            sizes="(min-width: 1024px) 70vw, 100vw"
+            class="mt-12 w-full border-2 border-ink object-cover"
+          />
+        )
+      }
+
+      <div class="prose mt-14">
+        <Content />
+      </div>
+
+      {
+        article.data.origin && (
+          <p class="stamp mt-16 border-t-2 border-ink pt-6 text-ash-deep">
+            First published on{" "}
+            <a
+              class="link-underline text-signal"
+              href={article.data.origin.href}
+            >
+              {article.data.origin.label}
+            </a>
+          </p>
+        )
+      }
+    </div>
+  </article>
+</BaseLayout>
