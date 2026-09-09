@@ -54,15 +54,35 @@ The live kit, with downloads, is at [`/brand`](https://shutthegoatup.com/brand).
 
 ## Deploying
 
-`npm run build` produces a fully static `dist/`, so any static host works.
+`npm run build` produces a fully static `dist/`, published to S3 and served by
+CloudFront. Both environments live in their own AWS account, so a preview
+deploy cannot reach production.
 
-**Cloudflare Pages** — build command `npm run build`, output directory `dist`.
-`public/_headers` is picked up automatically for caching and security headers.
+|              | Production          | Preview                      |
+| ------------ | ------------------- | ---------------------------- |
+| Trigger      | push to `master`    | every pull request           |
+| Account      | `488658242048`      | `784620264214`               |
+| Hostname     | `shutthegoatup.com` | `unstable.shutthegoatup.com` |
+| Distribution | `E3KH41IQXL64RE`    | `E3L0YRAD1RYM8M`             |
 
-**S3 + CloudFront** — sync `dist/` to the bucket and serve via OAC. Set the
-default root object to `index.html` and map 404s to `/404.html`. Astro emits
-directory-style routes (`/brand/index.html`), so either enable a
-directory-index Function or use `build.format: "file"` in `astro.config.mjs`.
+`.github/workflows/deploy.yaml` builds, assumes `gha-website-deployer` in the
+target account over GitHub OIDC, syncs `dist/`, then invalidates CloudFront.
+The distribution is looked up by its alias rather than hardcoded, so a replaced
+distribution needs no change here. Invalidation is skipped with a notice if no
+distribution serves the hostname yet — the upload still counts as success.
+
+The OIDC trust is scoped per environment: production accepts only
+`ref:refs/heads/master`, preview only the `pull_request` event.
+
+Infrastructure lives in `renderappio/aws-org-management` under
+`terraform/05_workloads/stgu-website{,-notprod}`. Bucket names are derived
+there, not chosen here.
+
+DNS is served by Cloudflare, not Route 53 — the domain is registered with
+Cloudflare Registrar, which requires its own nameservers. ACM validation
+records are therefore mirrored into Cloudflare by hand; the Route 53 zone the
+Terraform writes into is not authoritative for this domain.
 
 **Container** — `build/package/Dockerfile` builds the site and serves `dist/`
-from nginx, for the existing Helm chart in `deployment/`.
+from nginx. Unused by the pipeline above, kept for local container runs; the
+security headers it sets are the ones CloudFront still needs configured.
