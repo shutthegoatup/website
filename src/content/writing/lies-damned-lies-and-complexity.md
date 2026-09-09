@@ -14,7 +14,7 @@ I was extremely lucky in my early career to fall into interesting work.
 ## Gotta build your brand, yo
 
 After reading the 1000 A4 page Xen manual handed to me by Anders Holm, I
-wrote the scheduler for the first cloud in Europe.
+wrote the scheduler for the [first cloud in Europe](https://en.wikipedia.org/wiki/FlexiScale).
 
 ```php
 function decisionEngine($dbh) {
@@ -34,9 +34,9 @@ And history was made.
 ## Story time
 
 Longer version of the story, and I'm not even sure how much of this is true. I
-joined Positron Systems Ltd when I was 22, thanks to a wee bit of
+joined XCalibre Communications Ltd when I was 22, thanks to a wee bit of
 nepotism from my favourite brother-in-law Callum Reid. I quickly found myself
-working on Flux, the utility elastic computing platform, before the term
+working on FlexiScale, the utility elastic computing platform, before the term
 cloud was actually coined.
 
 There were people who came before me.
@@ -173,7 +173,7 @@ We call it complexity, but it's actually just ignorance.
 
 ## Final thoughts
 
-Building Flux was a beautiful place in time and space.
+Building FlexiScale was a beautiful place in time and space.
 
 When Oracle put a gun to our heads we didn't meme complexity, we didn't say it
 wasn't possible, we didn't go begging to another vendor.
