@@ -49,7 +49,7 @@ export const products: readonly Product[] = [
     category: "Point of sale",
     blurb:
       "The till, card payments, kitchen screen, online orders and bookings for restaurants, cafés, pubs and bars — one menu, one set of numbers, and it keeps selling when the wifi drops.",
-    takes: "Square, Toast and Epos Now",
+    takes: "Square and Toast",
     href: "https://tenvelo.com",
   },
   {
