@@ -44,13 +44,13 @@ export const products: readonly Product[] = [
     href: "https://renderapp.io",
   },
   {
-    name: "Tender",
-    status: "building",
+    name: "Tenvelo",
+    status: "live",
     category: "Point of sale",
     blurb:
-      "A multi-tenant point-of-sale platform: merchant API, dashboard and terminal app. Built for operators who resent paying a percentage of their business for a card reader.",
-    takes: "Square and Toast",
-    href: null,
+      "The till, card payments, kitchen screen, online orders and bookings for restaurants, cafés, pubs and bars — one menu, one set of numbers, and it keeps selling when the wifi drops.",
+    takes: "Square, Toast and Epos Now",
+    href: "https://tenvelo.com",
   },
   {
     name: "Gruff",
