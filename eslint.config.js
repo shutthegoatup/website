@@ -5,7 +5,10 @@ import prettier from "eslint-config-prettier";
 import globals from "globals";
 
 export default tseslint.config(
-  { ignores: ["dist/", ".astro/", "node_modules/", "public/"] },
+  {
+    // www-redirect/ is a standalone Worker, outside the site's tsconfig.
+    ignores: ["dist/", ".astro/", "node_modules/", "public/", "www-redirect/"],
+  },
   js.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
