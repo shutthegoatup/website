@@ -54,34 +54,27 @@ The live kit, with downloads, is at [`/brand`](https://shutthegoatup.com/brand).
 
 ## Deploying
 
-`npm run build` produces a fully static `dist/`, published to S3 and served by
-CloudFront. Both environments live in their own AWS account, so a preview
-deploy cannot reach production.
+`npm run build` produces a fully static `dist/`, served by Cloudflare Pages
+(project `shutthegoatup`), which builds this repo itself through its GitHub
+integration. There is no deploy workflow.
 
-|              | Production          | Preview                      |
-| ------------ | ------------------- | ---------------------------- |
-| Trigger      | push to `master`    | every pull request           |
-| Account      | `488658242048`      | `784620264214`               |
-| Hostname     | `shutthegoatup.com` | `unstable.shutthegoatup.com` |
-| Distribution | `E3KH41IQXL64RE`    | `E3L0YRAD1RYM8M`             |
+| Environment | Trigger                  | Hostname                           | Indexing                               |
+| ----------- | ------------------------ | ---------------------------------- | -------------------------------------- |
+| Production  | push to `master`         | `shutthegoatup.com`                | `PUBLIC_SITE_DOMAIN` set, so indexed   |
+| Preview     | push to any other branch | `<branch>.shutthegoatup.pages.dev` | variable unset, so the build noindexes |
 
-`.github/workflows/deploy.yaml` builds, assumes `gha-website-deployer` in the
-target account over GitHub OIDC, syncs `dist/`, then invalidates CloudFront.
-The distribution is looked up by its alias rather than hardcoded, so a replaced
-distribution needs no change here. Invalidation is skipped with a notice if no
-distribution serves the hostname yet — the upload still counts as success.
+Cloudflare comments each preview's URL on its pull request.
 
-The OIDC trust is scoped per environment: production accepts only
-`ref:refs/heads/master`, preview only the `pull_request` event.
+DNS is on Cloudflare. The apex is a proxied CNAME to the Pages project.
+`www-redirect/` is a Worker bound to `www.shutthegoatup.com` that 301s
+everything to `https://shutthegoatup.com`, keeping path and query. Deploy it
+with `npx wrangler deploy` from that directory. It rarely changes.
 
-Infrastructure lives in `renderappio/aws-org-management` under
-`terraform/05_workloads/stgu-website{,-notprod}`. Bucket names are derived
-there, not chosen here.
-
-DNS is served by Cloudflare, not Route 53 — the domain is registered with
-Cloudflare Registrar, which requires its own nameservers. ACM validation
-records are therefore mirrored into Cloudflare by hand; the Route 53 zone the
-Terraform writes into is not authoritative for this domain.
+The old S3 and CloudFront stacks live in `renderappio/aws-org-management`
+(`terraform/05_workloads/stgu-website{,-notprod}`). Production no longer serves
+anything. `unstable.shutthegoatup.com` still points at the notprod distribution
+and stops updating with this change, so remove that DNS record before
+destroying the stacks.
 
 **Container** — `build/package/Dockerfile` builds the site and serves `dist/`
 from nginx. Unused by the pipeline above, kept for local container runs; the
